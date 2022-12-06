@@ -34,7 +34,7 @@ class $CLASS_NAME$ extends ApexChartWidget
             ],
             'series' => [
                 [
-                    'name' => 'Sales',
+                    'name' => '$CLASS_NAME$',
                     'data' => [90, 80, 70, 60, 50, 40, 40, 50, 60, 70, 80, 90]
                 ],
             ],
