@@ -84,7 +84,7 @@ The `getOptions()` method is used to return an array of options based on [Apex C
 
 ## Examples
 
-soon
+[CHART DEMOS](examples/)
 
 ## Setting a widget title
 
