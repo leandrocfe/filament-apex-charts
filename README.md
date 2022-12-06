@@ -1,68 +1,158 @@
-# :package_description
+# Filament Apex Charts
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/:vendor_slug/:package_slug/run-tests?label=tests)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/:vendor_slug/:package_slug/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-<!--delete-->
----
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+[Apex Charts](https://apexcharts.com/) integration for [Filament](https://filamentphp.com/)
 
-1. Press the "Use this template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+![screenshot](https://raw.githubusercontent.com/leandrocfe/filament-apex-charts/develop/screenshots/banner.jpg)
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
+composer require leandrocfe/filament-apex-charts
 ```
 
-You can publish and run the migrations with:
+Optionally, you can publish the views using:
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag=":package_slug-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag=":package_slug-views"
+php artisan vendor:publish --tag="filament-apex-charts-views"
 ```
 
 ## Usage
 
+Start by creating a widget with the command:
+
+```bash
+php artisan make:filament-apex-charts BlogPostsChart
+```
+
+This command will create the BlogPostsChart.php file in app\Filament\Widgets:
+
 ```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
+
+namespace App\Filament\Widgets;
+
+use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
+
+class BlogPostsChart extends ApexChartWidget
+{
+    /**
+     * Chart Id
+     *
+     * @var string
+     */
+    protected static string $chartId = 'blogPostsChart';
+
+    /**
+     * Widget Title
+     *
+     * @var string|null
+     */
+    protected static ?string $heading = 'BlogPostsChart';
+
+    /**
+     * Chart options (series, labels, types, size, animations...)
+     * https://apexcharts.com/docs/options
+     *
+     * @return array
+     */
+    protected function getOptions(): array
+    {
+        return [
+            'chart' => [
+                'type' => 'bar',
+            ],
+            'series' => [
+                [
+                    'name' => 'BlogPostsChart',
+                    'data' => [90, 80, 70, 60, 50, 40, 40, 50, 60, 70, 80, 90],
+                ],
+            ],
+            'xaxis' => [
+                'categories' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            ],
+        ];
+    }
+}
+```
+
+Now, check out your widget in the **dashboard**.
+
+## Available options
+
+The `getOptions()` method is used to return an array of options based on [Apex Charts Options](https://apexcharts.com/docs/options). This structure is identical with the **Apex Chart library**, which `Filament Apex Charts` uses to render charts. You may use the [Apex Chart documentation](https://apexcharts.com/docs/creating-first-javascript-chart/) to fully understand the possibilities to return from getOptions().
+
+## Examples
+
+[CHART DEMOS](/examples)
+
+## Setting a widget title
+
+You may set a widget title:
+
+```php
+protected static ?string $heading = 'Blog Posts Chart';
+```
+
+Optionally, you can use The `getHeading()` method.
+
+## Setting a chart id
+
+You may set a chart id:
+
+```php
+protected static string $chartId = 'blogPostsChart';
+```
+
+## Filtering chart data
+
+You can set up chart filters to change the data shown on chart. Commonly, this is used to change the time period that chart data is rendered for.
+
+To set a default filter value, set the `$filter` property:
+
+```php
+public ?string $filter = 'today';
+```
+
+Then, define the `getFilters()` method to return an array of values and labels for your filter:
+
+```php
+protected function getFilters(): ?array
+{
+    return [
+        'today' => 'Today',
+        'week' => 'Last week',
+        'month' => 'Last month',
+        'year' => 'This year',
+    ];
+}
+```
+
+You can use the active filter value within your `getOptions()` method:
+
+```php
+protected function getOptions(): array
+{
+    $activeFilter = $this->filter;
+
+    // ...
+}
+```
+
+## Live updating (polling)
+
+By default, chart widgets refresh their data every 5 seconds.
+
+To customize this, you may override the `$pollingInterval` property on the class to a new interval:
+
+```php
+protected static ?string $pollingInterval = '10s';
+```
+
+Alternatively, you may disable polling altogether:
+
+```php
+protected static ?string $pollingInterval = null;
 ```
 
 ## Testing
@@ -81,12 +171,12 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+If you discover a security vulnerability within this package, please send an e-mail to <leandrocfe@gmail.com>.
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
-- [All Contributors](../../contributors)
+-   [Leandro Costa Ferreira](https://github.com/leandrocfe)
+-   [All Contributors](../../contributors)
 
 ## License
 
