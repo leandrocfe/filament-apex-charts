@@ -1,6 +1,6 @@
 {
     "name": "leandrocfe/filament-apex-charts",
-    "description": "This is my package filament-apex-charts",
+    "description": "Apex Charts integration for Filament PHP.",
     "keywords": [
         "leandrocfe",
         "laravel",
