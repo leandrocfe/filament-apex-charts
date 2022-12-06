@@ -23,7 +23,6 @@ class FilamentApexChartsServiceProvider extends PluginServiceProvider
             ->name('filament-apex-charts')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_filament-apex-charts_table')
             ->hasCommand(FilamentApexChartsCommand::class);
     }
 }
