@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Leandrocfe\FilamentApexCharts\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class FilamentApexChartsCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'filament-apex-charts';
 
     public $description = 'My command';
 
