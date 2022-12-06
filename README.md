@@ -64,7 +64,7 @@ class BlogPostsChart extends ApexChartWidget
             ],
             'series' => [
                 [
-                    'name' => 'BlogPostsChart',
+                    'name' => 'Sales',
                     'data' => [90, 80, 70, 60, 50, 40, 40, 50, 60, 70, 80, 90],
                 ],
             ],
@@ -84,7 +84,7 @@ The `getOptions()` method is used to return an array of options based on [Apex C
 
 ## Examples
 
-[CHART DEMOS](/examples)
+soon
 
 ## Setting a widget title
 
