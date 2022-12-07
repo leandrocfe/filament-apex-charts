@@ -30,16 +30,16 @@ class $CLASS_NAME$ extends ApexChartWidget
     {
         return [
             'chart' => [
-                'type' => 'bar'
+                'type' => 'donut',
+                'height' => 300,
             ],
-            'series' => [
-                [
-                    'name' => '$CLASS_NAME$',
-                    'data' => [90, 80, 70, 60, 50, 40, 40, 50, 60, 70, 80, 90]
+            'series' => [2, 4, 6, 10, 14],
+            'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+            'legend' => [
+                'labels' => [
+                    'colors' => '#9ca3af',
+                    'fontWeight' => 600,
                 ],
-            ],
-            'xaxis' => [
-                'categories' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
             ],
         ];
     }
