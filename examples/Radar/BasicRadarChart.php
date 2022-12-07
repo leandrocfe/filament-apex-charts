@@ -41,6 +41,20 @@ class BasicRadarChart extends ApexChartWidget
             ],
             'xaxis' => [
                 'categories' => ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                'labels' => [
+                    'style' => [
+                        'colors' => '#9ca3af',
+                        'fontWeight' => 600,
+                    ],
+                ],
+            ],
+            'yaxis' => [
+                'labels' => [
+                    'style' => [
+                        'colors' => '#9ca3af',
+                        'fontWeight' => 600,
+                    ],
+                ],
             ],
             'colors' => ['#6366f1'],
         ];

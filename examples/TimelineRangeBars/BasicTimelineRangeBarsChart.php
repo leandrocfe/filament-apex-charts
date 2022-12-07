@@ -4,21 +4,21 @@ namespace App\Filament\Widgets;
 
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
-class BasicAreaChart extends ApexChartWidget
+class BasicTimelineRangeBarsChart extends ApexChartWidget
 {
     /**
      * Chart Id
      *
      * @var string
      */
-    protected static string $chartId = 'basicAreaChart';
+    protected static string $chartId = 'basicTimelineRangeBarsChart';
 
     /**
      * Widget Title
      *
      * @var string|null
      */
-    protected static ?string $heading = 'BasicAreaChart';
+    protected static ?string $heading = 'BasicTimelineRangeBarsChart';
 
     /**
      * Chart options (series, labels, types, size, animations...)
@@ -30,17 +30,20 @@ class BasicAreaChart extends ApexChartWidget
     {
         return [
             'chart' => [
-                'type' => 'area',
+                'type' => 'rangeBar',
                 'height' => 300,
             ],
             'series' => [
                 [
-                    'name' => 'BasicAreaChart',
-                    'data' => [7, 4, 6, 10, 14, 7, 5, 9, 10, 15, 13, 18],
+                    'data' => [
+                        ['x' => 'Code', 'y' => [1, 3]],
+                        ['x' => 'Test', 'y' => [3, 5]],
+                        ['x' => 'Validation', 'y' => [5, 8]],
+                        ['x' => 'Deployment', 'y' => [8, 12]],
+                    ],
                 ],
             ],
             'xaxis' => [
-                'categories' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 'labels' => [
                     'style' => [
                         'colors' => '#9ca3af',
@@ -49,19 +52,21 @@ class BasicAreaChart extends ApexChartWidget
                 ],
             ],
             'yaxis' => [
+                'categories' => ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
                 'labels' => [
                     'style' => [
                         'colors' => '#9ca3af',
                         'fontWeight' => 600,
                     ],
+
                 ],
             ],
             'colors' => ['#6366f1'],
-            'stroke' => [
-                'curve' => 'smooth',
-            ],
-            'dataLabels' => [
-                'enabled' => false,
+            'plotOptions' => [
+                'bar' => [
+                    'borderRadius' => 3,
+                    'horizontal' => true,
+                ],
             ],
         ];
     }

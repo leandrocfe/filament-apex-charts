@@ -41,6 +41,20 @@ class BasicLineChart extends ApexChartWidget
             ],
             'xaxis' => [
                 'categories' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                'labels' => [
+                    'style' => [
+                        'colors' => '#9ca3af',
+                        'fontWeight' => 600,
+                    ],
+                ],
+            ],
+            'yaxis' => [
+                'labels' => [
+                    'style' => [
+                        'colors' => '#9ca3af',
+                        'fontWeight' => 600,
+                    ],
+                ],
             ],
             'colors' => ['#6366f1'],
             'stroke' => [

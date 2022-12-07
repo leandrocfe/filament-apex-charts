@@ -29,6 +29,10 @@ class LineColumnChart extends ApexChartWidget
     protected function getOptions(): array
     {
         return [
+            'chart' => [
+                'type' => 'line',
+                'height' => 300,
+            ],
             'series' => [
                 [
                     'name' => 'Column',
@@ -41,14 +45,32 @@ class LineColumnChart extends ApexChartWidget
                     'type' => 'line',
                 ],
             ],
-            'chart' => [
-                'type' => 'line',
-                'height' => 300,
-            ],
             'stroke' => [
                 'width' => [0, 4],
             ],
-            'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            'xaxis' => [
+                'categories' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                'labels' => [
+                    'style' => [
+                        'colors' => '#9ca3af',
+                        'fontWeight' => 600,
+                    ],
+                ],
+            ],
+            'yaxis' => [
+                'labels' => [
+                    'style' => [
+                        'colors' => '#9ca3af',
+                        'fontWeight' => 600,
+                    ],
+                ],
+            ],
+            'legend' => [
+                'labels' => [
+                    'colors' => '#9ca3af',
+                    'fontWeight' => 600,
+                ],
+            ],
         ];
     }
 }
