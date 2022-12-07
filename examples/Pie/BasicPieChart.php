@@ -35,6 +35,12 @@ class BasicPieChart extends ApexChartWidget
             ],
             'series' => [2, 4, 6, 10, 14],
             'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+            'legend' => [
+                'labels' => [
+                    'colors' => '#9ca3af',
+                    'fontWeight' => 600,
+                ],
+            ],
         ];
     }
 }

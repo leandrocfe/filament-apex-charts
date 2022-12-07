@@ -35,8 +35,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Leandrocfe\\FilamentApexCharts\\": "src",
-            "Leandrocfe\\FilamentApexCharts\\Database\\Factories\\": "database/factories"
+            "Leandrocfe\\FilamentApexCharts\\": "src"
         }
     },
     "autoload-dev": {

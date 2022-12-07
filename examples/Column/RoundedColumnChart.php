@@ -4,21 +4,21 @@ namespace App\Filament\Widgets;
 
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
-class BasicAreaChart extends ApexChartWidget
+class RoundedColumnChart extends ApexChartWidget
 {
     /**
      * Chart Id
      *
      * @var string
      */
-    protected static string $chartId = 'basicAreaChart';
+    protected static string $chartId = 'roundedColumnChart';
 
     /**
      * Widget Title
      *
      * @var string|null
      */
-    protected static ?string $heading = 'BasicAreaChart';
+    protected static ?string $heading = 'RoundedColumnChart';
 
     /**
      * Chart options (series, labels, types, size, animations...)
@@ -30,12 +30,12 @@ class BasicAreaChart extends ApexChartWidget
     {
         return [
             'chart' => [
-                'type' => 'area',
+                'type' => 'bar',
                 'height' => 300,
             ],
             'series' => [
                 [
-                    'name' => 'BasicAreaChart',
+                    'name' => 'RoundedColumnChart',
                     'data' => [7, 4, 6, 10, 14, 7, 5, 9, 10, 15, 13, 18],
                 ],
             ],
@@ -57,11 +57,11 @@ class BasicAreaChart extends ApexChartWidget
                 ],
             ],
             'colors' => ['#6366f1'],
-            'stroke' => [
-                'curve' => 'smooth',
-            ],
-            'dataLabels' => [
-                'enabled' => false,
+            'plotOptions' => [
+                'bar' => [
+                    'borderRadius' => 10,
+                    'columnWidth' => '65%',
+                ],
             ],
         ];
     }

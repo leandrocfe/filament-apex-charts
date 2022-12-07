@@ -36,16 +36,30 @@ class BasicBarChart extends ApexChartWidget
             'series' => [
                 [
                     'name' => 'BasicBarChart',
-                    'data' => [2, 4, 6, 10, 14],
+                    'data' => [7, 10, 13, 15, 18],
                 ],
             ],
             'xaxis' => [
                 'categories' => ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                'labels' => [
+                    'style' => [
+                        'colors' => '#9ca3af',
+                        'fontWeight' => 600,
+                    ],
+                ],
+            ],
+            'yaxis' => [
+                'labels' => [
+                    'style' => [
+                        'colors' => '#9ca3af',
+                        'fontWeight' => 600,
+                    ],
+                ],
             ],
             'colors' => ['#6366f1'],
             'plotOptions' => [
                 'bar' => [
-                    'borderRadius' => 4,
+                    'borderRadius' => 3,
                     'horizontal' => true,
                 ],
             ],

@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Filament\Widgets;
+namespace $NAMESPACE$;
 
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
-class BasicRadarChart extends ApexChartWidget
+class $CLASS_NAME$ extends ApexChartWidget
 {
     /**
      * Chart Id
      *
      * @var string
      */
-    protected static string $chartId = 'basicRadarChart';
+    protected static string $chartId = '$CHART_ID$';
 
     /**
      * Widget Title
      *
      * @var string|null
      */
-    protected static ?string $heading = 'BasicRadarChart';
+    protected static ?string $heading = '$CLASS_NAME$';
 
     /**
      * Chart options (series, labels, types, size, animations...)
@@ -30,23 +30,19 @@ class BasicRadarChart extends ApexChartWidget
     {
         return [
             'chart' => [
-                'type' => 'radar',
+                'type' => 'polarArea',
                 'height' => 300,
             ],
-            'series' => [
-                [
-                    'name' => 'BasicRadarChart',
-                    'data' => [2, 4, 6, 10, 14],
+            'series' => [2, 4, 6, 10, 14],
+            'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+            'legend' => [
+                'labels' => [
+                    'colors' => '#9ca3af',
+                    'fontWeight' => 600,
                 ],
             ],
-            'xaxis' => [
-                'categories' => ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-                'labels' => [
-                    'style' => [
-                        'colors' => '#9ca3af',
-                        'fontWeight' => 600,
-                    ],
-                ],
+            'dataLabels' => [
+                'enabled' => true,
             ],
             'yaxis' => [
                 'labels' => [
@@ -56,7 +52,6 @@ class BasicRadarChart extends ApexChartWidget
                     ],
                 ],
             ],
-            'colors' => ['#6366f1'],
         ];
     }
 }
