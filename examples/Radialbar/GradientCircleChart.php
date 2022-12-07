@@ -36,7 +36,7 @@ class GradientCircleChart extends ApexChartWidget
                     'show' => true,
                 ],
             ],
-            'series' => [rand(0, 100)],
+            'series' => [75],
             'plotOptions' => [
                 'radialBar' => [
                     'startAngle' => -135,
@@ -72,13 +72,15 @@ class GradientCircleChart extends ApexChartWidget
                     'dataLabels' => [
                         'show' => true,
                         'name' => [
-                            'offsetY' => -10,
                             'show' => true,
-                            'color' => '#888',
+                            'offsetY' => -10,
+                            'color' => '#9ca3af',
+                            'fontWeight' => 600,
                         ],
                         'value' => [
-                            'color' => '#111',
                             'show' => true,
+                            'color' => '#9ca3af',
+                            'fontWeight' => 600,
                         ],
                     ],
 
