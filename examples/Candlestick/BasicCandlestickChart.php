@@ -4,21 +4,21 @@ namespace App\Filament\Widgets;
 
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
-class BasicAreaChart extends ApexChartWidget
+class BasicCandlestickChart extends ApexChartWidget
 {
     /**
      * Chart Id
      *
      * @var string
      */
-    protected static string $chartId = 'basicAreaChart';
+    protected static string $chartId = 'basicCandlestickChart';
 
     /**
      * Widget Title
      *
      * @var string|null
      */
-    protected static ?string $heading = 'BasicAreaChart';
+    protected static ?string $heading = 'BasicCandlestickChart';
 
     /**
      * Chart options (series, labels, types, size, animations...)
@@ -30,17 +30,22 @@ class BasicAreaChart extends ApexChartWidget
     {
         return [
             'chart' => [
-                'type' => 'area',
+                'type' => 'candlestick',
                 'height' => 300,
             ],
             'series' => [
                 [
-                    'name' => 'BasicAreaChart',
-                    'data' => [7, 4, 6, 10, 14, 7, 5, 9, 10, 15, 13, 18],
+                    'type' => 'candlestick',
+                    'data' => [
+                        ['x' => 'Jan', 'y' => [6629.81, 6650.5, 6623.04, 6633.33]],
+                        ['x' => 'Fev', 'y' => [6632.01, 6643.59, 6620, 6630.11]],
+                        ['x' => 'Mar', 'y' => [6630.71, 6648.95, 6623.34, 6635.65]],
+                        ['x' => 'Apr', 'y' => [6635.65, 6651, 6629.67, 6638.24]],
+                        ['x' => 'May', 'y' => [6638.24, 6640, 6620, 6624.47]],
+                    ],
                 ],
             ],
             'xaxis' => [
-                'categories' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 'labels' => [
                     'style' => [
                         'colors' => '#9ca3af',
@@ -55,13 +60,6 @@ class BasicAreaChart extends ApexChartWidget
                         'fontWeight' => 600,
                     ],
                 ],
-            ],
-            'colors' => ['#6366f1'],
-            'stroke' => [
-                'curve' => 'smooth',
-            ],
-            'dataLabels' => [
-                'enabled' => false,
             ],
         ];
     }

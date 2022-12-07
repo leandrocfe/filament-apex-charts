@@ -37,6 +37,8 @@ $filters = $this->getFilters();
             "wire:poll.{$pollingInterval}=\"updateChartOptions\""
             :
             '' !!}>
+
+            @if(count($this->getOptions()) >0)
             <div id="{{ $this->getChartId() }}" x-data="{
                     chart: null,
                     init: function () {
@@ -57,6 +59,9 @@ $filters = $this->getFilters();
                     },
                 }" wire:ignore>
             </div>
+            @else
+            <p>No chart data available.</p>
+            @endif
         </div>
     </x-filament::card>
 </x-filament::widget>

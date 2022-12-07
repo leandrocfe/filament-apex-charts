@@ -13,42 +13,47 @@ class FilamentApexChartsCommand extends Command
     use CanManipulateFiles;
     use CanValidateInput;
 
+    /**
+     * Signature
+     *
+     * @var string
+     */
     public $signature = 'make:filament-apex-charts {name?}';
 
+    /**
+     * Description
+     *
+     * @var string
+     */
     public $description = 'Creates a Filament Apex Chart Widget class.';
-
-    private $widget;
-
-    public function handle(): int
-    {
-        $this->widget = (string) Str::of($this->argument('name') ?? $this->askRequired('Name (e.g. `BlogPostsChart`)', 'name'))
-        ->trim('/')
-        ->trim('\\')
-        ->trim(' ')
-        ->replace('/', '\\');
-
-        $path = $this->getSourceFilePath();
-
-        $this->makeDirectory(dirname($path));
-
-        $contents = $this->getSourceFile();
-
-        if (! $this->files->exists($path)) {
-            $this->files->put($path, $contents);
-            $this->info("Successfully created {$this->widget}!");
-        } else {
-            $this->info("File : {$path} already exits");
-        }
-
-        return self::SUCCESS;
-    }
 
     /**
      * Filesystem instance
      *
      * @var Filesystem
      */
-    protected $files;
+    protected Filesystem $files;
+
+    /**
+     * Widget
+     *
+     * @var string
+     */
+    private string $widget;
+
+    /**
+     * Chart Type
+     *
+     * @var string
+     */
+    private string $chartType;
+
+    /**
+     * Chart options
+     *
+     * @var array
+     */
+    private array $chartOptions;
 
     /**
      * Create a new command instance.
@@ -60,6 +65,38 @@ class FilamentApexChartsCommand extends Command
         parent::__construct();
 
         $this->files = $files;
+        $this->chartOptions = config('filament-apex-charts.chart_options');
+    }
+
+    public function handle(): int
+    {
+        //widget
+        $this->widget = (string) Str::of($this->argument('name') ?? $this->askRequired('Name (e.g. `BlogPostsChart`)', 'name'))
+        ->trim('/')
+        ->trim('\\')
+        ->trim(' ')
+        ->replace('/', '\\');
+
+        //chartType
+        $this->chartType = $this->choice(
+            'Chart type', $this->chartOptions,
+        );
+
+        $path = $this->getSourceFilePath();
+
+        $this->makeDirectory(dirname($path));
+
+        $contents = $this->getSourceFile();
+
+        if ($this->files->exists($path)) {
+            $this->error("File : {$path} already exits!");
+            exit();
+        }
+
+        $this->files->put($path, $contents);
+        $this->info("Successfully created {$this->widget}! Check out your new widget on the dashboard page.");
+
+        return self::SUCCESS;
     }
 
     /**
@@ -69,7 +106,12 @@ class FilamentApexChartsCommand extends Command
      */
     public function getStubPath()
     {
-        return str_replace('src\Commands', '', __DIR__).'stubs\Widget.stub';
+        $path = Str::of(__DIR__)
+            ->replace('src\Commands', 'stubs\\')
+            ->append($this->chartType)
+            ->append('.stub');
+
+        return $path;
     }
 
     /**
@@ -109,7 +151,7 @@ class FilamentApexChartsCommand extends Command
         $contents = file_get_contents($stub);
 
         foreach ($stubVariables as $search => $replace) {
-            $contents = str_replace('$'.$search.'$', $replace, $contents);
+            $contents = Str::of($contents)->replace('$'.$search.'$', $replace);
         }
 
         return $contents;

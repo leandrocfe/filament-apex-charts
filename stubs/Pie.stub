@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Filament\Widgets;
+namespace $NAMESPACE$;
 
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
-class DonutChart extends ApexChartWidget
+class $CLASS_NAME$ extends ApexChartWidget
 {
     /**
      * Chart Id
      *
      * @var string
      */
-    protected static string $chartId = 'donutChart';
+    protected static string $chartId = '$CHART_ID$';
 
     /**
      * Widget Title
      *
      * @var string|null
      */
-    protected static ?string $heading = 'DonutChart';
+    protected static ?string $heading = '$CLASS_NAME$';
 
     /**
      * Chart options (series, labels, types, size, animations...)
@@ -30,7 +30,7 @@ class DonutChart extends ApexChartWidget
     {
         return [
             'chart' => [
-                'type' => 'donut',
+                'type' => 'pie',
                 'height' => 300,
             ],
             'series' => [2, 4, 6, 10, 14],

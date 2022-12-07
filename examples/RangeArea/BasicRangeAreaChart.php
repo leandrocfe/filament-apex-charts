@@ -4,21 +4,21 @@ namespace App\Filament\Widgets;
 
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
-class BasicAreaChart extends ApexChartWidget
+class BasicRangeAreaChart extends ApexChartWidget
 {
     /**
      * Chart Id
      *
      * @var string
      */
-    protected static string $chartId = 'basicAreaChart';
+    protected static string $chartId = 'basicRangeAreaChart';
 
     /**
      * Widget Title
      *
      * @var string|null
      */
-    protected static ?string $heading = 'BasicAreaChart';
+    protected static ?string $heading = 'BasicRangeAreaChart';
 
     /**
      * Chart options (series, labels, types, size, animations...)
@@ -30,17 +30,29 @@ class BasicAreaChart extends ApexChartWidget
     {
         return [
             'chart' => [
-                'type' => 'area',
+                'type' => 'rangeArea',
                 'height' => 300,
             ],
             'series' => [
                 [
-                    'name' => 'BasicAreaChart',
-                    'data' => [7, 4, 6, 10, 14, 7, 5, 9, 10, 15, 13, 18],
+                    'name' => 'BasicRangeAreaChart',
+                    'data' => [
+                        ['x' => 'Jan', 'y' => [0, 0]],
+                        ['x' => 'Feb', 'y' => [3, 25]],
+                        ['x' => 'Mar', 'y' => [5, 30]],
+                        ['x' => 'Apr', 'y' => [4, 45]],
+                        ['x' => 'May', 'y' => [10, 40]],
+                        ['x' => 'Jun', 'y' => [11, 40]],
+                        ['x' => 'Jul', 'y' => [20, 55]],
+                        ['x' => 'Aug', 'y' => [15, 60]],
+                        ['x' => 'Sep', 'y' => [8, 40]],
+                        ['x' => 'Oct', 'y' => [7, 30]],
+                        ['x' => 'Nov', 'y' => [3, 25]],
+                        ['x' => 'Dec', 'y' => [0, 0]],
+                    ],
                 ],
             ],
             'xaxis' => [
-                'categories' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 'labels' => [
                     'style' => [
                         'colors' => '#9ca3af',

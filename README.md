@@ -26,10 +26,34 @@ Start by creating a widget with the command:
 php artisan make:filament-apex-charts BlogPostsChart
 ```
 
-This command will create the BlogPostsChart.php file in app\Filament\Widgets:
+### Available chart samples
+
+You may choose:
+
+-   Area
+-   Bar
+-   Boxplot
+-   Bubble
+-   Candlestick
+-   Column
+-   Donut
+-   Heatmap
+-   Line
+-   Mixed-LineAndColumn
+-   Pie
+-   PolarArea
+-   Radar
+-   Radialbar
+-   RangeArea
+-   Scatter
+-   TimelineRangeBars
+-   Treemap
+
+You may also create an **empty chart** by selecting the **Empty** option.
+
+This command will create the **BlogPostsChart.php** file in _app\Filament\Widgets_. Ex:
 
 ```php
-
 namespace App\Filament\Widgets;
 
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
@@ -61,22 +85,39 @@ class BlogPostsChart extends ApexChartWidget
         return [
             'chart' => [
                 'type' => 'bar',
+                'height' => 300,
             ],
             'series' => [
                 [
-                    'name' => 'Sales',
-                    'data' => [90, 80, 70, 60, 50, 40, 40, 50, 60, 70, 80, 90],
+                    'name' => 'BlogPostsChart',
+                    'data' => [7, 4, 6, 10, 14, 7, 5, 9, 10, 15, 13, 18],
                 ],
             ],
             'xaxis' => [
                 'categories' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                'labels' => [
+                    'style' => [
+                        'colors' => '#9ca3af',
+                        'fontWeight' => 600,
+                    ],
+                ],
             ],
+            'yaxis' => [
+                'labels' => [
+                    'style' => [
+                        'colors' => '#9ca3af',
+                        'fontWeight' => 600,
+                    ],
+                ],
+            ],
+            'colors' => ['#6366f1'],
         ];
     }
 }
+
 ```
 
-Now, check out your widget in the **dashboard**.
+Now, check out your new widget in the **dashboard**.
 
 ## Available options
 

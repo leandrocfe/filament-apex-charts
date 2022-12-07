@@ -35,6 +35,23 @@ class BasicPolarAreaChart extends ApexChartWidget
             ],
             'series' => [2, 4, 6, 10, 14],
             'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+            'legend' => [
+                'labels' => [
+                    'colors' => '#9ca3af',
+                    'fontWeight' => 600,
+                ],
+            ],
+            'dataLabels' => [
+                'enabled' => true,
+            ],
+            'yaxis' => [
+                'labels' => [
+                    'style' => [
+                        'colors' => '#9ca3af',
+                        'fontWeight' => 600,
+                    ],
+                ],
+            ],
         ];
     }
 }

@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Filament\Widgets;
+namespace $NAMESPACE$;
 
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
-class BasicAreaChart extends ApexChartWidget
+class $CLASS_NAME$ extends ApexChartWidget
 {
     /**
      * Chart Id
      *
      * @var string
      */
-    protected static string $chartId = 'basicAreaChart';
+    protected static string $chartId = '$CHART_ID$';
 
     /**
      * Widget Title
      *
      * @var string|null
      */
-    protected static ?string $heading = 'BasicAreaChart';
+    protected static ?string $heading = '$CLASS_NAME$';
 
     /**
      * Chart options (series, labels, types, size, animations...)
@@ -30,17 +30,22 @@ class BasicAreaChart extends ApexChartWidget
     {
         return [
             'chart' => [
-                'type' => 'area',
+                'type' => 'boxPlot',
                 'height' => 300,
             ],
             'series' => [
                 [
-                    'name' => 'BasicAreaChart',
-                    'data' => [7, 4, 6, 10, 14, 7, 5, 9, 10, 15, 13, 18],
+                    'type' => 'boxPlot',
+                    'data' => [
+                        ['x' => 'Jan', 'y' => [54, 66, 69, 75, 88]],
+                        ['x' => 'Fev', 'y' => [43, 65, 69, 76, 81]],
+                        ['x' => 'Mar', 'y' => [31, 39, 45, 51, 59]],
+                        ['x' => 'Apr', 'y' => [39, 46, 55, 65, 71]],
+                        ['x' => 'May', 'y' => [29, 31, 35, 39, 44]],
+                    ],
                 ],
             ],
             'xaxis' => [
-                'categories' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 'labels' => [
                     'style' => [
                         'colors' => '#9ca3af',
@@ -56,12 +61,13 @@ class BasicAreaChart extends ApexChartWidget
                     ],
                 ],
             ],
-            'colors' => ['#6366f1'],
-            'stroke' => [
-                'curve' => 'smooth',
-            ],
-            'dataLabels' => [
-                'enabled' => false,
+            'plotOptions' => [
+                'boxPlot' => [
+                    'colors' => [
+                        'upper' => '#6366f1',
+                        'lower' => '#84cc16',
+                    ],
+                ],
             ],
         ];
     }

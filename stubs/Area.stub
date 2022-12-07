@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Filament\Widgets;
+namespace $NAMESPACE$;
 
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
-class BasicAreaChart extends ApexChartWidget
+class $CLASS_NAME$ extends ApexChartWidget
 {
     /**
      * Chart Id
      *
      * @var string
      */
-    protected static string $chartId = 'basicAreaChart';
+    protected static string $chartId = '$CHART_ID$';
 
     /**
      * Widget Title
      *
      * @var string|null
      */
-    protected static ?string $heading = 'BasicAreaChart';
+    protected static ?string $heading = '$CLASS_NAME$';
 
     /**
      * Chart options (series, labels, types, size, animations...)
@@ -35,7 +35,7 @@ class BasicAreaChart extends ApexChartWidget
             ],
             'series' => [
                 [
-                    'name' => 'BasicAreaChart',
+                    'name' => '$CLASS_NAME$',
                     'data' => [7, 4, 6, 10, 14, 7, 5, 9, 10, 15, 13, 18],
                 ],
             ],
