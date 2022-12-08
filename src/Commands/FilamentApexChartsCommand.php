@@ -190,7 +190,7 @@ class FilamentApexChartsCommand extends Command
 
     private function welcomeMessage()
     {
-        if ($this->confirm('Would you like to show some love by starring the repo?')) {
+        if ($this->confirm('Would you like to show some love by starring the repo?', true)) {
             if (PHP_OS_FAMILY == 'Darwin') {
                 exec('open https://github.com/leandrocfe/filament-apex-charts');
             }
@@ -201,7 +201,7 @@ class FilamentApexChartsCommand extends Command
                 exec('xdg-open https://github.com/leandrocfe/filament-apex-charts');
             }
 
-            $this->line('Thanks You! :)');
+            $this->line('Thanks! :)');
         }
     }
 }
