@@ -2,7 +2,9 @@
 
 [Apex Charts](https://apexcharts.com/) integration for [Filament](https://filamentphp.com/)
 
-![dashboard demo](https://raw.githubusercontent.com/leandrocfe/filament-apex-charts/master/screenshots/dashboard-example-sm.gif)
+![dashboard image demo](https://raw.githubusercontent.com/leandrocfe/filament-apex-charts/master/screenshots/light-dark-1920.jpg)
+
+![dashboard gif demo](https://raw.githubusercontent.com/leandrocfe/filament-apex-charts/master/screenshots/dash-example.gif)
 
 ## Installation
 
