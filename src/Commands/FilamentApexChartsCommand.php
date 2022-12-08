@@ -93,8 +93,14 @@ class FilamentApexChartsCommand extends Command
             exit();
         }
 
+        $fileCount = count($this->files->files(dirname($path)));
+
         $this->files->put($path, $contents);
         $this->info("Successfully created {$this->widget}! Check out your new widget on the dashboard page.");
+
+        if ($fileCount === 0) {
+            $this->welcomeMessage();
+        }
 
         return self::SUCCESS;
     }
@@ -180,5 +186,22 @@ class FilamentApexChartsCommand extends Command
         }
 
         return $path;
+    }
+
+    private function welcomeMessage()
+    {
+        if ($this->confirm('Would you like to show some love by starring the repo?', true)) {
+            if (PHP_OS_FAMILY == 'Darwin') {
+                exec('open https://github.com/leandrocfe/filament-apex-charts');
+            }
+            if (PHP_OS_FAMILY == 'Windows') {
+                exec('start https://github.com/leandrocfe/filament-apex-charts');
+            }
+            if (PHP_OS_FAMILY == 'Linux') {
+                exec('xdg-open https://github.com/leandrocfe/filament-apex-charts');
+            }
+
+            $this->line('Thanks! :)');
+        }
     }
 }
