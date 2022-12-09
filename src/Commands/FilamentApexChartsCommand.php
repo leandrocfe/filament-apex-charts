@@ -112,12 +112,14 @@ class FilamentApexChartsCommand extends Command
      */
     public function getStubPath()
     {
-        $path = Str::of(__DIR__)
-            ->replace('src\Commands', 'stubs\\')
-            ->append($this->chartType)
-            ->append('.stub');
+        $path = Str::of(__DIR__);
 
-        return $path;
+        $path = match (PHP_OS_FAMILY) {
+            default => $path->replace('src/Commands', 'stubs/'),
+            'Windows' => $path->replace('src\Commands', 'stubs\\')
+        };
+
+        return $path->append($this->chartType)->append('.stub');
     }
 
     /**
@@ -163,15 +165,20 @@ class FilamentApexChartsCommand extends Command
         return $contents;
     }
 
-    /**
-     * Get the full path of generate class
-     *
-     * @return string
-     */
-    public function getSourceFilePath()
-    {
-        return base_path('App\\Filament\\Widgets').'\\'.$this->widget.'.php';
-    }
+   /**
+    * Get the full path of generate class
+    *
+    * @return string
+    */
+   public function getSourceFilePath()
+   {
+       $widgetPath = match (PHP_OS_FAMILY) {
+           default => 'app/Filament/Widgets/',
+           'Windows' => 'app\\Filament\\Widgets\\'
+       };
+
+       return base_path($widgetPath).$this->widget.'.php';
+   }
 
     /**
      * Build the directory for the class if necessary.
