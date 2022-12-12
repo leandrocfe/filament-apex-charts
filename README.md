@@ -6,6 +6,8 @@
 
 ![dashboard gif demo](https://raw.githubusercontent.com/leandrocfe/filament-apex-charts/master/screenshots/dash-example.gif)
 
+[Online Filament Project Example](https://filament-apex-charts-demo.leandroferreira.dev.br/)
+
 ## Installation
 
 You can install the package via composer:
@@ -127,7 +129,11 @@ The `getOptions()` method is used to return an array of options based on [Apex C
 
 ## Examples
 
-[CHART DEMOS](examples/)
+-   [Online Filament Project Example](https://filament-apex-charts-demo.leandroferreira.dev.br/)
+
+-   [Github Filament Project Example](https://github.com/leandrocfe/filament-apex-charts-demo)
+
+-   [Code Examples](examples/)
 
 ## Setting a widget title
 
