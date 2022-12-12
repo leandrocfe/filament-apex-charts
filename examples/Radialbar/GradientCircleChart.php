@@ -44,11 +44,6 @@ class GradientCircleChart extends ApexChartWidget
                     'hollow' => [
                         'margin' => 0,
                         'size' => '70%',
-                        'background' => '#fff',
-                        'image' => null,
-                        'imageOffsetX' => 0,
-                        'imageOffsetY' => 0,
-                        'position' => 'front',
                         'dropShadow' => [
                             'enabled' => true,
                             'top' => 3,
