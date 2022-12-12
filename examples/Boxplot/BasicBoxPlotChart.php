@@ -4,21 +4,21 @@ namespace App\Filament\Widgets;
 
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
-class BasicBloxPlotChart extends ApexChartWidget
+class BasicBoxPlotChart extends ApexChartWidget
 {
     /**
      * Chart Id
      *
      * @var string
      */
-    protected static string $chartId = 'basicBloxPlotChart';
+    protected static string $chartId = 'basicBoxPlotChart';
 
     /**
      * Widget Title
      *
      * @var string|null
      */
-    protected static ?string $heading = 'BasicBloxPlotChart';
+    protected static ?string $heading = 'BasicBoxPlotChart';
 
     /**
      * Chart options (series, labels, types, size, animations...)
