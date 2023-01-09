@@ -56,7 +56,7 @@ class ApexChartWidget extends Widget
         return null;
     }
 
-    public function updateChartOptions()
+    public function updateChartOptions(): void
     {
         $newOptionsChecksum = $this->generateOptionsChecksum();
 
