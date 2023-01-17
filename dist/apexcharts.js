@@ -574,7 +574,6 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 
 .apexcharts-toolbar {
   position: absolute;
-  z-index: 11;
   max-width: 176px;
   text-align: right;
   border-radius: 3px;
