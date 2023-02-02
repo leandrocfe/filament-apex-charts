@@ -7,7 +7,9 @@ use Illuminate\View\Component;
 class Dropdown extends Component
 {
     public $width = 'sm';
+
     public $darkMode = false;
+
     public $indicatorsCount = 0;
 
     public function __construct($width, $darkMode, $indicatorsCount)
