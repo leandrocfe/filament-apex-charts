@@ -2,12 +2,15 @@
 
 namespace Leandrocfe\FilamentApexCharts\Widgets;
 
+use Filament\Forms;
 use Filament\Widgets\Concerns\CanPoll;
 use Filament\Widgets\Widget;
+use Illuminate\Support\Arr;
 
-class ApexChartWidget extends Widget
+class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
 {
     use CanPoll;
+    use Forms\Concerns\InteractsWithForms;
 
     protected static string $chartId = 'apexChart';
 
@@ -21,6 +24,12 @@ class ApexChartWidget extends Widget
 
     protected static ?string $heading = null;
 
+    public $filterFormData;
+
+    protected static ?int $contentHeight = null;
+
+    public bool $readyToLoad = false;
+
     protected function getChartId(): ?string
     {
         return static::$chartId;
@@ -31,8 +40,24 @@ class ApexChartWidget extends Widget
         return static::$heading;
     }
 
+    protected function getContentHeight(): ?int
+    {
+        return static::$contentHeight;
+    }
+
+    public function loadWidget(): bool
+    {
+        return $this->readyToLoad = true;
+    }
+
+    protected function getFormStatePath(): string
+    {
+        return 'filterFormData';
+    }
+
     public function mount()
     {
+        $this->form->fill();
         $this->optionsChecksum = $this->generateOptionsChecksum();
     }
 
@@ -58,6 +83,8 @@ class ApexChartWidget extends Widget
 
     public function updateChartOptions(): void
     {
+        $this->form->validate();
+
         $newOptionsChecksum = $this->generateOptionsChecksum();
 
         if ($newOptionsChecksum !== $this->optionsChecksum) {
@@ -80,5 +107,40 @@ class ApexChartWidget extends Widget
                 'options' => $this->getCachedOptions(),
             ]);
         }
+    }
+
+    protected function getFormSchema(): array
+    {
+        return [];
+    }
+
+    public function submitFiltersForm(): void
+    {
+        $this->form->validate();
+        $this->emitSelf('updateChartOptions', [
+            'options' => $this->getCachedOptions(),
+        ]);
+
+        $this->dispatchBrowserEvent('apex-charts-dropdown-close');
+    }
+
+    public function resetFiltersForm(): void
+    {
+        $this->form->fill();
+        $this->form->validate();
+        $this->emitSelf('updateChartOptions', [
+            'options' => $this->getCachedOptions(),
+        ]);
+
+        $this->dispatchBrowserEvent('apex-charts-dropdown-close');
+    }
+
+    public function indicatorsCount(): int
+    {
+        return count(
+            Arr::where($this->filterFormData, function ($value) {
+                return null !== $value;
+            })
+        );
     }
 }
