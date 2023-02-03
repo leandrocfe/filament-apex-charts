@@ -3,14 +3,13 @@
 namespace Leandrocfe\FilamentApexCharts;
 
 use Filament\PluginServiceProvider;
-use Leandrocfe\FilamentApexCharts\Commands\FilamentApexChartsCommand;
-use Spatie\LaravelPackageTools\Package;
 use Illuminate\Support\Facades\Blade;
 use Leandrocfe\FilamentApexCharts\Components\Chart;
 use Leandrocfe\FilamentApexCharts\Components\FilterForm;
 use Leandrocfe\FilamentApexCharts\Components\Header;
 use Leandrocfe\FilamentApexCharts\Components\WidgetContent;
-use Livewire\Livewire;
+use Leandrocfe\FilamentApexCharts\Commands\FilamentApexChartsCommand;
+use Spatie\LaravelPackageTools\Package;
 
 class FilamentApexChartsServiceProvider extends PluginServiceProvider
 {
