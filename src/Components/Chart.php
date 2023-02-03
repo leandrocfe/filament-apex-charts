@@ -7,9 +7,13 @@ use Illuminate\View\Component;
 class Chart extends Component
 {
     public $chartId;
+
     public $contentHeight;
+
     public $pollingInterval;
+
     public $readyToLoad;
+
     public $getCachedOptions;
 
     public function __construct($chartId, $contentHeight, $pollingInterval, $readyToLoad, $getCachedOptions)

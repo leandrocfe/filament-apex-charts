@@ -7,8 +7,11 @@ use Illuminate\View\Component;
 class Header extends Component
 {
     public $heading;
+
     public $filters;
+
     public $filterForm;
+
     public $indicatorsCount;
 
     public function __construct($heading, $filters, $filterForm, $indicatorsCount)

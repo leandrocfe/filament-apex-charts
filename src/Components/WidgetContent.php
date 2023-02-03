@@ -6,16 +6,24 @@ use Illuminate\View\Component;
 
 class WidgetContent extends Component
 {
-
     public $chartId;
+
     public $heading;
+
     public $pollingInterval;
+
     public $contentHeight;
+
     public $filters;
+
     public $indicatorsCount;
+
     public $filterForm;
+
     public $readyToLoad;
+
     public $getCachedOptions;
+
     public $filterFormAccessible;
 
     public function __construct($chartId, $heading, $pollingInterval, $contentHeight, $filters, $indicatorsCount, $filterForm, $readyToLoad, $getCachedOptions, $filterFormAccessible)
@@ -31,6 +39,7 @@ class WidgetContent extends Component
         $this->getCachedOptions = $getCachedOptions;
         $this->filterFormAccessible = $filterFormAccessible;
     }
+
     public function render()
     {
         return view('filament-apex-charts::widgets.components.widget-content');
