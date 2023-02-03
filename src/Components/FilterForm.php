@@ -4,7 +4,7 @@ namespace Leandrocfe\FilamentApexCharts\Components;
 
 use Illuminate\View\Component;
 
-class Dropdown extends Component
+class FilterForm extends Component
 {
     public $width = 'sm';
     public $darkMode = false;
@@ -24,6 +24,6 @@ class Dropdown extends Component
      */
     public function render()
     {
-        return view('filament-apex-charts::widgets.components.dropdown');
+        return view('filament-apex-charts::widgets.components.filter-form');
     }
 }

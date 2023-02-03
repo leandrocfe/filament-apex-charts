@@ -6,7 +6,11 @@ use Filament\PluginServiceProvider;
 use Leandrocfe\FilamentApexCharts\Commands\FilamentApexChartsCommand;
 use Spatie\LaravelPackageTools\Package;
 use Illuminate\Support\Facades\Blade;
-use Leandrocfe\FilamentApexCharts\Components\Dropdown;
+use Leandrocfe\FilamentApexCharts\Components\Chart;
+use Leandrocfe\FilamentApexCharts\Components\FilterForm;
+use Leandrocfe\FilamentApexCharts\Components\Header;
+use Leandrocfe\FilamentApexCharts\Components\WidgetContent;
+use Livewire\Livewire;
 
 class FilamentApexChartsServiceProvider extends PluginServiceProvider
 {
@@ -26,7 +30,13 @@ class FilamentApexChartsServiceProvider extends PluginServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasCommand(FilamentApexChartsCommand::class);
+    }
 
-        Blade::component('dropdown', Dropdown::class);
+    public function bootingPackage()
+    {
+        Blade::component('widget-content', WidgetContent::class);
+        Blade::component('header', Header::class);
+        Blade::component('filter-form', FilterForm::class);
+        Blade::component('chart', Chart::class);
     }
 }

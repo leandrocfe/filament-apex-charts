@@ -1,7 +1,4 @@
-@props(['width', 'darkMode'])
-
-<div class="relative my-32">
-
+<div>
     <x-tables::filters.trigger @click="dropdownOpen = !dropdownOpen" :indicators-count="$indicatorsCount" />
 
     <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>

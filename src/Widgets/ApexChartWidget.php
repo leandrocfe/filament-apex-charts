@@ -26,9 +26,9 @@ class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
 
     public $filterFormData;
 
-    protected static ?int $contentHeight = null;
-
     public bool $readyToLoad = false;
+
+    protected static ?int $contentHeight = null;
 
     protected function getChartId(): ?string
     {
@@ -45,14 +45,14 @@ class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
         return static::$contentHeight;
     }
 
-    public function loadWidget(): bool
-    {
-        return $this->readyToLoad = true;
-    }
-
     protected function getFormStatePath(): string
     {
         return 'filterFormData';
+    }
+
+    public function loadWidget(): void
+    {
+        $this->readyToLoad = true;
     }
 
     public function mount()
@@ -63,12 +63,25 @@ class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
 
     protected function generateOptionsChecksum(): string
     {
-        return md5(json_encode($this->getCachedOptions()));
+        return md5(json_encode($this->getCachedOptions()) . rand(1, 1000));
     }
 
     protected function getCachedOptions(): array
     {
-        return $this->cachedOptions ??= $this->getOptions();
+        $options = $this->getOptions();
+
+        if (!Arr::has($options, 'theme')) {
+            $options = Arr::add($options, 'theme', ['mode' => 'dark']);
+        }
+
+        if (!Arr::has($options, 'chart.background')) {
+            $options = Arr::add($options, 'chart.background', 'inherit');
+        }
+
+        if (!Arr::has($options, 'chart.animations.enabled')) {
+            $options = Arr::add($options, 'chart.animations.enabled', true);
+        }
+        return $this->cachedOptions ??= $options;
     }
 
     protected function getOptions(): array
@@ -137,10 +150,19 @@ class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
 
     public function indicatorsCount(): int
     {
-        return count(
-            Arr::where($this->filterFormData, function ($value) {
-                return null !== $value;
-            })
-        );
+        if ($this->getFilterFormAccessible()) {
+            return count(
+                Arr::where($this->filterFormData, function ($value) {
+                    return null !== $value;
+                })
+            );
+        }
+
+        return 0;
+    }
+
+    public function getFilterFormAccessible(): bool
+    {
+        return Arr::accessible($this->filterFormData);
     }
 }
