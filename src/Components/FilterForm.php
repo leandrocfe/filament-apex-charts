@@ -19,11 +19,6 @@ class FilterForm extends Component
         $this->indicatorsCount = $indicatorsCount;
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\View\View|\Closure|string
-     */
     public function render()
     {
         return view('filament-apex-charts::widgets.components.filter-form');

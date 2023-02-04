@@ -11,21 +11,18 @@ class Chart extends Component
     public $pollingInterval;
     public $readyToLoad;
     public $getCachedOptions;
+    public $viewLoadingIndicator;
 
-    public function __construct($chartId, $contentHeight, $pollingInterval, $readyToLoad, $getCachedOptions)
+    public function __construct($chartId, $contentHeight, $pollingInterval, $readyToLoad, $getCachedOptions, $viewLoadingIndicator)
     {
         $this->chartId = $chartId;
         $this->contentHeight = $contentHeight;
         $this->pollingInterval = $pollingInterval;
         $this->readyToLoad = $readyToLoad;
         $this->getCachedOptions = $getCachedOptions;
+        $this->viewLoadingIndicator = $viewLoadingIndicator;
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\View\View|\Closure|string
-     */
     public function render()
     {
         return view('filament-apex-charts::widgets.components.chart');

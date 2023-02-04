@@ -17,9 +17,23 @@ class WidgetContent extends Component
     public $readyToLoad;
     public $getCachedOptions;
     public $filterFormAccessible;
+    public $viewLoadingIndicator;
+    public $footer;
 
-    public function __construct($chartId, $heading, $pollingInterval, $contentHeight, $filters, $indicatorsCount, $filterForm, $readyToLoad, $getCachedOptions, $filterFormAccessible)
-    {
+    public function __construct(
+        $chartId,
+        $heading,
+        $pollingInterval,
+        $contentHeight,
+        $filters,
+        $indicatorsCount,
+        $filterForm,
+        $readyToLoad,
+        $getCachedOptions,
+        $filterFormAccessible,
+        $viewLoadingIndicator,
+        $footer
+    ) {
         $this->chartId = $chartId;
         $this->heading = $heading;
         $this->pollingInterval = $pollingInterval;
@@ -30,6 +44,8 @@ class WidgetContent extends Component
         $this->readyToLoad = $readyToLoad;
         $this->getCachedOptions = $getCachedOptions;
         $this->filterFormAccessible = $filterFormAccessible;
+        $this->viewLoadingIndicator = $viewLoadingIndicator;
+        $this->footer = $footer;
     }
     public function render()
     {

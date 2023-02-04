@@ -30,6 +30,10 @@ class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
 
     protected static ?int $contentHeight = null;
 
+    protected static ?string $viewLoadingIndicator = null;
+
+    protected static ?string $footer = null;
+
     protected function getChartId(): ?string
     {
         return static::$chartId;
@@ -43,6 +47,16 @@ class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
     protected function getContentHeight(): ?int
     {
         return static::$contentHeight;
+    }
+
+    protected function getViewLoadingIndicator(): ?string
+    {
+        return static::$viewLoadingIndicator;
+    }
+
+    protected function getFooter(): ?string
+    {
+        return static::$footer;
     }
 
     protected function getFormStatePath(): string

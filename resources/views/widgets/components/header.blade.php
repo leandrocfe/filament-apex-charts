@@ -1,10 +1,9 @@
 <div>
     <div class="flex items-center justify-between gap-8">
-        @if ($heading)
-            <x-filament::card.heading>
-                {{ $heading }}
-            </x-filament::card.heading>
-        @endif
+
+        <x-filament::card.heading>
+            {!! $heading !!}
+        </x-filament::card.heading>
 
         @if ($filters)
             <select wire:model="filter" @class([
