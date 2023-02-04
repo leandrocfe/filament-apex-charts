@@ -6,16 +6,24 @@ use Illuminate\View\Component;
 
 class WidgetContent extends Component
 {
-
     public $chartId;
+
     public $heading;
+
     public $pollingInterval;
+
     public $contentHeight;
+
     public $filters;
+
     public $indicatorsCount;
+
     public $filterForm;
+
     public $readyToLoad;
+
     public $getCachedOptions;
+
     public $filterFormAccessible;
     public $viewLoadingIndicator;
     public $footer;
@@ -47,6 +55,7 @@ class WidgetContent extends Component
         $this->viewLoadingIndicator = $viewLoadingIndicator;
         $this->footer = $footer;
     }
+
     public function render()
     {
         return view('filament-apex-charts::widgets.components.widget-content');
