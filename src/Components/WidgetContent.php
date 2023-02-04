@@ -25,7 +25,9 @@ class WidgetContent extends Component
     public $getCachedOptions;
 
     public $filterFormAccessible;
+
     public $viewLoadingIndicator;
+
     public $footer;
 
     public function __construct(
