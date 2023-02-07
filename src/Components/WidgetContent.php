@@ -8,52 +8,12 @@ class WidgetContent extends Component
 {
     public $chartId;
 
-    public $heading;
-
     public $pollingInterval;
 
-    public $contentHeight;
-
-    public $filters;
-
-    public $indicatorsCount;
-
-    public $filterForm;
-
-    public $readyToLoad;
-
-    public $getCachedOptions;
-
-    public $filterFormAccessible;
-    public $viewLoadingIndicator;
-    public $footer;
-
-    public function __construct(
-        $chartId,
-        $heading,
-        $pollingInterval,
-        $contentHeight,
-        $filters,
-        $indicatorsCount,
-        $filterForm,
-        $readyToLoad,
-        $getCachedOptions,
-        $filterFormAccessible,
-        $viewLoadingIndicator,
-        $footer
-    ) {
+    public function __construct($chartId, $pollingInterval)
+    {
         $this->chartId = $chartId;
-        $this->heading = $heading;
         $this->pollingInterval = $pollingInterval;
-        $this->contentHeight = $contentHeight;
-        $this->filters = $filters;
-        $this->indicatorsCount = $indicatorsCount;
-        $this->filterForm = $filterForm;
-        $this->readyToLoad = $readyToLoad;
-        $this->getCachedOptions = $getCachedOptions;
-        $this->filterFormAccessible = $filterFormAccessible;
-        $this->viewLoadingIndicator = $viewLoadingIndicator;
-        $this->footer = $footer;
     }
 
     public function render()

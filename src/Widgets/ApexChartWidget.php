@@ -77,22 +77,22 @@ class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
 
     protected function generateOptionsChecksum(): string
     {
-        return md5(json_encode($this->getCachedOptions()).rand(1, 1000));
+        return md5(json_encode($this->getCachedOptions()) . rand(1, 1000));
     }
 
     protected function getCachedOptions(): array
     {
         $options = $this->getOptions();
 
-        if (! Arr::has($options, 'theme')) {
+        if (!Arr::has($options, 'theme')) {
             $options = Arr::add($options, 'theme', ['mode' => 'dark']);
         }
 
-        if (! Arr::has($options, 'chart.background')) {
+        if (!Arr::has($options, 'chart.background')) {
             $options = Arr::add($options, 'chart.background', 'inherit');
         }
 
-        if (! Arr::has($options, 'chart.animations.enabled')) {
+        if (!Arr::has($options, 'chart.animations.enabled')) {
             $options = Arr::add($options, 'chart.animations.enabled', true);
         }
 

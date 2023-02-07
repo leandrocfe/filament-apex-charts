@@ -14,18 +14,6 @@
     
     })">
 
-    @if ($heading || $filters || $filterForm)
-        <x-header :heading="$heading" :filters="$filters" filterForm="{{ $filterFormAccessible ? $filterForm : null }}"
-            :indicatorsCount="$indicatorsCount" />
-    @endif
-
-    <x-chart :chartId="$chartId" :contentHeight="$contentHeight" :pollingInterval="$pollingInterval" :readyToLoad="$readyToLoad" :getCachedOptions="$getCachedOptions"
-        :viewLoadingIndicator="$viewLoadingIndicator" />
-
-    @if ($footer)
-        <div class="relative">
-            {!! $footer !!}
-        </div>
-    @endif
+    {{ $slot }}
 
 </div>
