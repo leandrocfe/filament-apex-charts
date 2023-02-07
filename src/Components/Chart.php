@@ -15,6 +15,7 @@ class Chart extends Component
     public $readyToLoad;
 
     public $getCachedOptions;
+
     public $viewLoadingIndicator;
 
     public function __construct($chartId, $contentHeight, $pollingInterval, $readyToLoad, $getCachedOptions, $viewLoadingIndicator)
