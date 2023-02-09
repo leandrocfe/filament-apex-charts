@@ -6,7 +6,6 @@ use Filament\Forms;
 use Filament\Widgets\Concerns\CanPoll;
 use Filament\Widgets\Widget;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\View;
 
 class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
 {
@@ -79,7 +78,7 @@ class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
 
     public function mount()
     {
-        if (!$this->getDeferLoading()) {
+        if (! $this->getDeferLoading()) {
             $this->readyToLoad = true;
         }
 
