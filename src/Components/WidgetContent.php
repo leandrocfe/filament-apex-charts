@@ -10,10 +10,13 @@ class WidgetContent extends Component
 
     public $pollingInterval;
 
-    public function __construct($chartId, $pollingInterval)
+    public $deferLoading;
+
+    public function __construct($chartId, $pollingInterval, $deferLoading)
     {
         $this->chartId = $chartId;
         $this->pollingInterval = $pollingInterval;
+        $this->deferLoading = $deferLoading;
     }
 
     public function render()

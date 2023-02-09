@@ -9,14 +9,15 @@
     $readyToLoad = $this->readyToLoad;
     $getCachedOptions = $this->getCachedOptions();
     $filterFormAccessible = $this->getFilterFormAccessible();
-    $viewLoadingIndicator = $this->getViewLoadingIndicator();
+    $loadingIndicator = $this->getLoadingIndicator();
     $footer = $this->getFooter();
+    $deferLoading = $this->getDeferLoading();
 @endphp
 
 <x-filament::widget class="filament-widgets-chart-widget">
     <x-filament::card>
 
-        <x-widget-content :chartId="$chartId" :pollingInterval="$pollingInterval">
+        <x-widget-content :chartId="$chartId" :pollingInterval="$pollingInterval" :deferLoading="$deferLoading">
 
             @if ($heading || $filters || $filterForm)
                 <x-header :heading="$heading" :filters="$filters"
@@ -24,7 +25,7 @@
             @endif
 
             <x-chart :chartId="$chartId" :contentHeight="$contentHeight" :pollingInterval="$pollingInterval" :readyToLoad="$readyToLoad" :getCachedOptions="$getCachedOptions"
-                :viewLoadingIndicator="$viewLoadingIndicator" />
+                :loadingIndicator="$loadingIndicator" />
 
             @if ($footer)
                 <div class="relative">

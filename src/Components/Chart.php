@@ -16,16 +16,16 @@ class Chart extends Component
 
     public $getCachedOptions;
 
-    public $viewLoadingIndicator;
+    public $loadingIndicator;
 
-    public function __construct($chartId, $contentHeight, $pollingInterval, $readyToLoad, $getCachedOptions, $viewLoadingIndicator)
+    public function __construct($chartId, $contentHeight, $pollingInterval, $readyToLoad, $getCachedOptions, $loadingIndicator)
     {
         $this->chartId = $chartId;
         $this->contentHeight = $contentHeight;
         $this->pollingInterval = $pollingInterval;
         $this->readyToLoad = $readyToLoad;
         $this->getCachedOptions = $getCachedOptions;
-        $this->viewLoadingIndicator = $viewLoadingIndicator;
+        $this->loadingIndicator = $loadingIndicator;
     }
 
     public function render()

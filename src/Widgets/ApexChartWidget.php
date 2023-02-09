@@ -6,6 +6,7 @@ use Filament\Forms;
 use Filament\Widgets\Concerns\CanPoll;
 use Filament\Widgets\Widget;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\View;
 
 class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
 {
@@ -26,11 +27,13 @@ class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
 
     public $filterFormData;
 
+    protected static bool $deferLoading = false;
+
     public bool $readyToLoad = false;
 
     protected static ?int $contentHeight = null;
 
-    protected static ?string $viewLoadingIndicator = null;
+    protected static ?string $loadingIndicator = null;
 
     protected static ?string $footer = null;
 
@@ -49,12 +52,12 @@ class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
         return static::$contentHeight;
     }
 
-    protected function getViewLoadingIndicator(): ?string
+    protected function getLoadingIndicator(): null|string|\Illuminate\Contracts\View\View
     {
-        return static::$viewLoadingIndicator;
+        return static::$loadingIndicator;
     }
 
-    protected function getFooter(): ?string
+    protected function getFooter(): null|string|\Illuminate\Contracts\View\View
     {
         return static::$footer;
     }
@@ -64,6 +67,11 @@ class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
         return 'filterFormData';
     }
 
+    protected function getDeferLoading(): ?bool
+    {
+        return static::$deferLoading;
+    }
+
     public function loadWidget(): void
     {
         $this->readyToLoad = true;
@@ -71,6 +79,10 @@ class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
 
     public function mount()
     {
+        if (!$this->getDeferLoading()) {
+            $this->readyToLoad = true;
+        }
+
         $this->form->fill();
         $this->optionsChecksum = $this->generateOptionsChecksum();
     }

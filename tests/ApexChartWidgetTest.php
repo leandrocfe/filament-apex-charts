@@ -14,10 +14,12 @@ it('can set a chart id', function () {
 it('can set chart options', function () {
     expect(property_exists($this->className, 'cachedOptions'))->toBeTrue();
     expect(property_exists($this->className, 'optionsChecksum'))->toBeTrue();
+    expect(property_exists($this->className, 'deferLoading'))->toBeTrue();
     expect(property_exists($this->className, 'readyToLoad'))->toBeTrue();
     expect(method_exists($this->className, 'generateOptionsChecksum'))->toBeTrue();
     expect(method_exists($this->className, 'getCachedOptions'))->toBeTrue();
     expect(method_exists($this->className, 'getOptions'))->toBeTrue();
+    expect(method_exists($this->className, 'getDeferLoading'))->toBeTrue();
 });
 
 it('can update chart options', function () {
@@ -37,11 +39,11 @@ it('can set widget content options', function () {
     expect(property_exists($this->className, 'heading'))->toBeTrue();
     expect(property_exists($this->className, 'contentHeight'))->toBeTrue();
     expect(property_exists($this->className, 'footer'))->toBeTrue();
-    expect(property_exists($this->className, 'viewLoadingIndicator'))->toBeTrue();
+    expect(property_exists($this->className, 'loadingIndicator'))->toBeTrue();
     expect(method_exists($this->className, 'getHeading'))->toBeTrue();
     expect(method_exists($this->className, 'getContentHeight'))->toBeTrue();
     expect(method_exists($this->className, 'getFooter'))->toBeTrue();
-    expect(method_exists($this->className, 'getViewLoadingIndicator'))->toBeTrue();
+    expect(method_exists($this->className, 'getLoadingIndicator'))->toBeTrue();
 });
 
 it('can set filter form', function () {
