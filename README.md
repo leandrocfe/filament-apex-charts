@@ -2,9 +2,7 @@
 
 [Apex Charts](https://apexcharts.com/) integration for [Filament](https://filamentphp.com/)
 
-![dashboard image demo](https://raw.githubusercontent.com/leandrocfe/filament-apex-charts/master/screenshots/light-dark-1920.jpg)
-
-![dashboard gif demo](https://raw.githubusercontent.com/leandrocfe/filament-apex-charts/master/screenshots/dash-example.gif)
+![dashboard image demo](https://raw.githubusercontent.com/leandrocfe/filament-apex-charts/develop/screenshots/v1-dark-2216.png)
 
 [Online Filament Project Example](https://filament-apex-charts-demo.leandroferreira.dev.br/)
 
@@ -143,7 +141,7 @@ You may set a widget title:
 protected static ?string $heading = 'Blog Posts Chart';
 ```
 
-Optionally, you can use The `getHeading()` method.
+Optionally, you can use the `getHeading()` method.
 
 ## Setting a chart id
 
@@ -161,7 +159,7 @@ You may set a widget height:
 protected static ?int $contentHeight = 300; //px
 ```
 
-Optionally, you can use The `getContentHeight()` method.
+Optionally, you can use the `getContentHeight()` method.
 
 ```php
 protected function getContentHeight(): ?int
@@ -178,7 +176,7 @@ You may set a widget footer:
 protected static ?string $footer = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
 ```
 
-You can also use The `getFooter()` method:
+You can also use the `getFooter()` method:
 
 Custom view:
 
@@ -333,7 +331,7 @@ You can change the loading indicator:
 protected static ?string $loadingIndicator = 'Loading...';
 ```
 
-You can also use The `getLoadingIndicator()` method:
+You can also use the `getLoadingIndicator()` method:
 
 ```php
 use Illuminate\Contracts\View\View;
@@ -351,6 +349,32 @@ protected function getLoadingIndicator(): null|string|View
 ```
 
 ## Dark mode
+
+The dark mode is supported and enabled by default now.
+
+Optionally, you can disable it:
+
+```php
+protected static bool $darkMode = false;
+```
+
+You can also set the theme in the getOptions method:
+
+```php
+protected function getOptions(): array
+{
+    return [
+        'theme' => [
+            'mode' => 'light' //dark
+        ],
+        'chart' => [
+            'type' => 'bar',
+            ...
+        ],
+        ...
+    ];
+}
+```
 
 ## Testing
 
