@@ -18,7 +18,9 @@ class Chart extends Component
 
     public $loadingIndicator;
 
-    public function __construct($chartId, $contentHeight, $pollingInterval, $readyToLoad, $getCachedOptions, $loadingIndicator)
+    public $darkModeEnabled;
+
+    public function __construct($chartId, $contentHeight, $pollingInterval, $readyToLoad, $getCachedOptions, $loadingIndicator, $darkModeEnabled)
     {
         $this->chartId = $chartId;
         $this->contentHeight = $contentHeight;
@@ -26,6 +28,7 @@ class Chart extends Component
         $this->readyToLoad = $readyToLoad;
         $this->getCachedOptions = $getCachedOptions;
         $this->loadingIndicator = $loadingIndicator;
+        $this->darkModeEnabled = $darkModeEnabled;
     }
 
     public function render()

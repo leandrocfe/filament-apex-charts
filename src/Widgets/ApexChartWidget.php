@@ -6,7 +6,6 @@ use Filament\Forms;
 use Filament\Widgets\Concerns\CanPoll;
 use Filament\Widgets\Widget;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\View;
 
 class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
 {
@@ -36,6 +35,8 @@ class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
     protected static ?string $loadingIndicator = null;
 
     protected static ?string $footer = null;
+
+    protected static bool $darkMode = true;
 
     protected function getChartId(): ?string
     {
@@ -72,6 +73,11 @@ class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
         return static::$deferLoading;
     }
 
+    protected function getDarkMode(): ?bool
+    {
+        return static::$darkMode;
+    }
+
     public function loadWidget(): void
     {
         $this->readyToLoad = true;
@@ -79,7 +85,7 @@ class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
 
     public function mount()
     {
-        if (!$this->getDeferLoading()) {
+        if (! $this->getDeferLoading()) {
             $this->readyToLoad = true;
         }
 
@@ -97,7 +103,7 @@ class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
         $options = $this->getOptions();
 
         if (! Arr::has($options, 'theme')) {
-            $options = Arr::add($options, 'theme', ['mode' => 'dark']);
+            $options = Arr::add($options, 'theme', ['mode' => static::$darkMode ? 'dark' : 'light']);
         }
 
         if (! Arr::has($options, 'chart.background')) {

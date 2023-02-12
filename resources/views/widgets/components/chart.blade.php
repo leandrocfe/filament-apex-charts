@@ -2,13 +2,17 @@
     @if ($readyToLoad)
         <div {!! $pollingInterval ? 'wire:poll.' . $pollingInterval . '="updateChartOptions"' : '' !!} class="w-full" id="{{ $chartId }}" x-data="{
             chart: null,
+            darkModeEnabled: {{ $darkModeEnabled ? 'true' : 'false' }},
             mode: localStorage.getItem('theme'),
             init: function() {
                 let chart = this.initChart()
         
                 $wire.on('updateChartOptions', async ({ options }) => {
         
-                    options.theme.mode = this.mode
+                    if (this.darkModeEnabled) {
+                        options.theme.mode = this.mode
+                    }
+        
                     this.chart.updateOptions(options)
         
                 })
@@ -20,7 +24,9 @@
         
                 options = options ?? @js($getCachedOptions)
         
-                options.theme.mode = this.mode
+                if (this.darkModeEnabled) {
+                    options.theme.mode = this.mode
+                }
         
                 this.chart = new ApexCharts(document.querySelector('#{{ $chartId }}'), options)
         

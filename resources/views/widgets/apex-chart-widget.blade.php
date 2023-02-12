@@ -12,6 +12,7 @@
     $loadingIndicator = $this->getLoadingIndicator();
     $footer = $this->getFooter();
     $deferLoading = $this->getDeferLoading();
+    $darkModeEnabled = $this->getDarkMode();
 @endphp
 
 <x-filament::widget class="filament-widgets-chart-widget">
@@ -25,7 +26,7 @@
             @endif
 
             <x-chart :chartId="$chartId" :contentHeight="$contentHeight" :pollingInterval="$pollingInterval" :readyToLoad="$readyToLoad" :getCachedOptions="$getCachedOptions"
-                :loadingIndicator="$loadingIndicator" />
+                :loadingIndicator="$loadingIndicator" :darkModeEnabled="$darkModeEnabled" />
 
             @if ($footer)
                 <div class="relative">
