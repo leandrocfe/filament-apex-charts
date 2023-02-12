@@ -2,9 +2,7 @@
 
 [Apex Charts](https://apexcharts.com/) integration for [Filament](https://filamentphp.com/)
 
-![dashboard image demo](https://raw.githubusercontent.com/leandrocfe/filament-apex-charts/master/screenshots/light-dark-1920.jpg)
-
-![dashboard gif demo](https://raw.githubusercontent.com/leandrocfe/filament-apex-charts/master/screenshots/dash-example.gif)
+![dashboard image demo](https://raw.githubusercontent.com/leandrocfe/filament-apex-charts/develop/screenshots/v1-dark-2216.png)
 
 [Online Filament Project Example](https://filament-apex-charts-demo.leandroferreira.dev.br/)
 
@@ -143,7 +141,7 @@ You may set a widget title:
 protected static ?string $heading = 'Blog Posts Chart';
 ```
 
-Optionally, you can use The `getHeading()` method.
+Optionally, you can use the `getHeading()` method.
 
 ## Setting a chart id
 
@@ -153,9 +151,105 @@ You may set a chart id:
 protected static string $chartId = 'blogPostsChart';
 ```
 
+## Setting a widget height
+
+You may set a widget height:
+
+```php
+protected static ?int $contentHeight = 300; //px
+```
+
+Optionally, you can use the `getContentHeight()` method.
+
+```php
+protected function getContentHeight(): ?int
+{
+    return 300;
+}
+```
+
+## Setting a widget footer
+
+You may set a widget footer:
+
+```php
+protected static ?string $footer = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
+```
+
+You can also use the `getFooter()` method:
+
+Custom view:
+
+```php
+use Illuminate\Contracts\View\View;
+protected function getFooter(): string|View
+{
+    return view('custom-footer', ['text' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.']);
+}
+```
+
+```html
+<!--resources/views/custom-footer.blade.php-->
+<div>
+    <p class="text-danger-500">{{ $text }}</p>
+</div>
+```
+
+Html string:
+
+```php
+use Illuminate\Support\HtmlString;
+protected function getFooter(): string|View
+{
+    return new HtmlString('<p class="text-danger-500">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>');
+}
+```
+
 ## Filtering chart data
 
 You can set up chart filters to change the data shown on chart. Commonly, this is used to change the time period that chart data is rendered for.
+
+### Filter forms
+
+You may use components from the [Form Builder](https://filamentphp.com/docs/2.x/forms/fields) to create custom filter forms:
+
+```php
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TextInput;
+
+protected function getFormSchema(): array
+{
+    return [
+
+        TextInput::make('title')
+            ->default('My Chart'),
+
+        DatePicker::make('date_start')
+            ->default('2023-01-01'),
+
+        DatePicker::make('date_end')
+            ->default('2023-12-31')
+
+    ];
+}
+```
+
+The data from the custom filter form is available in the $this->filterFormData array. You can use the active filter form values within your `getOptions()` method:
+
+```php
+protected function getOptions(): array
+{
+    $title = $this->filterFormData['title'];
+    $dateStart = $this->filterFormData['date_start'];
+    $dateEnd = $this->filterFormData['date_end'];
+
+    return [
+        //chart options
+    ];
+}
+```
+
+### Single select
 
 To set a default filter value, set the `$filter` property:
 
@@ -184,7 +278,9 @@ protected function getOptions(): array
 {
     $activeFilter = $this->filter;
 
-    // ...
+    return [
+        //chart options
+    ];
 }
 ```
 
@@ -202,6 +298,82 @@ Alternatively, you may disable polling altogether:
 
 ```php
 protected static ?string $pollingInterval = null;
+```
+
+## Defer loading
+
+This can be helpful when you have slow queries and you don't want to hold up the entire page load:
+
+```php
+protected static bool $deferLoading = true;
+
+protected function getOptions(): array
+{
+    //showing a loading indicator immediately after the page load
+    if (!$this->readyToLoad) {
+        return [];
+    }
+
+    //slow query
+    sleep(2);
+
+    return [
+        //chart options
+    ];
+}
+```
+
+## Loading indicator
+
+You can change the loading indicator:
+
+```php
+protected static ?string $loadingIndicator = 'Loading...';
+```
+
+You can also use the `getLoadingIndicator()` method:
+
+```php
+use Illuminate\Contracts\View\View;
+protected function getLoadingIndicator(): null|string|View
+{
+    return view('custom-loading-indicator');
+}
+```
+
+```html
+<!--resources/views/custom-loading-indicator.blade.php-->
+<div>
+    <p class="text-danger-500">Loading...</p>
+</div>
+```
+
+## Dark mode
+
+The dark mode is supported and enabled by default now.
+
+Optionally, you can disable it:
+
+```php
+protected static bool $darkMode = false;
+```
+
+You can also set the theme in the getOptions method:
+
+```php
+protected function getOptions(): array
+{
+    return [
+        'theme' => [
+            'mode' => 'light' //dark
+        ],
+        'chart' => [
+            'type' => 'bar',
+            ...
+        ],
+        ...
+    ];
+}
 ```
 
 ## Testing

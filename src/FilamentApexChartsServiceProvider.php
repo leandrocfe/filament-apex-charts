@@ -3,7 +3,12 @@
 namespace Leandrocfe\FilamentApexCharts;
 
 use Filament\PluginServiceProvider;
+use Illuminate\Support\Facades\Blade;
 use Leandrocfe\FilamentApexCharts\Commands\FilamentApexChartsCommand;
+use Leandrocfe\FilamentApexCharts\Components\Chart;
+use Leandrocfe\FilamentApexCharts\Components\FilterForm;
+use Leandrocfe\FilamentApexCharts\Components\Header;
+use Leandrocfe\FilamentApexCharts\Components\WidgetContent;
 use Spatie\LaravelPackageTools\Package;
 
 class FilamentApexChartsServiceProvider extends PluginServiceProvider
@@ -24,5 +29,13 @@ class FilamentApexChartsServiceProvider extends PluginServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasCommand(FilamentApexChartsCommand::class);
+    }
+
+    public function bootingPackage()
+    {
+        Blade::component('widget-content', WidgetContent::class);
+        Blade::component('header', Header::class);
+        Blade::component('filter-form', FilterForm::class);
+        Blade::component('chart', Chart::class);
     }
 }
