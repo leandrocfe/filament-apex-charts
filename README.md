@@ -4,6 +4,8 @@
 
 ![dashboard image demo](https://raw.githubusercontent.com/leandrocfe/filament-apex-charts/develop/screenshots/v1-dark-2216.png)
 
+[Filament demo with ApexCharts](https://github.com/leandrocfe/filament-demo/tree/apex-charts-plugin)
+
 [Online Filament Project Example](https://filament-apex-charts-demo.leandroferreira.dev.br/)
 
 ## Installation
@@ -126,6 +128,8 @@ Now, check out your new widget in the **dashboard**.
 The `getOptions()` method is used to return an array of options based on [Apex Charts Options](https://apexcharts.com/docs/options). This structure is identical with the **Apex Chart library**, which `Filament Apex Charts` uses to render charts. You may use the [Apex Chart documentation](https://apexcharts.com/docs/creating-first-javascript-chart/) to fully understand the possibilities to return from getOptions().
 
 ## Examples
+
+-   [Filament demo with ApexCharts](https://github.com/leandrocfe/filament-demo/tree/apex-charts-plugin)
 
 -   [Online Filament Project Example](https://filament-apex-charts-demo.leandroferreira.dev.br/)
 
