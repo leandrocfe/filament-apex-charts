@@ -10,4 +10,5 @@ parameters:
     checkOctaneCompatibility: true
     checkModelProperties: true
     checkMissingIterableValueType: false
-
+    ignoreErrors:
+    - '#Access to an undefined property Leandrocfe\\FilamentApexCharts\\Widgets\\ApexChartWidget::\$form.#'
