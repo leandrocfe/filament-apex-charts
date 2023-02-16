@@ -4,7 +4,8 @@
     "keywords": [
         "leandrocfe",
         "laravel",
-        "filament-apex-charts"
+        "filament-apex-charts",
+        "apexcharts"
     ],
     "homepage": "https://github.com/leandrocfe/filament-apex-charts",
     "license": "MIT",
