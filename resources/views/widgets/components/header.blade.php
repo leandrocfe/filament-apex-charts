@@ -5,7 +5,7 @@
             {!! $heading !!}
         </x-filament::card.heading>
 
-        <div class="relative my-32 h-10">
+        <div class="relative h-10">
 
             <div class="flex items-center justify-between gap-4">
                 @if ($filters)
