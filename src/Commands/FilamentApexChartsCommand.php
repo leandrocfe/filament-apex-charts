@@ -29,36 +29,26 @@ class FilamentApexChartsCommand extends Command
 
     /**
      * Filesystem instance
-     *
-     * @var Filesystem
      */
     protected Filesystem $files;
 
     /**
      * Widget
-     *
-     * @var string
      */
     private string $widget;
 
     /**
      * Chart Type
-     *
-     * @var string
      */
     private string $chartType;
 
     /**
      * Chart options
-     *
-     * @var array
      */
     private array $chartOptions;
 
     /**
      * Create a new command instance.
-     *
-     * @param  Filesystem  $files
      */
     public function __construct(Filesystem $files)
     {
@@ -150,7 +140,6 @@ class FilamentApexChartsCommand extends Command
     /**
      * Replace the stub variables(key) with the desire value
      *
-     * @param $stub
      * @param  array  $stubVariables
      * @return bool|mixed|string
      */
