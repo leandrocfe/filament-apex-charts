@@ -18,22 +18,22 @@
 <x-filament::widget class="filament-widgets-chart-widget">
     <x-filament::card>
 
-        <x-widget-content :chartId="$chartId" :pollingInterval="$pollingInterval" :deferLoading="$deferLoading">
+        <x-filament-apex-charts::widget-content :chartId="$chartId" :pollingInterval="$pollingInterval" :deferLoading="$deferLoading">
 
             @if ($heading || $filters || $filterForm)
-                <x-header :heading="$heading" :filters="$filters"
+                <x-filament-apex-charts::header :heading="$heading" :filters="$filters"
                     filterForm="{{ $filterFormAccessible ? $filterForm : null }}" :indicatorsCount="$indicatorsCount" />
             @endif
 
-            <x-chart :chartId="$chartId" :contentHeight="$contentHeight" :pollingInterval="$pollingInterval" :readyToLoad="$readyToLoad" :getCachedOptions="$getCachedOptions"
-                :loadingIndicator="$loadingIndicator" :darkModeEnabled="$darkModeEnabled" />
+            <x-filament-apex-charts::chart :chartId="$chartId" :contentHeight="$contentHeight" :pollingInterval="$pollingInterval" :readyToLoad="$readyToLoad"
+                :getCachedOptions="$getCachedOptions" :loadingIndicator="$loadingIndicator" :darkModeEnabled="$darkModeEnabled" />
 
             @if ($footer)
                 <div class="relative">
                     {!! $footer !!}
                 </div>
             @endif
-        </x-widget-content>
+        </x-filament-apex-charts::widget-content>
 
     </x-filament::card>
 </x-filament::widget>

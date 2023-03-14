@@ -5,7 +5,7 @@
             {!! $heading !!}
         </x-filament::card.heading>
 
-        <div class="relative my-32 h-10">
+        <div class="relative h-10">
 
             <div class="flex items-center justify-between gap-4">
                 @if ($filters)
@@ -23,9 +23,10 @@
                 @endif
 
                 @if ($filterForm)
-                    <x-filter-form width="xs" darkMode="{{ config('filament.dark_mode') }}" :indicatorsCount="$indicatorsCount">
+                    <x-filament-apex-charts::filter-form width="xs" darkMode="{{ config('filament.dark_mode') }}"
+                        :indicatorsCount="$indicatorsCount">
                         {!! $filterForm !!}
-                    </x-filter-form>
+                    </x-filament-apex-charts::filter-form>
                 @endif
             </div>
         </div>
