@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.0.2
+
+### Fixed
+
+-   Space at header by [Steve](https://github.com/stephanus-tantiono).
+
+### Changed
+
+-   Component namespace suggested by [Pieter-Jan Claeysens](https://github.com/PieterxJan).
+
 ## 1.0.1
 
 ### Fixed
