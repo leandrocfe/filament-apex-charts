@@ -14,7 +14,7 @@ use Spatie\LaravelPackageTools\Package;
 class FilamentApexChartsServiceProvider extends PluginServiceProvider
 {
     protected array $beforeCoreScripts = [
-        'filament-apex-charts-scripts' => __DIR__.'/../dist/apexcharts.js',
+        'filament-apex-charts-scripts' => __DIR__ . '/../dist/apexcharts.js',
     ];
 
     public function configurePackage(Package $package): void
@@ -33,9 +33,6 @@ class FilamentApexChartsServiceProvider extends PluginServiceProvider
 
     public function bootingPackage()
     {
-        Blade::component('widget-content', WidgetContent::class);
-        Blade::component('header', Header::class);
-        Blade::component('filter-form', FilterForm::class);
-        Blade::component('chart', Chart::class);
+        Blade::componentNamespace('Leandrocfe\\FilamentApexCharts\\Components', 'filament-apex-charts');
     }
 }

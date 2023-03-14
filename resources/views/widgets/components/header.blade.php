@@ -23,9 +23,10 @@
                 @endif
 
                 @if ($filterForm)
-                    <x-filter-form width="xs" darkMode="{{ config('filament.dark_mode') }}" :indicatorsCount="$indicatorsCount">
+                    <x-filament-apex-charts::filter-form width="xs" darkMode="{{ config('filament.dark_mode') }}"
+                        :indicatorsCount="$indicatorsCount">
                         {!! $filterForm !!}
-                    </x-filter-form>
+                    </x-filament-apex-charts::filter-form>
                 @endif
             </div>
         </div>
