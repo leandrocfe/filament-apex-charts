@@ -1,9 +1,9 @@
 <div>
     <x-tables::filters.trigger @click="dropdownOpen = !dropdownOpen" :indicators-count="$indicatorsCount" />
 
-    <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
+    <div x-show="dropdownOpen" x-cloak @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
 
-    <div x-show="dropdownOpen" @class([
+    <div x-show="dropdownOpen" x-cloak @class([
         'absolute right-0 mt-2 divide-y divide-gray-100 rounded-lg bg-white shadow-lg ring-1 ring-black/5 transition z-10',
         'dark:divide-gray-700 dark:bg-gray-800 dark:ring-white/10' => $darkMode,
     ])
