@@ -152,6 +152,7 @@ Optionally, you can use the `getHeading()` method.
 You can hide header content by **NOT** providing these
 
 - $heading
+- getHeading()
 - getFormSchema()
 - getOptions()
 
