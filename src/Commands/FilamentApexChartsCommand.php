@@ -62,10 +62,10 @@ class FilamentApexChartsCommand extends Command
     {
         //widget
         $this->widget = (string) Str::of($this->argument('name') ?? $this->askRequired('Name (e.g. `BlogPostsChart`)', 'name'))
-        ->trim('/')
-        ->trim('\\')
-        ->trim(' ')
-        ->replace('/', '\\');
+            ->trim('/')
+            ->trim('\\')
+            ->trim(' ')
+            ->replace('/', '\\');
 
         //chartType
         $this->chartType = $this->choice(
