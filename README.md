@@ -147,6 +147,15 @@ protected static ?string $heading = 'Blog Posts Chart';
 
 Optionally, you can use the `getHeading()` method.
 
+## Hiding header content
+
+You can hide header content by **NOT** providing these
+
+- $heading
+- getHeading()
+- getFormSchema()
+- getOptions()
+
 ## Setting a chart id
 
 You may set a chart id:
