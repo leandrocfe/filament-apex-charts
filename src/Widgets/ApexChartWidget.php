@@ -103,7 +103,7 @@ class ApexChartWidget extends Widget implements Forms\Contracts\HasForms
         if ($this->cachedOptions) {
             return $this->cachedOptions;
         }
-        
+
         $options = $this->getOptions();
 
         if (! Arr::has($options, 'theme')) {
