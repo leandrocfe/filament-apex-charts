@@ -20,7 +20,7 @@
 
         <x-filament-apex-charts::widget-content :chartId="$chartId" :pollingInterval="$pollingInterval" :deferLoading="$deferLoading">
 
-            @if ($heading || $filters || $filterForm)
+            @if ($heading || $filters || ($filterForm && $filterFormAccessible))
                 <x-filament-apex-charts::header :heading="$heading" :filters="$filters"
                     filterForm="{{ $filterFormAccessible ? $filterForm : null }}" :indicatorsCount="$indicatorsCount" />
             @endif

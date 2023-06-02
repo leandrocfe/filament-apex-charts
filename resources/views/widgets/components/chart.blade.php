@@ -3,7 +3,7 @@
         <div {!! $pollingInterval ? 'wire:poll.' . $pollingInterval . '="updateChartOptions"' : '' !!} class="w-full" id="{{ $chartId }}" x-data="{
             chart: null,
             darkModeEnabled: {{ $darkModeEnabled ? 'true' : 'false' }},
-            mode: localStorage.getItem('theme'),
+            mode: localStorage.getItem('theme') || document.documentElement.classList.contains('dark') ? 'dark' : 'light',
             init: function() {
                 let chart = this.initChart()
         
