@@ -16,7 +16,7 @@
 @endphp
 
 <x-filament::widget class="filament-widgets-chart-widget">
-    <x-filament::card>
+    <x-filament::card class="filament-widgets-chart-card">
 
         <x-filament-apex-charts::widget-content :chartId="$chartId" :pollingInterval="$pollingInterval" :deferLoading="$deferLoading">
 
