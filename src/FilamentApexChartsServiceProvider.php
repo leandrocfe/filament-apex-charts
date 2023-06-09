@@ -2,15 +2,16 @@
 
 namespace Leandrocfe\FilamentApexCharts;
 
-use Filament\PluginServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Leandrocfe\FilamentApexCharts\Commands\FilamentApexChartsCommand;
+use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class FilamentApexChartsServiceProvider extends PluginServiceProvider
+class FilamentApexChartsServiceProvider extends PackageServiceProvider
 {
-    protected array $beforeCoreScripts = [
-        'filament-apex-charts-scripts' => __DIR__.'/../dist/apexcharts.js',
+    protected array $widgets = [
+        ApexChartWidget::class,
     ];
 
     public function configurePackage(Package $package): void

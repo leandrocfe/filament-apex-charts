@@ -15,7 +15,7 @@
     $darkModeEnabled = $this->getDarkMode();
 @endphp
 
-<x-filament::widget class="filament-widgets-chart-widget">
+<x-filament-widgets::widget class="filament-widgets-chart-widget">
     <x-filament::card>
 
         <x-filament-apex-charts::widget-content :chartId="$chartId" :pollingInterval="$pollingInterval" :deferLoading="$deferLoading">
@@ -36,4 +36,4 @@
         </x-filament-apex-charts::widget-content>
 
     </x-filament::card>
-</x-filament::widget>
+</x-filament-widgets::widget>

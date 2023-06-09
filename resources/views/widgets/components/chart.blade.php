@@ -3,14 +3,15 @@
         <div {!! $pollingInterval ? 'wire:poll.' . $pollingInterval . '="updateChartOptions"' : '' !!} class="w-full" id="{{ $chartId }}" x-data="{
             chart: null,
             darkModeEnabled: {{ $darkModeEnabled ? 'true' : 'false' }},
-            mode: localStorage.getItem('theme') || document.documentElement.classList.contains('dark') ? 'dark' : 'light',
+            mode: document.documentElement.classList.contains('dark') ? 'dark' : 'light',
             init: function() {
+        
                 let chart = this.initChart()
         
                 $wire.on('updateChartOptions', async ({ options }) => {
         
                     if (this.darkModeEnabled) {
-                        options.theme.mode = this.mode
+                        options.theme.mode = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
                     }
         
                     this.chart.updateOptions(options)
@@ -43,7 +44,8 @@
             @if ($loadingIndicator)
                 {!! $loadingIndicator !!}
             @else
-                <x-filament-support::loading-indicator x-cloak wire:loading.delay class="w-7 h-7" />
+                <x-filament::loading-indicator class="h-7 w-7 text-gray-500 dark:text-gray-400"
+                    wire:loading.delay="" />
             @endif
         </div>
     @endif
