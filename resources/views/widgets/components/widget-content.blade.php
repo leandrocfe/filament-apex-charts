@@ -1,6 +1,5 @@
 <div {!! $deferLoading ? ' wire:init="loadWidget" ' : '' !!} @apex-charts-dropdown-close.window="dropdownOpen = false" x-data="{ dropdownOpen: false, pollingInterval: '{{ $pollingInterval }}' }"
     x-init="$watch('dropdownOpen', function(value) {
-    
         let chartElement = document.getElementById('{{ $chartId }}')
     
         if (pollingInterval) {
