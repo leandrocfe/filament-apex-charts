@@ -13,7 +13,7 @@
 You can install the package via composer:
 
 ```bash
-composer require leandrocfe/filament-apex-charts
+composer require leandrocfe/filament-apex-charts:"^3.0"
 ```
 
 Optionally, you can publish the views using:
@@ -151,10 +151,10 @@ Optionally, you can use the `getHeading()` method.
 
 You can hide header content by **NOT** providing these
 
-- $heading
-- getHeading()
-- getFormSchema()
-- getOptions()
+-   $heading
+-   getHeading()
+-   getFormSchema()
+-   getOptions()
 
 ## Setting a chart id
 
