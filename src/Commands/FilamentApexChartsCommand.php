@@ -48,6 +48,11 @@ class FilamentApexChartsCommand extends Command
     private array $chartOptions;
 
     /**
+     * Widget Path
+     */
+    private string $widgetPath;
+
+    /**
      * Create a new command instance.
      */
     public function __construct(Filesystem $files)
@@ -69,7 +74,17 @@ class FilamentApexChartsCommand extends Command
 
         //chartType
         $this->chartType = $this->choice(
-            'Chart type', $this->chartOptions,
+            'Chart type',
+            $this->chartOptions,
+        );
+
+        $this->widgetPath = $this->choice(
+            'Using ApexCharts inside a Filament Panel?',
+            [
+                'yes' => 'yes',
+                'no' => 'no (custom TALL-stack app)',
+            ],
+            'yes'
         );
 
         $path = $this->getSourceFilePath();
@@ -86,7 +101,12 @@ class FilamentApexChartsCommand extends Command
         $fileCount = count($this->files->files(dirname($path)));
 
         $this->files->put($path, $contents);
-        $this->info("Successfully created {$this->widget}! Check out your new widget on the dashboard page.");
+
+        $infoMessage = $this->widgetPath === 'yes' ?
+            'Check out your new widget on the dashboard page.' :
+            "Render your new widget in any Blade view using the @livewire directive: @livewire(\App\Http\Livewire\\$this->widget::class)";
+
+        $this->info("Successfully created {$this->widget}! {$infoMessage}");
 
         if ($fileCount === 0) {
             $this->welcomeMessage();
@@ -154,20 +174,22 @@ class FilamentApexChartsCommand extends Command
         return $contents;
     }
 
-   /**
-    * Get the full path of generate class
-    *
-    * @return string
-    */
-   public function getSourceFilePath()
-   {
-       $widgetPath = match (PHP_OS_FAMILY) {
-           default => 'app/Filament/Widgets/',
-           'Windows' => 'app\\Filament\\Widgets\\'
-       };
+    /**
+     * Get the full path of generate class
+     *
+     * @return string
+     */
+    public function getSourceFilePath()
+    {
+        $path = $this->widgetPath === 'yes' ? 'app/Filament/Widgets/' : 'app/Http/Livewire/';
 
-       return base_path($widgetPath).$this->widget.'.php';
-   }
+        $widgetPath = match (PHP_OS_FAMILY) {
+            default => $path,
+            'Windows' => Str::of($path)->replace('/', '\\')
+        };
+
+        return base_path($widgetPath).$this->widget.'.php';
+    }
 
     /**
      * Build the directory for the class if necessary.
