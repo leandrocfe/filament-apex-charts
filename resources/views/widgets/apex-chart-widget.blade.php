@@ -2,39 +2,38 @@
     $heading = $this->getHeading();
     $subheading = $this->getSubheading();
     $filters = $this->getFilters();
-    $indicatorsCount = 3;
+    $indicatorsCount = $this->getIndicatorsCount();
     $darkMode = true;
     $width = 'xs';
     $pollingInterval = $this->getPollingInterval();
     $chartId = $this->getChartId();
+    $filterFormAccessible = $this->getFilterFormAccessible();
+    $loadingIndicator = $this->getLoadingIndicator();
+    $contentHeight = $this->getContentHeight();
+    $deferLoading = $this->getDeferLoading();
+    $footer = $this->getFooter();
 @endphp
-<x-filament::widget class="filament-widgets-chart-widget">
-    <x-filament::card>
+<x-filament::widget class="filament-widgets-chart-widget filament-apex-charts-widget">
+    <x-filament::card class="filament-apex-charts-card" x-data="{ dropdownOpen: false }"
+        @apexhcharts-dropdown.window="dropdownOpen = event.detail.open">
+        <div {!! $deferLoading ? ' wire:init="loadWidget" ' : '' !!}>
 
-        <x-filament-apex-charts::header :$heading :$subheading :$filters :$indicatorsCount :$darkMode :$width>
-            <x-slot:filterForm>
-                {{ $this->form }}
-            </x-slot:filterForm>
-        </x-filament-apex-charts::header>
+            <x-filament-apex-charts::header :$heading :$subheading :$filters :$indicatorsCount :$darkMode :$width
+                :$filterFormAccessible>
+                <x-slot:filterForm>
+                    {{ $this->form }}
+                </x-slot:filterForm>
+            </x-filament-apex-charts::header>
 
-        <div wire:ignore {!! $pollingInterval ? 'wire:poll.' . $pollingInterval . '="updateOptions"' : '' !!} class="w-full" x-data="{
-            chart: null,
-            options: @js($options),
-            theme: document.querySelector('html').matches('.dark') ? 'dark' : 'light',
-            init() {
-                $wire.on('updateOptions', async ({ options }) => {
-                    this.chart.updateOptions(options, false, true, true);
-                });
-        
-                this.options.theme = { mode: this.theme };
-                this.options.chart.background = 'inherit';
-        
-                this.chart = new ApexCharts($refs.{{ $chartId }}, this.options);
-                this.chart.render();
-            }
-        }"
-            x-on:dark-mode-toggled.window="chart.updateOptions( { theme: { mode: $event.detail } } )">
-            <div x-ref="{{ $chartId }}" id="{{ $chartId }}"></div>
+            <x-filament-apex-charts::chart :$chartId :$options :$contentHeight :$pollingInterval :$loadingIndicator
+                :$readyToLoad />
+
+            @if ($footer)
+                <div class="relative">
+                    {!! $footer !!}
+                </div>
+            @endif
+
         </div>
     </x-filament::card>
 

@@ -11,6 +11,8 @@ use Leandrocfe\FilamentApexCharts\Concerns\HasDarkMode;
 use Leandrocfe\FilamentApexCharts\Concerns\HasFooter;
 use Leandrocfe\FilamentApexCharts\Concerns\HasHeader;
 use Leandrocfe\FilamentApexCharts\Concerns\HasLoadingIndicator;
+use Illuminate\Support\Str;
+use Leandrocfe\FilamentApexCharts\Concerns\HasContentHeight;
 
 class ApexChartWidget extends Widget implements HasForms
 {
@@ -21,6 +23,7 @@ class ApexChartWidget extends Widget implements HasForms
     use HasFooter;
     use HasLoadingIndicator;
     use HasDarkMode;
+    use HasContentHeight;
 
     protected static string $chartId = 'apexChart';
 
@@ -33,13 +36,13 @@ class ApexChartWidget extends Widget implements HasForms
      */
     public function mount(): void
     {
+        $this->form->fill();
+
         $this->options = $this->getOptions();
 
         if (!$this->getDeferLoading()) {
             $this->readyToLoad = true;
         }
-
-        //$this->form->fill();
     }
 
     /**
@@ -49,7 +52,7 @@ class ApexChartWidget extends Widget implements HasForms
      */
     protected function getChartId(): ?string
     {
-        return static::$chartId ?? 'apexChart_' . rand(1, 1000);
+        return static::$chartId ?? 'apexChart_' . Str::random(10);
     }
 
     /**
@@ -73,9 +76,11 @@ class ApexChartWidget extends Widget implements HasForms
 
             $this->options = $this->getOptions();
 
-            $this->emitSelf('updateOptions', [
-                'options' => $this->options
-            ]);
+            if (!$this->dropdownOpen) {
+                $this->emitSelf('updateOptions', [
+                    'options' => $this->options
+                ]);
+            }
         }
     }
 }

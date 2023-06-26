@@ -1,17 +1,17 @@
-@props(['heading', 'subheading', 'filters', 'indicatorsCount', 'darkMode', 'width'])
-<div>
+@props(['heading', 'subheading', 'filters', 'indicatorsCount', 'darkMode', 'width', 'filterFormAccessible'])
+<div class="filament-apex-charts-header">
     @if ($heading || $subheading || $filters || $filterForm)
-        <div x-data="{ dropdownOpen: false }" class="sm:flex justify-between gap-4 py-2 relative">
+        <div class="sm:flex justify-between gap-4 py-2 relative">
 
             <div>
                 @if ($heading)
-                    <x-filament::card.heading>
+                    <x-filament::card.heading class="filament-apex-charts-heading">
                         {!! $heading !!}
                     </x-filament::card.heading>
                 @endif
 
                 @if ($subheading)
-                    <div class="text-sm text-gray-600 dark:text-gray-300">
+                    <div class="filament-apex-charts-subheading text-sm text-gray-600 dark:text-gray-300">
                         {!! $subheading !!}
                     </div>
                 @endif
@@ -34,9 +34,11 @@
             </div>
 
             <div>
-                <x-filament-apex-charts::filter-form :$indicatorsCount :$darkMode :$width>
-                    {{ $filterForm }}
-                </x-filament-apex-charts::filter-form>
+                @if ($filterFormAccessible)
+                    <x-filament-apex-charts::filter-form :$indicatorsCount :$darkMode :$width>
+                        {{ $filterForm }}
+                    </x-filament-apex-charts::filter-form>
+                @endif
             </div>
 
         </div>

@@ -1,5 +1,5 @@
 @props(['indicatorsCount', 'darkMode', 'width'])
-<div>
+<div class="filament-apex-charts-filter-form">
     <x-tables::filters.trigger @click="dropdownOpen = !dropdownOpen" :indicators-count="$indicatorsCount" />
 
     <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
@@ -30,7 +30,8 @@
                 <x-tables::button wire:click="submitFiltersForm" color="primary" tag="button" size="sm">
                     {{ __('filament-support::actions/modal.actions.submit.label') }}
                 </x-tables::button>
-                <x-tables::link wire:click="resetFiltersForm" color="danger" tag="button" size="sm">
+                <x-tables::link @click="$wire.resetFiltersForm;dropdownOpen = false" color="danger" tag="button"
+                    size="sm">
                     {{ __('tables::table.filters.buttons.reset.label') }}
                 </x-tables::link>
             </div>

@@ -4,15 +4,15 @@ namespace Leandrocfe\FilamentApexCharts\Concerns;
 
 trait HasLoadingIndicator
 {
-    protected static bool $darkMode = true;
+    protected static ?string $loadingIndicator = null;
 
     /**
-     * Retrieves the value of the static property $darkMode.
+     * Retrieves the loading indicator used in the class.
      *
-     * @return ?bool The value of the $darkMode property, which is either a boolean or null.
+     * @return null|string|\Illuminate\Contracts\View\View
      */
-    protected function getDarkMode(): ?bool
+    protected function getLoadingIndicator(): null|string|\Illuminate\Contracts\View\View
     {
-        return static::$darkMode;
+        return static::$loadingIndicator;
     }
 }

@@ -1,45 +1,31 @@
-<div class="flex items-center justify-center" style="{{ $contentHeight ? 'height: ' . $contentHeight . 'px;' : '' }}">
+@props(['chartId', 'options', 'contentHeight', 'pollingInterval', 'loadingIndicator', 'readyToLoad'])
+<div class="filament-apex-charts-chart flex items-center justify-center"
+    style="{{ $contentHeight ? 'height: ' . $contentHeight . 'px;' : '' }}">
     @if ($readyToLoad)
-        <div {!! $pollingInterval ? 'wire:poll.' . $pollingInterval . '="updateChartOptions"' : '' !!} class="w-full" id="{{ $chartId }}" x-data="{
+        <div wire:ignore {!! $pollingInterval ? 'wire:poll.' . $pollingInterval . '="updateOptions"' : '' !!} class="filament-apex-charts-chart-element w-full" x-data="{
             chart: null,
-            darkModeEnabled: {{ $darkModeEnabled ? 'true' : 'false' }},
-            mode: localStorage.getItem('theme'),
-            init: function() {
-                let chart = this.initChart()
+            options: @js($options),
+            theme: document.querySelector('html').matches('.dark') ? 'dark' : 'light',
+            init() {
         
-                $wire.on('updateChartOptions', async ({ options }) => {
+                $wire.on('updateOptions', async ({ options }) => {
         
-                    if (this.darkModeEnabled) {
-                        options.theme.mode = this.mode
-                    }
+                    this.chart.updateOptions(options, false, true, true);
         
-                    this.chart.updateOptions(options)
+                });
         
-                })
-                $wire.on('filterChartData', async ({ options }) => {
-                    this.chart.updateOptions(options)
-                })
-            },
-            initChart: function(options = null) {
+                this.options.theme = { mode: this.theme };
+                this.options.chart.background = 'inherit';
         
-                options = options ?? @js($getCachedOptions)
-        
-                if (this.darkModeEnabled) {
-                    options.theme.mode = this.mode
-                }
-        
-                this.chart = new ApexCharts(document.querySelector('#{{ $chartId }}'), options)
-        
-                return this.chart.render()
-            },
+                this.chart = new ApexCharts($refs.{{ $chartId }}, this.options);
+                this.chart.render();
+            }
         }"
-            x-on:dark-mode-toggled.window="mode = $event.detail" x-init="$watch('mode', () => {
-                @this.updateChartOptions();
-            })" wire:ignore>
-
+            @dark-mode-toggled.window="chart.updateOptions( { theme: { mode: $event.detail } } )" x-init="$watch('dropdownOpen', value => $wire.dropdownOpen = value)">
+            <div class="filament-apex-charts-chart-object" x-ref="{{ $chartId }}" id="{{ $chartId }}"></div>
         </div>
     @else
-        <div class="m-auto">
+        <div class="filament-apex-charts-chart-loading-indicator m-auto">
             @if ($loadingIndicator)
                 {!! $loadingIndicator !!}
             @else

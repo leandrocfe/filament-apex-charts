@@ -2,6 +2,7 @@
 
 namespace Leandrocfe\FilamentApexCharts\Concerns;
 
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Illuminate\Support\Arr;
 
@@ -11,7 +12,9 @@ trait CanFilter
 
     public ?string $filter = null;
 
-    public $filterFormData;
+    public array $filterFormData;
+
+    public bool $dropdownOpen = false;
 
     protected function getFormStatePath(): string
     {
@@ -25,44 +28,41 @@ trait CanFilter
 
     public function updatedFilter(): void
     {
-        $newOptionsChecksum = $this->generateOptionsChecksum();
-
-        if ($newOptionsChecksum !== $this->optionsChecksum) {
-            $this->optionsChecksum = $newOptionsChecksum;
-
-            $this->emitSelf('filterChartData', [
-                'options' => $this->getCachedOptions(),
-            ]);
-        }
+        $this->emitSelf('updateOptions', [
+            'options' => $this->getOptions()
+        ]);
     }
 
     protected function getFormSchema(): array
     {
-        return [];
+        return [
+            TextInput::make('filter')
+        ];
     }
 
     public function submitFiltersForm(): void
     {
         $this->form->validate();
-        $this->emitSelf('updateChartOptions', [
-            'options' => $this->getCachedOptions(),
+
+        $this->emitSelf('updateOptions', [
+            'options' => $this->getOptions()
         ]);
 
-        $this->dispatchBrowserEvent('apex-charts-dropdown-close');
+        $this->dispatchBrowserEvent('apexhcharts-dropdown', ['open' => false]);
     }
 
     public function resetFiltersForm(): void
     {
         $this->form->fill();
         $this->form->validate();
-        $this->emitSelf('updateChartOptions', [
-            'options' => $this->getCachedOptions(),
+        $this->emitSelf('updateOptions', [
+            'options' => $this->getOptions()
         ]);
 
-        $this->dispatchBrowserEvent('apex-charts-dropdown-close');
+        $this->dispatchBrowserEvent('apexhcharts-dropdown', ['open' => false]);
     }
 
-    public function indicatorsCount(): int
+    public function getIndicatorsCount(): int
     {
         if ($this->getFilterFormAccessible()) {
             return count(
