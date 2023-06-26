@@ -12,7 +12,7 @@ trait CanFilter
 
     public ?string $filter = null;
 
-    public array $filterFormData;
+    public array $filterFormData = [];
 
     public bool $dropdownOpen = false;
 
@@ -35,9 +35,7 @@ trait CanFilter
 
     protected function getFormSchema(): array
     {
-        return [
-            TextInput::make('filter')
-        ];
+        return [];
     }
 
     public function submitFiltersForm(): void
@@ -77,6 +75,6 @@ trait CanFilter
 
     public function getFilterFormAccessible(): bool
     {
-        return Arr::accessible($this->filterFormData);
+        return Arr::accessible($this->filterFormData) && count($this->filterFormData) > 0;
     }
 }

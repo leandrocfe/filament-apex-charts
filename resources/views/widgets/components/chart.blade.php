@@ -1,11 +1,11 @@
-@props(['chartId', 'options', 'contentHeight', 'pollingInterval', 'loadingIndicator', 'readyToLoad'])
+@props(['chartId', 'options', 'contentHeight', 'pollingInterval', 'loadingIndicator', 'readyToLoad', 'darkMode'])
 <div class="filament-apex-charts-chart flex items-center justify-center"
     style="{{ $contentHeight ? 'height: ' . $contentHeight . 'px;' : '' }}">
     @if ($readyToLoad)
         <div wire:ignore {!! $pollingInterval ? 'wire:poll.' . $pollingInterval . '="updateOptions"' : '' !!} class="filament-apex-charts-chart-element w-full" x-data="{
             chart: null,
             options: @js($options),
-            theme: document.querySelector('html').matches('.dark') ? 'dark' : 'light',
+            theme: {{ $darkMode ? "document.querySelector('html').matches('.dark') ? 'dark' : 'light'" : "'light'" }},
             init() {
         
                 $wire.on('updateOptions', async ({ options }) => {
@@ -21,7 +21,8 @@
                 this.chart.render();
             }
         }"
-            @dark-mode-toggled.window="chart.updateOptions( { theme: { mode: $event.detail } } )" x-init="$watch('dropdownOpen', value => $wire.dropdownOpen = value)">
+            @dark-mode-toggled.window="chart.updateOptions( { theme: { mode: {{ $darkMode ? '$event.detail' : "'light'" }} } } )"
+            x-init="$watch('dropdownOpen', value => $wire.dropdownOpen = value)">
             <div class="filament-apex-charts-chart-object" x-ref="{{ $chartId }}" id="{{ $chartId }}"></div>
         </div>
     @else

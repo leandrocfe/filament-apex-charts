@@ -3,7 +3,7 @@
     $subheading = $this->getSubheading();
     $filters = $this->getFilters();
     $indicatorsCount = $this->getIndicatorsCount();
-    $darkMode = true;
+    $darkMode = $this->getDarkMode();
     $width = 'xs';
     $pollingInterval = $this->getPollingInterval();
     $chartId = $this->getChartId();
@@ -18,7 +18,7 @@
         @apexhcharts-dropdown.window="dropdownOpen = event.detail.open">
         <div {!! $deferLoading ? ' wire:init="loadWidget" ' : '' !!}>
 
-            <x-filament-apex-charts::header :$heading :$subheading :$filters :$indicatorsCount :$darkMode :$width
+            <x-filament-apex-charts::header :$heading :$subheading :$filters :$indicatorsCount :$width
                 :$filterFormAccessible>
                 <x-slot:filterForm>
                     {{ $this->form }}
@@ -26,7 +26,7 @@
             </x-filament-apex-charts::header>
 
             <x-filament-apex-charts::chart :$chartId :$options :$contentHeight :$pollingInterval :$loadingIndicator
-                :$readyToLoad />
+                :$darkMode :$readyToLoad />
 
             @if ($footer)
                 <div class="relative">

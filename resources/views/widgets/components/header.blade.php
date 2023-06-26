@@ -1,4 +1,4 @@
-@props(['heading', 'subheading', 'filters', 'indicatorsCount', 'darkMode', 'width', 'filterFormAccessible'])
+@props(['heading', 'subheading', 'filters', 'indicatorsCount', 'width', 'filterFormAccessible'])
 <div class="filament-apex-charts-header">
     @if ($heading || $subheading || $filters || $filterForm)
         <div class="sm:flex justify-between gap-4 py-2 relative">
@@ -35,7 +35,7 @@
 
             <div>
                 @if ($filterFormAccessible)
-                    <x-filament-apex-charts::filter-form :$indicatorsCount :$darkMode :$width>
+                    <x-filament-apex-charts::filter-form :$indicatorsCount :$width>
                         {{ $filterForm }}
                     </x-filament-apex-charts::filter-form>
                 @endif
