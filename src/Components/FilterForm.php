@@ -8,8 +8,6 @@ class FilterForm extends Component
 {
     /**
      * Renders the view for the filter-form component.
-     *
-     * @return \Illuminate\Contracts\View\View
      */
     public function render(): \Illuminate\Contracts\View\View
     {

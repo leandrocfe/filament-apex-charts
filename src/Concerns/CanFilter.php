@@ -2,7 +2,6 @@
 
 namespace Leandrocfe\FilamentApexCharts\Concerns;
 
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Illuminate\Support\Arr;
 
@@ -38,13 +37,11 @@ trait CanFilter
 
     /**
      * Update the filter and emit an event with the updated options.
-     *
-     * @return void
      */
     public function updatedFilter(): void
     {
         $this->emitSelf('updateOptions', [
-            'options' => $this->getOptions()
+            'options' => $this->getOptions(),
         ]);
     }
 
@@ -60,15 +57,13 @@ trait CanFilter
 
     /**
      * Submit the filters form.
-     *
-     * @return void
      */
     public function submitFiltersForm(): void
     {
         $this->form->validate();
 
         $this->emitSelf('updateOptions', [
-            'options' => $this->getOptions()
+            'options' => $this->getOptions(),
         ]);
 
         $this->dispatchBrowserEvent('apexhcharts-dropdown', ['open' => false]);
@@ -76,15 +71,13 @@ trait CanFilter
 
     /**
      * Reset the filters form.
-     *
-     * @return void
      */
     public function resetFiltersForm(): void
     {
         $this->form->fill();
         $this->form->validate();
         $this->emitSelf('updateOptions', [
-            'options' => $this->getOptions()
+            'options' => $this->getOptions(),
         ]);
 
         $this->dispatchBrowserEvent('apexhcharts-dropdown', ['open' => false]);

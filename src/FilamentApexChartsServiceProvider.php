@@ -10,16 +10,16 @@ use Spatie\LaravelPackageTools\Package;
 class FilamentApexChartsServiceProvider extends PluginServiceProvider
 {
     protected array $beforeCoreScripts = [
-        'filament-apex-charts-scripts' => __DIR__ . '/../dist/apexcharts.js',
+        'filament-apex-charts-scripts' => __DIR__.'/../dist/apexcharts.js',
     ];
 
     /**
      * Configures the given package with the name 'filament-apex-charts'
      * as a Package Service Provider.
      *
-     * @param Package $package the package to be configured
+     * @param  Package  $package the package to be configured
+     *
      * @throws void
-     * @return void
      */
     public function configurePackage(Package $package): void
     {

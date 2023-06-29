@@ -5,6 +5,7 @@ namespace Leandrocfe\FilamentApexCharts\Concerns;
 trait HasHeader
 {
     protected static ?string $heading = null;
+
     protected static ?string $subheading = null;
 
     /**

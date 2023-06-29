@@ -6,14 +6,14 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Widgets\Concerns\CanPoll;
 use Filament\Widgets\Widget;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Str;
 use Leandrocfe\FilamentApexCharts\Concerns\CanDeferLoading;
 use Leandrocfe\FilamentApexCharts\Concerns\CanFilter;
+use Leandrocfe\FilamentApexCharts\Concerns\HasContentHeight;
 use Leandrocfe\FilamentApexCharts\Concerns\HasDarkMode;
 use Leandrocfe\FilamentApexCharts\Concerns\HasFooter;
 use Leandrocfe\FilamentApexCharts\Concerns\HasHeader;
 use Leandrocfe\FilamentApexCharts\Concerns\HasLoadingIndicator;
-use Illuminate\Support\Str;
-use Leandrocfe\FilamentApexCharts\Concerns\HasContentHeight;
 
 class ApexChartWidget extends Widget implements HasForms
 {
@@ -41,7 +41,7 @@ class ApexChartWidget extends Widget implements HasForms
 
         $this->options = $this->getOptions();
 
-        if (!$this->getDeferLoading()) {
+        if (! $this->getDeferLoading()) {
             $this->readyToLoad = true;
         }
     }
@@ -50,6 +50,7 @@ class ApexChartWidget extends Widget implements HasForms
     {
         return view(static::$view, []);
     }
+
     /**
      * Retrieves the chart id.
      *
@@ -57,7 +58,7 @@ class ApexChartWidget extends Widget implements HasForms
      */
     protected function getChartId(): ?string
     {
-        return static::$chartId ?? 'apexChart_' . Str::random(10);
+        return static::$chartId ?? 'apexChart_'.Str::random(10);
     }
 
     /**
@@ -72,8 +73,6 @@ class ApexChartWidget extends Widget implements HasForms
 
     /**
      * Updates the options of the class and emits an event if the options have changed.
-     *
-     * @return void
      */
     public function updateOptions(): void
     {
@@ -81,9 +80,9 @@ class ApexChartWidget extends Widget implements HasForms
 
             $this->options = $this->getOptions();
 
-            if (!$this->dropdownOpen) {
+            if (! $this->dropdownOpen) {
                 $this->emitSelf('updateOptions', [
-                    'options' => $this->options
+                    'options' => $this->options,
                 ]);
             }
         }

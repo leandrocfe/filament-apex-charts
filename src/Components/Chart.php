@@ -8,8 +8,6 @@ class Chart extends Component
 {
     /**
      * Renders a view for the chart component.
-     *
-     * @return \Illuminate\Contracts\View\View
      */
     public function render(): \Illuminate\Contracts\View\View
     {

@@ -8,8 +8,6 @@ trait HasLoadingIndicator
 
     /**
      * Retrieves the loading indicator used in the class.
-     *
-     * @return null|string|\Illuminate\Contracts\View\View
      */
     protected function getLoadingIndicator(): null|string|\Illuminate\Contracts\View\View
     {

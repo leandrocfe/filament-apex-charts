@@ -20,7 +20,6 @@ trait CanDeferLoading
 
     /**
      * Loads the widget.
-     *
      */
     public function loadWidget(): void
     {
