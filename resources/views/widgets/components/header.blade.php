@@ -33,13 +33,15 @@
                 @endif
             </div>
 
-            <div>
-                @if ($filterFormAccessible)
+            @if ($filterFormAccessible)
+                <div>
+
                     <x-filament-apex-charts::filter-form :$indicatorsCount :$width>
                         {{ $filterForm }}
                     </x-filament-apex-charts::filter-form>
-                @endif
-            </div>
+
+                </div>
+            @endif
 
         </div>
     @endif
