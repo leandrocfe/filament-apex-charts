@@ -5,6 +5,7 @@ namespace Leandrocfe\FilamentApexCharts\Widgets;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Widgets\Concerns\CanPoll;
 use Filament\Widgets\Widget;
+use Illuminate\Contracts\View\View;
 use Leandrocfe\FilamentApexCharts\Concerns\CanDeferLoading;
 use Leandrocfe\FilamentApexCharts\Concerns\CanFilter;
 use Leandrocfe\FilamentApexCharts\Concerns\HasDarkMode;
@@ -45,6 +46,10 @@ class ApexChartWidget extends Widget implements HasForms
         }
     }
 
+    public function render(): View
+    {
+        return view(static::$view, []);
+    }
     /**
      * Retrieves the chart id.
      *

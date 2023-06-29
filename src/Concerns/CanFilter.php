@@ -16,16 +16,31 @@ trait CanFilter
 
     public bool $dropdownOpen = false;
 
+    /**
+     * Retrieve the path for the form state.
+     *
+     * @return string The path for the form state.
+     */
     protected function getFormStatePath(): string
     {
         return 'filterFormData';
     }
 
+    /**
+     * Retrieves the simple filter options.
+     *
+     * @return array|null The simple filter options.
+     */
     protected function getFilters(): ?array
     {
         return null;
     }
 
+    /**
+     * Update the filter and emit an event with the updated options.
+     *
+     * @return void
+     */
     public function updatedFilter(): void
     {
         $this->emitSelf('updateOptions', [
@@ -33,11 +48,21 @@ trait CanFilter
         ]);
     }
 
+    /**
+     * Retrieves the form schema.
+     *
+     * @return array The form schema.
+     */
     protected function getFormSchema(): array
     {
         return [];
     }
 
+    /**
+     * Submit the filters form.
+     *
+     * @return void
+     */
     public function submitFiltersForm(): void
     {
         $this->form->validate();
@@ -49,6 +74,11 @@ trait CanFilter
         $this->dispatchBrowserEvent('apexhcharts-dropdown', ['open' => false]);
     }
 
+    /**
+     * Reset the filters form.
+     *
+     * @return void
+     */
     public function resetFiltersForm(): void
     {
         $this->form->fill();
@@ -60,6 +90,11 @@ trait CanFilter
         $this->dispatchBrowserEvent('apexhcharts-dropdown', ['open' => false]);
     }
 
+    /**
+     * Retrieves the count of indicators.
+     *
+     * @return int The count of indicators.
+     */
     public function getIndicatorsCount(): int
     {
         if ($this->getFilterFormAccessible()) {
@@ -73,6 +108,11 @@ trait CanFilter
         return 0;
     }
 
+    /**
+     * Retrieves the accessibility of the filter form data.
+     *
+     * @return bool The accessibility of the filter form data.
+     */
     public function getFilterFormAccessible(): bool
     {
         return Arr::accessible($this->filterFormData) && count($this->filterFormData) > 0;

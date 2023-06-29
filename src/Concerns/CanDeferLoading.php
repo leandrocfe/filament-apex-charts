@@ -21,7 +21,6 @@ trait CanDeferLoading
     /**
      * Loads the widget.
      *
-     * @throws Some_Exception_Class description of exception
      */
     public function loadWidget(): void
     {
