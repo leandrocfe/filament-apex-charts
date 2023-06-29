@@ -13,7 +13,7 @@
 You can install the package via composer:
 
 ```bash
-composer require leandrocfe/filament-apex-charts
+composer require leandrocfe/filament-apex-charts:"^2.0"
 ```
 
 Optionally, you can publish the views using:
@@ -146,6 +146,16 @@ protected static ?string $heading = 'Blog Posts Chart';
 ```
 
 Optionally, you can use the `getHeading()` method.
+
+## Setting a widget subtitle
+
+You may set a widget subtitle:
+
+```php
+protected static ?string $subheading = 'Lorem Ipsum is simply dummy text';
+```
+
+Optionally, you can use the `getSubheading()` method.
 
 ## Setting a chart id
 
