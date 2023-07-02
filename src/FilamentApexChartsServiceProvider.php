@@ -32,14 +32,13 @@ class FilamentApexChartsServiceProvider extends PackageServiceProvider
 
     public function bootingPackage()
     {
-        //__DIR__.'/../dist/apexcharts.js'
         Blade::componentNamespace('Leandrocfe\\FilamentApexCharts\\Components', 'filament-apex-charts');
     }
 
     public function packageRegistered(): void
     {
         FilamentAsset::register([
-            Js::make('apexcharts', __DIR__.'/../dist/apexcharts.js'),
+            Js::make('apexcharts', __DIR__ . '/../dist/apexcharts.js'),
         ], package: 'leandrocfe/filament-apex-charts');
     }
 }

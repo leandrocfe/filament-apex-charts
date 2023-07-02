@@ -6,20 +6,10 @@ use Illuminate\View\Component;
 
 class FilterForm extends Component
 {
-    public $width = 'sm';
-
-    public $darkMode = false;
-
-    public $indicatorsCount = 0;
-
-    public function __construct($width, $darkMode, $indicatorsCount)
-    {
-        $this->width = $width;
-        $this->darkMode = $darkMode;
-        $this->indicatorsCount = $indicatorsCount;
-    }
-
-    public function render()
+    /**
+     * Renders the view for the filter-form component.
+     */
+    public function render(): \Illuminate\Contracts\View\View
     {
         return view('filament-apex-charts::widgets.components.filter-form');
     }

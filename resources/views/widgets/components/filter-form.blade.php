@@ -1,5 +1,5 @@
-<div>
-
+@props(['indicatorsCount', 'width'])
+<div class="filament-apex-charts-filter-form relative">
     <div class="filament-dropdown-trigger cursor-pointer flex items-center justify-center" aria-expanded="false">
         <button type="button" @click="dropdownOpen = !dropdownOpen"
             class="filament-icon-button relative flex items-center justify-center outline-none transition disabled:pointer-events-none disabled:opacity-70 rounded-full hover:bg-gray-500/5 dark:hover:bg-gray-300/5 text-gray-500 focus:bg-gray-500/10 w-10 h-10 filament-actions-icon-button-action"
@@ -21,12 +21,10 @@
         </button>
     </div>
 
-
     <div x-show="dropdownOpen" x-cloak @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
 
     <div x-show="dropdownOpen" x-cloak @class([
-        'absolute right-0 mt-2 divide-y divide-gray-100 rounded-lg bg-white shadow-lg ring-1 ring-black/5 transition z-10',
-        '' => $darkMode,
+        'absolute mt-2 z-10 w-screen divide-y divide-gray-100 rounded-lg bg-white shadow-lg ring-1 ring-gray-950/5 transition dark:divide-gray-700 dark:bg-gray-800 dark:ring-white/20',
     ])
         style="{{ match ($width) {
             'xs' => 'width: 20rem;',
@@ -41,13 +39,12 @@
             '6xl' => 'width: 72rem;',
             '7xl' => 'width: 80rem;',
             default => 'width: 20rem;',
-        } }}">
-        <div class="py-4 px-6 dark:bg-gray-800 rounded-lg">
+        } }}; right:0">
+        <div class="py-4 px-6">
 
             {{ $slot }}
 
             <div class="mt-4 text-end flex gap-6 justify-end">
-
                 <x-filament::link wire:click="submitFiltersForm" color="primary" tag="button" size="sm">
                     {{ __('filament-actions::modal.actions.submit.label') }}
                 </x-filament::link>
@@ -55,7 +52,6 @@
                 <x-filament::link wire:click="resetFiltersForm" color="danger" tag="button" size="sm">
                     {{ __('filament-tables::table.filters.buttons.reset.label') }}
                 </x-filament::link>
-
             </div>
         </div>
 
