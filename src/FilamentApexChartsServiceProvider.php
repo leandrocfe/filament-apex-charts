@@ -38,7 +38,7 @@ class FilamentApexChartsServiceProvider extends PackageServiceProvider
     public function packageRegistered(): void
     {
         FilamentAsset::register([
-            Js::make('apexcharts', __DIR__ . '/../dist/apexcharts.js'),
+            Js::make('apexcharts', __DIR__.'/../dist/apexcharts.js'),
         ], package: 'leandrocfe/filament-apex-charts');
     }
 }
