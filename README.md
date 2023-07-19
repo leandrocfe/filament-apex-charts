@@ -262,6 +262,26 @@ protected function getOptions(): array
 }
 ```
 
+Also, if you want your chart data to update when the value of a filter changes, you have to combine `reactive()` with `afterStateUpdated()` :
+
+```php
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TextInput;
+
+protected function getFormSchema(): array
+{
+    return [
+        TextInput::make('title')
+            ->default('My Chart')
+            ->reactive()
+            ->afterStateUpdated(function () {
+                $this->updateChartOptions();
+            }),
+        ...
+    ];
+}
+```
+
 ### Single select
 
 To set a default filter value, set the `$filter` property:
