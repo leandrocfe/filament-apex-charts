@@ -1,39 +1,40 @@
 @php
-    $chartId = $this->getChartId();
     $heading = $this->getHeading();
-    $pollingInterval = $this->getPollingInterval();
-    $contentHeight = $this->getContentHeight();
+    $subheading = $this->getSubheading();
     $filters = $this->getFilters();
-    $indicatorsCount = $this->indicatorsCount();
-    $filterForm = $this->form;
-    $readyToLoad = $this->readyToLoad;
-    $getCachedOptions = $this->getCachedOptions();
+    $indicatorsCount = $this->getIndicatorsCount();
+    $darkMode = $this->getDarkMode();
+    $width = 'xs';
+    $pollingInterval = $this->getPollingInterval();
+    $chartId = $this->getChartId();
+    $chartOptions = $this->getOptions();
     $filterFormAccessible = $this->getFilterFormAccessible();
     $loadingIndicator = $this->getLoadingIndicator();
-    $footer = $this->getFooter();
+    $contentHeight = $this->getContentHeight();
     $deferLoading = $this->getDeferLoading();
-    $darkModeEnabled = $this->getDarkMode();
+    $footer = $this->getFooter();
+    $readyToLoad = $this->readyToLoad;
 @endphp
+<x-filament::widget class="filament-widgets-chart-widget filament-apex-charts-widget">
+    <x-filament::card class="filament-apex-charts-card" x-data="{ dropdownOpen: false }"
+        @apexhcharts-dropdown.window="dropdownOpen = event.detail.open">
 
-<x-filament::widget class="filament-widgets-chart-widget">
-    <x-filament::card>
+        <x-filament-apex-charts::header :$heading :$subheading :$filters :$indicatorsCount :$width
+            :$filterFormAccessible>
+            <x-slot:filterForm>
+                {{ $this->form }}
+            </x-slot:filterForm>
+        </x-filament-apex-charts::header>
 
-        <x-filament-apex-charts::widget-content :chartId="$chartId" :pollingInterval="$pollingInterval" :deferLoading="$deferLoading">
+        <x-filament-apex-charts::chart :$chartId :$chartOptions :$contentHeight :$pollingInterval :$loadingIndicator
+            :$darkMode :$deferLoading :$readyToLoad />
 
-            @if ($heading || $filters || ($filterForm && $filterFormAccessible))
-                <x-filament-apex-charts::header :heading="$heading" :filters="$filters"
-                    filterForm="{{ $filterFormAccessible ? $filterForm : null }}" :indicatorsCount="$indicatorsCount" />
-            @endif
-
-            <x-filament-apex-charts::chart :chartId="$chartId" :contentHeight="$contentHeight" :pollingInterval="$pollingInterval" :readyToLoad="$readyToLoad"
-                :getCachedOptions="$getCachedOptions" :loadingIndicator="$loadingIndicator" :darkModeEnabled="$darkModeEnabled" />
-
-            @if ($footer)
-                <div class="relative">
-                    {!! $footer !!}
-                </div>
-            @endif
-        </x-filament-apex-charts::widget-content>
+        @if ($footer)
+            <div class="relative">
+                {!! $footer !!}
+            </div>
+        @endif
 
     </x-filament::card>
+
 </x-filament::widget>
