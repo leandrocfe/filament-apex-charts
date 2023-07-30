@@ -41,7 +41,7 @@ class ApexChartWidget extends Widget implements HasForms
 
         $this->options = $this->getOptions();
 
-        if (! $this->getDeferLoading()) {
+        if (!$this->getDeferLoading()) {
             $this->readyToLoad = true;
         }
     }
@@ -58,29 +58,7 @@ class ApexChartWidget extends Widget implements HasForms
      */
     protected function getChartId(): ?string
     {
-<<<<<<< HEAD
-        if ($this->cachedOptions) {
-            return $this->cachedOptions;
-        }
-
-        $options = $this->getOptions();
-
-        if (! Arr::has($options, 'theme')) {
-            $options = Arr::add($options, 'theme', ['mode' => static::$darkMode ? 'dark' : 'light']);
-        }
-
-        if (! Arr::has($options, 'chart.background')) {
-            $options = Arr::add($options, 'chart.background', 'inherit');
-        }
-
-        if (! Arr::has($options, 'chart.animations.enabled')) {
-            $options = Arr::add($options, 'chart.animations.enabled', true);
-        }
-
-        return $this->cachedOptions ??= $options;
-=======
-        return static::$chartId ?? 'apexChart_'.Str::random(10);
->>>>>>> feature/widget-refactor
+        return static::$chartId ?? 'apexChart_' . Str::random(10);
     }
 
     /**
@@ -102,7 +80,7 @@ class ApexChartWidget extends Widget implements HasForms
 
             $this->options = $this->getOptions();
 
-            if (! $this->dropdownOpen) {
+            if (!$this->dropdownOpen) {
                 $this->emitSelf('updateOptions', [
                     'options' => $this->options,
                 ]);
