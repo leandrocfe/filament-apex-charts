@@ -154,20 +154,20 @@ class FilamentApexChartsCommand extends Command
         return $contents;
     }
 
-   /**
-    * Get the full path of generate class
-    *
-    * @return string
-    */
-   public function getSourceFilePath()
-   {
-       $widgetPath = match (PHP_OS_FAMILY) {
-           default => 'app/Filament/Widgets/',
-           'Windows' => 'app\\Filament\\Widgets\\'
-       };
+    /**
+     * Get the full path of generate class
+     *
+     * @return string
+     */
+    public function getSourceFilePath()
+    {
+        $widgetPath = match (PHP_OS_FAMILY) {
+            default => 'app/Filament/Widgets/',
+            'Windows' => 'app\\Filament\\Widgets\\'
+        };
 
-       return base_path($widgetPath).$this->widget.'.php';
-   }
+        return base_path($widgetPath).$this->widget.'.php';
+    }
 
     /**
      * Build the directory for the class if necessary.
