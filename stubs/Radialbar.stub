@@ -43,14 +43,13 @@ class $CLASS_NAME$ extends ApexChartWidget
                         'show' => true,
                         'name' => [
                             'show' => true,
-                            'color' => '#9ca3af',
-                            'fontWeight' => 600,
+                            'fontFamily' => 'inherit'
                         ],
                         'value' => [
                             'show' => true,
-                            'color' => '#9ca3af',
+                            'fontFamily' => 'inherit',
                             'fontWeight' => 600,
-                            'fontSize' => '20px',
+                            'fontSize' => '20px'
                         ],
                     ],
 
@@ -60,7 +59,7 @@ class $CLASS_NAME$ extends ApexChartWidget
                 'lineCap' => 'round',
             ],
             'labels' => ['$CLASS_NAME$'],
-            'colors' => ['#6366f1'],
+            'colors' => ['#f59e0b'],
         ];
     }
 }

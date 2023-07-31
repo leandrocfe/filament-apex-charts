@@ -37,8 +37,7 @@ class $CLASS_NAME$ extends ApexChartWidget
             'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
             'legend' => [
                 'labels' => [
-                    'colors' => '#9ca3af',
-                    'fontWeight' => 600,
+                    'fontFamily' => 'inherit',
                 ],
             ],
         ];

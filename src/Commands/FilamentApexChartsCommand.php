@@ -48,6 +48,11 @@ class FilamentApexChartsCommand extends Command
     private array $chartOptions;
 
     /**
+     * Widget Path
+     */
+    private string $widgetPath;
+
+    /**
      * Create a new command instance.
      */
     public function __construct(Filesystem $files)
@@ -69,7 +74,17 @@ class FilamentApexChartsCommand extends Command
 
         //chartType
         $this->chartType = $this->choice(
-            'Chart type', $this->chartOptions,
+            'Chart type',
+            $this->chartOptions,
+        );
+
+        $this->widgetPath = $this->choice(
+            'Using ApexCharts inside a Filament Panel?',
+            [
+                'yes' => 'yes',
+                'no' => 'no (custom TALL-stack app)',
+            ],
+            'yes'
         );
 
         $path = $this->getSourceFilePath();
@@ -86,7 +101,12 @@ class FilamentApexChartsCommand extends Command
         $fileCount = count($this->files->files(dirname($path)));
 
         $this->files->put($path, $contents);
-        $this->info("Successfully created {$this->widget}! Check out your new widget on the dashboard page.");
+
+        $infoMessage = $this->widgetPath === 'yes' ?
+            'Check out your new widget on the dashboard page.' :
+            "Render your new widget in any Blade view using the @livewire directive: @livewire(\App\Http\Livewire\\$this->widget::class)";
+
+        $this->info("Successfully created {$this->widget}! {$infoMessage}");
 
         if ($fileCount === 0) {
             $this->welcomeMessage();
@@ -120,8 +140,10 @@ class FilamentApexChartsCommand extends Command
      */
     public function getStubVariables()
     {
+        $namespace = $this->widgetPath === 'yes' ? 'App\\Filament\\Widgets' : 'App\\Http\\Livewire';
+
         return [
-            'NAMESPACE' => 'App\\Filament\\Widgets',
+            'NAMESPACE' => $namespace,
             'CLASS_NAME' => $this->widget,
             'CHART_ID' => Str::of($this->widget)->camel(),
         ];
@@ -148,7 +170,7 @@ class FilamentApexChartsCommand extends Command
         $contents = file_get_contents($stub);
 
         foreach ($stubVariables as $search => $replace) {
-            $contents = Str::of($contents)->replace('$'.$search.'$', $replace);
+            $contents = Str::of($contents)->replace('$' . $search . '$', $replace);
         }
 
         return $contents;
@@ -161,12 +183,14 @@ class FilamentApexChartsCommand extends Command
      */
     public function getSourceFilePath()
     {
+        $path = $this->widgetPath === 'yes' ? 'app/Filament/Widgets/' : 'app/Http/Livewire/';
+
         $widgetPath = match (PHP_OS_FAMILY) {
-            default => 'app/Filament/Widgets/',
-            'Windows' => 'app\\Filament\\Widgets\\'
+            default => $path,
+            'Windows' => Str::of($path)->replace('/', '\\')
         };
 
-        return base_path($widgetPath).$this->widget.'.php';
+        return base_path($widgetPath) . $this->widget . '.php';
     }
 
     /**
@@ -177,7 +201,7 @@ class FilamentApexChartsCommand extends Command
      */
     protected function makeDirectory($path)
     {
-        if (! $this->files->isDirectory($path)) {
+        if (!$this->files->isDirectory($path)) {
             $this->files->makeDirectory($path, 0777, true, true);
         }
 

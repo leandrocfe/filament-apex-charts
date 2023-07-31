@@ -12,20 +12,16 @@ it('can set a chart id', function () {
 });
 
 it('can set chart options', function () {
-    expect(property_exists($this->className, 'cachedOptions'))->toBeTrue();
-    expect(property_exists($this->className, 'optionsChecksum'))->toBeTrue();
     expect(property_exists($this->className, 'deferLoading'))->toBeTrue();
     expect(property_exists($this->className, 'readyToLoad'))->toBeTrue();
     expect(property_exists($this->className, 'darkMode'))->toBeTrue();
-    expect(method_exists($this->className, 'generateOptionsChecksum'))->toBeTrue();
-    expect(method_exists($this->className, 'getCachedOptions'))->toBeTrue();
     expect(method_exists($this->className, 'getOptions'))->toBeTrue();
     expect(method_exists($this->className, 'getDeferLoading'))->toBeTrue();
     expect(method_exists($this->className, 'getDarkMode'))->toBeTrue();
 });
 
 it('can update chart options', function () {
-    expect(method_exists($this->className, 'updateChartOptions'))->toBeTrue();
+    expect(method_exists($this->className, 'updateOptions'))->toBeTrue();
 });
 
 it('can set chart filters', function () {
@@ -54,6 +50,6 @@ it('can set filter form', function () {
     expect(method_exists($this->className, 'getFormSchema'))->toBeTrue();
     expect(method_exists($this->className, 'submitFiltersForm'))->toBeTrue();
     expect(method_exists($this->className, 'resetFiltersForm'))->toBeTrue();
-    expect(method_exists($this->className, 'indicatorsCount'))->toBeTrue();
+    expect(method_exists($this->className, 'getIndicatorsCount'))->toBeTrue();
     expect(method_exists($this->className, 'getFilterFormAccessible'))->toBeTrue();
 });

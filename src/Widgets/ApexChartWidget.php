@@ -41,9 +41,13 @@ class ApexChartWidget extends Widget implements HasForms
 
         $this->options = $this->getOptions();
 
-        if (! $this->getDeferLoading()) {
+        if (!$this->getDeferLoading()) {
             $this->readyToLoad = true;
         }
+    }
+
+    public function on(): void
+    {
     }
 
     public function render(): View
@@ -58,7 +62,7 @@ class ApexChartWidget extends Widget implements HasForms
      */
     protected function getChartId(): ?string
     {
-        return static::$chartId ?? 'apexChart_'.Str::random(10);
+        return static::$chartId ?? 'apexChart_' . Str::random(10);
     }
 
     /**
@@ -80,10 +84,10 @@ class ApexChartWidget extends Widget implements HasForms
 
             $this->options = $this->getOptions();
 
-            if (! $this->dropdownOpen) {
-                $this->emitSelf('updateOptions', [
-                    'options' => $this->options,
-                ]);
+            if (!$this->dropdownOpen) {
+                $this
+                    ->dispatch('updateOptions', options: $this->options)
+                    ->self();
             }
         }
     }

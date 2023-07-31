@@ -15,9 +15,9 @@
     $footer = $this->getFooter();
     $readyToLoad = $this->readyToLoad;
 @endphp
-<x-filament::widget class="filament-widgets-chart-widget filament-apex-charts-widget">
+<x-filament-widgets::widget class="filament-widgets-chart-widget filament-apex-charts-widget">
     <x-filament::card class="filament-apex-charts-card" x-data="{ dropdownOpen: false }"
-        @apexhcharts-dropdown.window="dropdownOpen = event.detail.open">
+        @apexhcharts-dropdown.window="dropdownOpen = $event.detail.open">
 
         <x-filament-apex-charts::header :$heading :$subheading :$filters :$indicatorsCount :$width
             :$filterFormAccessible>
@@ -37,4 +37,7 @@
 
     </x-filament::card>
 
-</x-filament::widget>
+    <<<<<<< HEAD </x-filament::widget>
+        =======
+</x-filament-widgets::widget>
+>>>>>>> feature/filament-v3
