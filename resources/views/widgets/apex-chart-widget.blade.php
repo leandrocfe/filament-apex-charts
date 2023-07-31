@@ -37,7 +37,4 @@
 
     </x-filament::card>
 
-    <<<<<<< HEAD </x-filament::widget>
-        =======
 </x-filament-widgets::widget>
->>>>>>> feature/filament-v3
