@@ -170,7 +170,7 @@ class FilamentApexChartsCommand extends Command
         $contents = file_get_contents($stub);
 
         foreach ($stubVariables as $search => $replace) {
-            $contents = Str::of($contents)->replace('$' . $search . '$', $replace);
+            $contents = Str::of($contents)->replace('$'.$search.'$', $replace);
         }
 
         return $contents;
@@ -190,7 +190,7 @@ class FilamentApexChartsCommand extends Command
             'Windows' => Str::of($path)->replace('/', '\\')
         };
 
-        return base_path($widgetPath) . $this->widget . '.php';
+        return base_path($widgetPath).$this->widget.'.php';
     }
 
     /**
@@ -201,7 +201,7 @@ class FilamentApexChartsCommand extends Command
      */
     protected function makeDirectory($path)
     {
-        if (!$this->files->isDirectory($path)) {
+        if (! $this->files->isDirectory($path)) {
             $this->files->makeDirectory($path, 0777, true, true);
         }
 
