@@ -14,11 +14,7 @@ You can install the package via composer:
 composer require leandrocfe/filament-apex-charts:"^3.0"
 ```
 
-[Filament V2](https://github.com/leandrocfe/filament-apex-charts/tree/2.0.2):
-
-```bash
-composer require leandrocfe/filament-apex-charts:"^2.0"
-```
+**Filament V2** - if you are using Filament v2.x, you can use [this section](https://github.com/leandrocfe/filament-apex-charts/tree/2.0.2)
 
 Optionally, you can publish the views using:
 
@@ -256,6 +252,26 @@ protected function getOptions(): array
 
     return [
         //chart options
+    ];
+}
+```
+
+Also, if you want your chart data to update when the value of a filter changes, you have to combine `reactive()` with `afterStateUpdated()` :
+
+```php
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TextInput;
+
+protected function getFormSchema(): array
+{
+    return [
+        TextInput::make('title')
+            ->default('My Chart')
+            ->reactive()
+            ->afterStateUpdated(function () {
+                $this->updateChartOptions();
+            }),
+        ...
     ];
 }
 ```
