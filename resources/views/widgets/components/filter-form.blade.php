@@ -2,20 +2,26 @@
 <div class="filament-apex-charts-filter-form relative">
     <div class="filament-dropdown-trigger cursor-pointer flex items-center justify-center" aria-expanded="false">
         <button type="button" @click="dropdownOpen = !dropdownOpen"
-            class="filament-icon-button relative flex items-center justify-center outline-none transition disabled:pointer-events-none disabled:opacity-70 rounded-full hover:bg-gray-500/5 dark:hover:bg-gray-300/5 text-gray-500 focus:bg-gray-500/10 w-10 h-10 filament-actions-icon-button-action"
+            class="fi-icon-btn relative flex items-center justify-center rounded-lg outline-none transition duration-75 focus:ring-2 disabled:pointer-events-none disabled:opacity-70 h-9 w-9 text-gray-400 hover:text-gray-500 focus:ring-primary-600 dark:text-gray-500 dark:hover:text-gray-400 dark:focus:ring-primary-500 fi-ac-icon-btn-action"
             title="Filter">
 
             <span class="sr-only">
                 Filter
             </span>
 
-            <x-filament::icon name="heroicon-s-funnel" size="h-6 w-6" />
+            <x-filament::icon icon="heroicon-s-funnel" class="h-5 w-5" />
 
             @if ($indicatorsCount > 0)
-                <span
-                    class="filament-icon-button-indicator absolute -top-0.5 -end-0.5 inline-flex items-center justify-center h-4 w-4 rounded-full text-[0.5rem] font-medium text-white bg-primary-600">
-                    {{ $indicatorsCount }}
-                </span>
+                <div class="absolute start-full top-0 z-10 -ms-1 -translate-x-1/2 rounded-md bg-white dark:bg-gray-900">
+                    <div style="--c-50:var(--primary-50);--c-300:var(--primary-300);--c-400:var(--primary-400);--c-600:var(--primary-600);"
+                        class="fi-badge flex items-center justify-center gap-x-1 whitespace-nowrap rounded-md  text-xs font-medium ring-1 ring-inset px-0.5 min-w-[theme(spacing.4)] tracking-tighter bg-custom-50 text-custom-600 ring-custom-600/10 dark:bg-custom-400/10 dark:text-custom-400 dark:ring-custom-400/30">
+
+                        <span>
+                            {{ $indicatorsCount }}
+                        </span>
+
+                    </div>
+                </div>
             @endif
 
         </button>
@@ -44,13 +50,13 @@
 
             {{ $slot }}
 
-            <div class="mt-4 text-end flex gap-6 justify-end">
+            <div class="mt-2 text-end flex gap-6 justify-end">
                 <x-filament::link wire:click="submitFiltersForm" color="primary" tag="button" size="sm">
                     {{ __('filament-actions::modal.actions.submit.label') }}
                 </x-filament::link>
 
                 <x-filament::link wire:click="resetFiltersForm" color="danger" tag="button" size="sm">
-                    {{ __('filament-tables::table.filters.buttons.reset.label') }}
+                    {{ __('filament-tables::table.filters.actions.reset.label') }}
                 </x-filament::link>
             </div>
         </div>

@@ -43,20 +43,18 @@ class $CLASS_NAME$ extends ApexChartWidget
                 'categories' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 'labels' => [
                     'style' => [
-                        'colors' => '#9ca3af',
-                        'fontWeight' => 600,
+                        'fontFamily' => 'inherit',
                     ],
                 ],
             ],
             'yaxis' => [
                 'labels' => [
                     'style' => [
-                        'colors' => '#9ca3af',
-                        'fontWeight' => 600,
+                        'fontFamily' => 'inherit',
                     ],
                 ],
             ],
-            'colors' => ['#6366f1'],
+            'colors' => ['#f59e0b'],
         ];
     }
 }

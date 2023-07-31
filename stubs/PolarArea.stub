@@ -47,8 +47,7 @@ class $CLASS_NAME$ extends ApexChartWidget
             'yaxis' => [
                 'labels' => [
                     'style' => [
-                        'colors' => '#9ca3af',
-                        'fontWeight' => 600,
+                        'fontFamily' => 'inherit',
                     ],
                 ],
             ],

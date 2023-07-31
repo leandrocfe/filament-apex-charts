@@ -40,9 +40,8 @@ trait CanFilter
      */
     public function updatedFilter(): void
     {
-        $this->emitSelf('updateOptions', [
-            'options' => $this->getOptions(),
-        ]);
+        $this->dispatch('updateOptions', options: $this->getOptions())
+            ->self();
     }
 
     /**
@@ -62,11 +61,10 @@ trait CanFilter
     {
         $this->form->validate();
 
-        $this->emitSelf('updateOptions', [
-            'options' => $this->getOptions(),
-        ]);
+        $this->dispatch('updateOptions', options: $this->getOptions())
+            ->self();
 
-        $this->dispatchBrowserEvent('apexhcharts-dropdown', ['open' => false]);
+        $this->dispatch('apexhcharts-dropdown', open: false);
     }
 
     /**
@@ -76,11 +74,11 @@ trait CanFilter
     {
         $this->form->fill();
         $this->form->validate();
-        $this->emitSelf('updateOptions', [
-            'options' => $this->getOptions(),
-        ]);
 
-        $this->dispatchBrowserEvent('apexhcharts-dropdown', ['open' => false]);
+        $this->dispatch('updateOptions', options: $this->getOptions())
+            ->self();
+
+        $this->dispatch('apexhcharts-dropdown', open: false);
     }
 
     /**

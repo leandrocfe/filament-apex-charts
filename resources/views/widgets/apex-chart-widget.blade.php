@@ -17,7 +17,7 @@
 @endphp
 <x-filament-widgets::widget class="filament-widgets-chart-widget filament-apex-charts-widget">
     <x-filament::card class="filament-apex-charts-card" x-data="{ dropdownOpen: false }"
-        @apexhcharts-dropdown.window="dropdownOpen = event.detail.open">
+        @apexhcharts-dropdown.window="dropdownOpen = $event.detail.open">
 
         <x-filament-apex-charts::header :$heading :$subheading :$filters :$indicatorsCount :$width
             :$filterFormAccessible>

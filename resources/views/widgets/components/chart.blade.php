@@ -14,7 +14,7 @@
                 theme: {{ $darkMode ? "document.querySelector('html').matches('.dark') ? 'dark' : 'light'" : "'light'" }},
                 init() {
             
-                    $wire.on('updateOptions', async ({ options }) => {
+                    this.$wire.$on('updateOptions', ({ options }) => {
                         this.chart.updateOptions(options, false, true, true);
                     });
             
