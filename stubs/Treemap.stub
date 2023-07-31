@@ -43,7 +43,7 @@ class $CLASS_NAME$ extends ApexChartWidget
                     ],
                 ],
             ],
-            'colors' => ['#6366f1'],
+            'colors' => ['#f59e0b'],
             'legend' => [
                 'show' => false,
             ],

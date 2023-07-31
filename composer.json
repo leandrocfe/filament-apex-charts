@@ -18,9 +18,9 @@
     ],
     "require": {
         "php": "^8.1",
-        "filament/filament": "^2.16",
+        "filament/filament": "^3.0@beta",
         "illuminate/contracts": "^9.0|^10.0",
-        "livewire/livewire": "^2.11",
+        "livewire/livewire": "^3.0@beta",
         "spatie/laravel-package-tools": "^1.13.0"
     },
     "require-dev": {

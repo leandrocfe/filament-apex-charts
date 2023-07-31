@@ -51,8 +51,7 @@ class $CLASS_NAME$ extends ApexChartWidget
                 'tickAmount' => 7,
                 'labels' => [
                     'style' => [
-                        'colors' => '#9ca3af',
-                        'fontWeight' => 600,
+                        'fontFamily' => 'inherit',
                     ],
                 ],
             ],
@@ -60,15 +59,13 @@ class $CLASS_NAME$ extends ApexChartWidget
                 'tickAmount' => 7,
                 'labels' => [
                     'style' => [
-                        'colors' => '#9ca3af',
-                        'fontWeight' => 600,
+                        'fontFamily' => 'inherit',
                     ],
                 ],
             ],
             'legend' => [
                 'labels' => [
-                    'colors' => '#9ca3af',
-                    'fontWeight' => 600,
+                    'fontFamily' => 'inherit',
                 ],
             ],
         ];

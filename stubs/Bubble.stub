@@ -46,8 +46,7 @@ class $CLASS_NAME$ extends ApexChartWidget
                 'type' => 'category',
                 'labels' => [
                     'style' => [
-                        'colors' => '#9ca3af',
-                        'fontWeight' => 600,
+                        'fontFamily' => 'inherit',
                     ],
                 ],
             ],
@@ -56,8 +55,7 @@ class $CLASS_NAME$ extends ApexChartWidget
                 'max' => 80,
                 'labels' => [
                     'style' => [
-                        'colors' => '#9ca3af',
-                        'fontWeight' => 600,
+                        'fontFamily' => 'inherit',
                     ],
                 ],
             ],

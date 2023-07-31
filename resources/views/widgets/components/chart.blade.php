@@ -14,7 +14,7 @@
                 theme: {{ $darkMode ? "document.querySelector('html').matches('.dark') ? 'dark' : 'light'" : "'light'" }},
                 init() {
             
-                    $wire.on('updateOptions', async ({ options }) => {
+                    this.$wire.$on('updateOptions', ({ options }) => {
                         this.chart.updateOptions(options, false, true, true);
                     });
             
@@ -25,7 +25,7 @@
                     this.chart.render();
                 }
             }"
-                @dark-mode-toggled.window="chart.updateOptions( { theme: { mode: {{ $darkMode ? '$event.detail' : "'light'" }} } } )"
+                @theme-changed.window="chart.updateOptions( { theme: { mode: {{ $darkMode ? '$event.detail' : "'light'" }} } } )"
                 x-init="$watch('dropdownOpen', value => $wire.dropdownOpen = value)">
             </div>
 
@@ -35,7 +35,7 @@
             @if ($loadingIndicator)
                 {!! $loadingIndicator !!}
             @else
-                <x-filament-support::loading-indicator x-cloak wire:loading.delay class="w-7 h-7" />
+                <x-filament::loading-indicator class="h-7 w-7 text-gray-500 dark:text-gray-400" wire:loading.delay />
             @endif
         </div>
     @endif

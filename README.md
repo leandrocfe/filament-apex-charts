@@ -2,19 +2,19 @@
 
 [Apex Charts](https://apexcharts.com/) integration for [Filament](https://filamentphp.com/)
 
-![dashboard image demo](https://raw.githubusercontent.com/leandrocfe/filament-apex-charts/develop/screenshots/v1-dark-2216.png)
+![dashboard image demo](https://raw.githubusercontent.com/leandrocfe/filament-apex-charts/master/screenshots/v3-dark-2185.png)
 
-[Filament demo with ApexCharts](https://github.com/leandrocfe/filament-demo/tree/apex-charts-plugin)
-
-[Online Filament Project Example](https://filament-apex-charts-demo.leandroferreira.dev.br/)
+[Filament demo with ApexCharts](https://github.com/leandrocfe/filament-demo/tree/apex-charts-plugin-v3)
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require leandrocfe/filament-apex-charts:"^2.0"
+composer require leandrocfe/filament-apex-charts:"^3.0"
 ```
+
+**Filament V2** - if you are using Filament v2.x, you can use [this section](https://github.com/leandrocfe/filament-apex-charts/tree/2.0.2)
 
 Optionally, you can publish the views using:
 
@@ -129,13 +129,7 @@ The `getOptions()` method is used to return an array of options based on [Apex C
 
 ## Examples
 
--   [Filament demo with ApexCharts](https://github.com/leandrocfe/filament-demo/tree/apex-charts-plugin)
-
--   [Online Filament Project Example](https://filament-apex-charts-demo.leandroferreira.dev.br/)
-
--   [Github Filament Project Example](https://github.com/leandrocfe/filament-apex-charts-demo)
-
--   [Code Examples](examples/)
+-   [Filament demo with ApexCharts](https://github.com/leandrocfe/filament-demo/tree/apex-charts-plugin-v3)
 
 ## Setting a widget title
 
@@ -155,16 +149,6 @@ You can hide header content by **NOT** providing these
 -   getHeading()
 -   getFormSchema()
 -   getOptions()
-
-## Setting a widget subtitle
-
-You may set a widget subtitle:
-
-```php
-protected static ?string $subheading = 'Lorem Ipsum is simply dummy text';
-```
-
-Optionally, you can use the `getSubheading()` method.
 
 ## Setting a chart id
 
