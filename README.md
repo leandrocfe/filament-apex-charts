@@ -14,11 +14,7 @@ You can install the package via composer:
 composer require leandrocfe/filament-apex-charts:"^3.0"
 ```
 
-[Filament V2](https://github.com/leandrocfe/filament-apex-charts/tree/2.0.2):
-
-```bash
-composer require leandrocfe/filament-apex-charts:"^2.0"
-```
+**Filament V2** - if you are using Filament v2.x, you can use [this section](https://github.com/leandrocfe/filament-apex-charts/tree/2.0.2)
 
 Optionally, you can publish the views using:
 
