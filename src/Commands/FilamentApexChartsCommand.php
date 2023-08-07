@@ -3,7 +3,7 @@
 namespace Leandrocfe\FilamentApexCharts\Commands;
 
 use Filament\Support\Commands\Concerns\CanManipulateFiles;
-use Filament\Support\Commands\Concerns\CanValidateInput;
+use Leandrocfe\FilamentApexCharts\Concerns\CanValidateInput;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
