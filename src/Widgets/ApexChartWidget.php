@@ -17,14 +17,14 @@ use Leandrocfe\FilamentApexCharts\Concerns\HasLoadingIndicator;
 
 class ApexChartWidget extends Widget implements HasForms
 {
-    use CanPoll;
     use CanDeferLoading;
     use CanFilter;
-    use HasHeader;
-    use HasFooter;
-    use HasLoadingIndicator;
-    use HasDarkMode;
+    use CanPoll;
     use HasContentHeight;
+    use HasDarkMode;
+    use HasFooter;
+    use HasHeader;
+    use HasLoadingIndicator;
 
     protected static string $chartId = 'apexChart';
 
