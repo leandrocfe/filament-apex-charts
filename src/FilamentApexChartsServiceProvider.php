@@ -2,7 +2,7 @@
 
 namespace Leandrocfe\FilamentApexCharts;
 
-use Filament\Support\Assets\Js;
+use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Facades\FilamentAsset;
 use Illuminate\Support\Facades\Blade;
 use Leandrocfe\FilamentApexCharts\Commands\FilamentApexChartsCommand;
@@ -51,7 +51,7 @@ class FilamentApexChartsServiceProvider extends PackageServiceProvider
     public function packageRegistered(): void
     {
         FilamentAsset::register([
-            Js::make('apexcharts', __DIR__.'/../dist/apexcharts.js'),
-        ], package: 'leandrocfe/filament-apex-charts');
+            AlpineComponent::make('apexcharts', __DIR__.'/../dist/apexcharts.js'),
+        ]);
     }
 }

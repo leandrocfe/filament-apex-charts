@@ -3,29 +3,24 @@
 <div {!! $deferLoading ? ' wire:init="loadWidget" ' : '' !!} class="flex items-center justify-center filament-apex-charts-chart"
     style="{{ $contentHeight ? 'height: ' . $contentHeight . 'px;' : '' }}">
     @if ($readyToLoad)
+    <div id="chart"></div>
+    <div
+        x-ignore
+        ax-load
+        ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('apexcharts') }}"
+        x-data="apexcharts({
+            options: @js($chartOptions),
+            chartId: '#{{ $chartId }}',
+            theme: {{ $darkMode ? "document.querySelector('html').matches('.dark') ? 'dark' : 'light'" : "'light'" }}
+        })"
+    >
+</div>
         <div wire:ignore class="w-full filament-apex-charts-chart-container">
 
             <div class="filament-apex-charts-chart-object" x-ref="{{ $chartId }}" id="{{ $chartId }}">
             </div>
 
-            <div {!! $pollingInterval ? 'wire:poll.' . $pollingInterval . '="updateOptions"' : '' !!} x-data="{
-                chart: null,
-                options: @js($chartOptions),
-                theme: {{ $darkMode ? "document.querySelector('html').matches('.dark') ? 'dark' : 'light'" : "'light'" }},
-                init() {
-            
-                    this.$wire.$on('updateOptions', ({ options }) => {
-                        this.chart.updateOptions(options, false, true, true);
-                    });
-            
-                    this.options.theme = { mode: this.theme };
-                    this.options.chart.background = 'inherit';
-            
-                    this.chart = new ApexCharts($refs.{{ $chartId }}, this.options);
-                    this.chart.render();
-                }
-            }"
-                @theme-changed.window="chart.updateOptions( { theme: { mode: {{ $darkMode ? '$event.detail' : "'light'" }} } } )"
+            <div {!! $pollingInterval ? 'wire:poll.' . $pollingInterval . '="updateOptions"' : '' !!} x-data="{}"
                 x-init="$watch('dropdownOpen', value => $wire.dropdownOpen = value)">
             </div>
 
