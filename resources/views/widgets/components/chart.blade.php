@@ -7,10 +7,8 @@
             return options;
         }
 
-        function evalFormatters(obj)
-        {
-            for (const [key, value] of Object.entries(obj))
-            {
+        function evalFormatters(obj) {
+            for (const [key, value] of Object.entries(obj)) {
                 if (typeof obj[key] == "object" && obj[key] !== null) {
                     evalFormatters(obj[key]);
                 }
