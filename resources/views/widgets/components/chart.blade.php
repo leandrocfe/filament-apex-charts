@@ -1,31 +1,5 @@
 @props(['chartId', 'chartOptions', 'contentHeight', 'pollingInterval', 'loadingIndicator', 'deferLoading', 'readyToLoad', 'darkMode'])
 
-@script
-<script>
-    window.apexOptions = function apexOptions (options){
-        if (options === undefined) {
-            return options;
-        }
-
-        function evalFormatters(obj) {
-            for (const [key, value] of Object.entries(obj)) {
-                if (typeof obj[key] == "object" && obj[key] !== null) {
-                    evalFormatters(obj[key]);
-                }
-
-                if (key === "formatter") {
-                    eval("obj[key] =" + value);
-                }
-            }
-        }
-
-        evalFormatters(options);
-
-        return options;
-    }
-</script>
-@endscript
-
 <div {!! $deferLoading ? ' wire:init="loadWidget" ' : '' !!} class="flex items-center justify-center filament-apex-charts-chart"
      style="{{ $contentHeight ? 'height: ' . $contentHeight . 'px;' : '' }}">
     @if ($readyToLoad)
@@ -35,7 +9,7 @@
             ax-load
             ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('apexcharts') }}"
             x-data="apexcharts({
-                options: apexOptions(@js($chartOptions)),
+                options: @js($chartOptions),
                 chartId: '#{{ $chartId }}',
                 theme: {{ $darkMode ? "document.querySelector('html').matches('.dark') ? 'dark' : 'light'" : "'light'" }}
             })"
