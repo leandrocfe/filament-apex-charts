@@ -1,27 +1,34 @@
-@props(['chartId', 'chartOptions', 'contentHeight', 'pollingInterval', 'loadingIndicator', 'deferLoading', 'readyToLoad', 'darkMode'])
+@props([
+    'chartId',
+    'chartOptions',
+    'contentHeight',
+    'pollingInterval',
+    'loadingIndicator',
+    'deferLoading',
+    'readyToLoad',
+    'darkMode',
+    'extraJsOptions',
+])
 
 <div {!! $deferLoading ? ' wire:init="loadWidget" ' : '' !!} class="flex items-center justify-center filament-apex-charts-chart"
     style="{{ $contentHeight ? 'height: ' . $contentHeight . 'px;' : '' }}">
     @if ($readyToLoad)
-    <div id="chart"></div>
-    <div
-        x-ignore
-        ax-load
-        ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('apexcharts') }}"
-        x-data="apexcharts({
-            options: @js($chartOptions),
-            chartId: '#{{ $chartId }}',
-            theme: {{ $darkMode ? "document.querySelector('html').matches('.dark') ? 'dark' : 'light'" : "'light'" }}
-        })"
-    >
-</div>
+        <div id="chart"></div>
+        <div x-ignore ax-load
+            ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('apexcharts') }}"
+            x-data="apexcharts({
+                options: @js($chartOptions),
+                chartId: '#{{ $chartId }}',
+                theme: {{ $darkMode ? "document.querySelector('html').matches('.dark') ? 'dark' : 'light'" : "'light'" }},
+                extraJsOptions: {{ $extraJsOptions }},
+            })">
+        </div>
         <div wire:ignore class="w-full filament-apex-charts-chart-container">
 
             <div class="filament-apex-charts-chart-object" x-ref="{{ $chartId }}" id="{{ $chartId }}">
             </div>
 
-            <div {!! $pollingInterval ? 'wire:poll.' . $pollingInterval . '="updateOptions"' : '' !!} x-data="{}"
-                x-init="$watch('dropdownOpen', value => $wire.dropdownOpen = value)">
+            <div {!! $pollingInterval ? 'wire:poll.' . $pollingInterval . '="updateOptions"' : '' !!} x-data="{}" x-init="$watch('dropdownOpen', value => $wire.dropdownOpen = value)">
             </div>
 
         </div>

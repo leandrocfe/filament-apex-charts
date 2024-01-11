@@ -3,16 +3,23 @@ import ApexCharts from 'apexcharts'
 export default function apexcharts({
     options,
     chartId,
-    theme
+    theme,
+    extraJsOptions
 }) {
     return {
         chart: null,
         options,
         chartId,
         theme,
+        extraJsOptions,
         init: function () {
 
             this.$wire.$on('updateOptions', ({ options }) => {
+
+                options = {
+                    ...options,
+                    ...this.extraJsOptions
+                }
                 this.updateChart(options)
             })
 
@@ -25,6 +32,7 @@ export default function apexcharts({
                     if (this.chart === null) {
                         this.initChart()
                     } else {
+
                         this.updateChart({
                             theme: { mode: theme },
                             chart: {
@@ -40,11 +48,16 @@ export default function apexcharts({
             this.options.theme = { mode: this.theme }
             this.options.chart.background = 'inherit'
 
+            this.options = {
+                ...this.options,
+                ...this.extraJsOptions
+            }
+
             this.chart = new ApexCharts(document.querySelector(this.chartId), this.options)
             this.chart.render()
         },
         updateChart: function (options) {
             this.chart.updateOptions(options, false, true, true)
-        }
+        },
     }
 }

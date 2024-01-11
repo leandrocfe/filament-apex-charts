@@ -3,6 +3,7 @@
 namespace Leandrocfe\FilamentApexCharts\Widgets;
 
 use Filament\Forms\Contracts\HasForms;
+use Filament\Support\RawJs;
 use Filament\Widgets\Concerns\CanPoll;
 use Filament\Widgets\Widget;
 use Illuminate\Contracts\View\View;
@@ -90,5 +91,13 @@ class ApexChartWidget extends Widget implements HasForms
                     ->self();
             }
         }
+    }
+
+    /**
+     * Returns extra JavaScript options.
+     */
+    protected function extraJsOptions(): ?RawJs
+    {
+        return null;
     }
 }
