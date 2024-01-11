@@ -16,12 +16,6 @@ composer require leandrocfe/filament-apex-charts:"^3.0"
 
 **Filament V2** - if you are using Filament v2.x, you can use [this section](https://github.com/leandrocfe/filament-apex-charts/tree/2.0.2)
 
-Optionally, you can publish the views using:
-
-```bash
-php artisan vendor:publish --tag="filament-apex-charts-views"
-```
-
 ## Usage
 
 Start by creating a widget with the command:
@@ -101,7 +95,7 @@ class BlogPostsChart extends ApexChartWidget
                 'categories' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 'labels' => [
                     'style' => [
-                        'colors' => '#9ca3af',
+                        'fontFamily' => 'inherit',
                         'fontWeight' => 600,
                     ],
                 ],
@@ -109,12 +103,11 @@ class BlogPostsChart extends ApexChartWidget
             'yaxis' => [
                 'labels' => [
                     'style' => [
-                        'colors' => '#9ca3af',
-                        'fontWeight' => 600,
+                        'fontFamily' => 'inherit',
                     ],
                 ],
             ],
-            'colors' => ['#6366f1'],
+            'colors' => ['#f59e0b'],
         ];
     }
 }
@@ -267,7 +260,7 @@ protected function getFormSchema(): array
     return [
         TextInput::make('title')
             ->default('My Chart')
-            ->reactive()
+            ->live()
             ->afterStateUpdated(function () {
                 $this->updateChartOptions();
             }),
@@ -401,6 +394,58 @@ protected function getOptions(): array
         ...
     ];
 }
+```
+
+## Extra options and Formatters
+
+You can use the `extraJsOptions` method to add additional options to the chart:
+
+```php
+protected function extraJsOptions(): ?RawJs
+{
+    return RawJs::make(<<<'JS'
+    {
+        xaxis: {
+            labels: {
+                formatter: function (val, timestamp, opts) {
+                    return val + '/24'
+                }
+            }
+        },
+        yaxis: {
+            labels: {
+                formatter: function (val, index) {
+                    return '$' + val
+                }
+            }
+        },
+        tooltip: {
+            x: {
+                formatter: function (val) {
+                    return val + '/24'
+                }
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: function (val, opt) {
+                return opt.w.globals.labels[opt.dataPointIndex] + ': $' + val
+            },
+            dropShadow: {
+                enabled: true
+            },
+        }
+    }
+    JS);
+}
+```
+
+## Publishing views
+
+Optionally, you can publish the views using:
+
+```bash
+php artisan vendor:publish --tag="filament-apex-charts-views"
 ```
 
 ## Testing
