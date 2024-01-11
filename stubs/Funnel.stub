@@ -1,0 +1,89 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
+use Filament\Support\RawJs;
+
+class $CLASS_NAME$ extends ApexChartWidget
+{
+    /**
+     * Chart Id
+     *
+     * @var string
+     */
+    protected static string $chartId = '$CHART_ID$';
+
+    /**
+     * Widget Title
+     *
+     * @var string|null
+     */
+    protected static ?string $heading = '$CLASS_NAME$';
+
+    /**
+     * Chart options (series, labels, types, size, animations...)
+     * https://apexcharts.com/docs/options
+     *
+     * @return array
+     */
+    protected function getOptions(): array
+    {
+        return [
+            'chart' => [
+                'type' => 'bar',
+                'height' => 300,
+            ],
+            'series' => [
+                [
+                    'name' => '',
+                    'data' => [200, 330, 548, 740, 880, 990, 1100, 1380],
+                ],
+            ],
+            'xaxis' => [
+                'categories' => ['Sweets', 'Processed Foods', 'Healthy Fats', 'Meat', 'Beans & Legumes', 'Dairy', 'Fruits & Vegetables', 'Grains'],
+                'labels' => [
+                    'style' => [
+                        'fontFamily' => 'inherit',
+                    ],
+                ],
+            ],
+            'plotOptions' => [
+                'bar' => [
+                    'borderRadius' => 0,
+                    'horizontal' => true,
+                    'distributed' => true,
+                    'barHeight' => '80%',
+                    'isFunnel' => true,
+                ]  
+            ],
+            'colors' => [
+                '#F44F5E',
+                '#E55A89',
+                '#D863B1',
+                '#CA6CD8',
+                '#B57BED',
+                '#8D95EB',
+                '#62ACEA',
+                '#4BC3E6',
+            ],
+        ];
+    }
+
+    protected function extraJsOptions(): ?RawJs
+    {
+        return RawJs::make(<<<'JS'
+        {
+            dataLabels: {
+                enabled: true,
+                formatter: function (val, opt) {
+                    return opt.w.globals.labels[opt.dataPointIndex] 
+                },
+                dropShadow: {
+                    enabled: true
+                },
+            }
+        }
+        JS);
+    }
+}

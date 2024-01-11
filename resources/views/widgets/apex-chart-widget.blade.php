@@ -1,4 +1,5 @@
 @php
+    $plugin = \Leandrocfe\FilamentApexCharts\FilamentApexChartsPlugin::get();
     $heading = $this->getHeading();
     $subheading = $this->getSubheading();
     $filters = $this->getFilters();
@@ -14,11 +15,11 @@
     $deferLoading = $this->getDeferLoading();
     $footer = $this->getFooter();
     $readyToLoad = $this->readyToLoad;
+    $extraJsOptions = $this->extraJsOptions();
 @endphp
 <x-filament-widgets::widget class="filament-widgets-chart-widget filament-apex-charts-widget">
     <x-filament::card class="filament-apex-charts-card">
-        <div x-data="{ dropdownOpen: false }"
-             @apexhcharts-dropdown.window="dropdownOpen = $event.detail.open">
+        <div x-data="{ dropdownOpen: false }" @apexhcharts-dropdown.window="dropdownOpen = $event.detail.open">
 
             <x-filament-apex-charts::header :$heading :$subheading :$filters :$indicatorsCount :$width
                 :$filterFormAccessible>
@@ -28,7 +29,7 @@
             </x-filament-apex-charts::header>
 
             <x-filament-apex-charts::chart :$chartId :$chartOptions :$contentHeight :$pollingInterval :$loadingIndicator
-                :$darkMode :$deferLoading :$readyToLoad />
+                :$darkMode :$deferLoading :$readyToLoad :$extraJsOptions />
 
             @if ($footer)
                 <div class="relative">

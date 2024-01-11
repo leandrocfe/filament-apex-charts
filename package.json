@@ -1,0 +1,23 @@
+{
+  "name": "filament-apex-charts",
+  "version": "3.0.1",
+  "description": "Filament Apex Charts Plugin",
+  "type": "module",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "leandrocfe@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.19.7"
+  },
+  "dependencies": {
+    "apexcharts": "^3.44.0",
+    "lodash.merge": "^4.6.2"
+  }
+}
