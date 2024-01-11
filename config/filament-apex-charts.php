@@ -24,5 +24,6 @@ return [
         'Scatter',
         'TimelineRangeBars',
         'Treemap',
+        'Funnel',
     ],
 ];

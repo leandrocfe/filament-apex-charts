@@ -91,7 +91,7 @@ trait CanFilter
         if ($this->getFilterFormAccessible()) {
             return count(
                 Arr::where($this->filterFormData, function ($value) {
-                    return null !== $value;
+                    return $value !== null;
                 })
             );
         }
