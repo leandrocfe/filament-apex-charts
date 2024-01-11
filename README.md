@@ -14,6 +14,19 @@ You can install the package via composer:
 composer require leandrocfe/filament-apex-charts:"^3.0"
 ```
 
+Register the plugin for the Filament Panels you want to use:
+
+```php
+use Leandrocfe\FilamentApexCharts\FilamentApexChartsPlugin;
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            FilamentApexChartsPlugin::make()
+        ]);
+}
+```
+
 **Filament V2** - if you are using Filament v2.x, you can use [this section](https://github.com/leandrocfe/filament-apex-charts/tree/2.0.2)
 
 ## Usage
