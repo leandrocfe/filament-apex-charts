@@ -20,7 +20,7 @@
                 options: @js($chartOptions),
                 chartId: '#{{ $chartId }}',
                 theme: {{ $darkMode ? "document.querySelector('html').matches('.dark') ? 'dark' : 'light'" : "'light'" }},
-                extraJsOptions: {{ $extraJsOptions }},
+                extraJsOptions: {{ $extraJsOptions ?? '{}' }},
             })">
         </div>
         <div wire:ignore class="w-full filament-apex-charts-chart-container">

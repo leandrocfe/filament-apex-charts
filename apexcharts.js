@@ -1,4 +1,5 @@
 import ApexCharts from 'apexcharts'
+var merge = require('lodash.merge');
 
 export default function apexcharts({
     options,
@@ -16,10 +17,7 @@ export default function apexcharts({
 
             this.$wire.$on('updateOptions', ({ options }) => {
 
-                options = {
-                    ...options,
-                    ...this.extraJsOptions
-                }
+                options = merge(options, this.extraJsOptions)
                 this.updateChart(options)
             })
 
@@ -48,10 +46,7 @@ export default function apexcharts({
             this.options.theme = { mode: this.theme }
             this.options.chart.background = 'inherit'
 
-            this.options = {
-                ...this.options,
-                ...this.extraJsOptions
-            }
+            this.options = merge(this.options, this.extraJsOptions)
 
             this.chart = new ApexCharts(document.querySelector(this.chartId), this.options)
             this.chart.render()

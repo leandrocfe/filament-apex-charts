@@ -17,6 +17,7 @@
     "esbuild": "^0.19.7"
   },
   "dependencies": {
-    "apexcharts": "^3.44.0"
+    "apexcharts": "^3.44.0",
+    "lodash.merge": "^4.6.2"
   }
 }
