@@ -2,16 +2,21 @@
 
 namespace Leandrocfe\FilamentApexCharts\Commands;
 
+use Filament\Facades\Filament;
+use Filament\Panel;
+use Filament\Resources\Resource;
 use Filament\Support\Commands\Concerns\CanManipulateFiles;
-use Filament\Support\Commands\Concerns\CanValidateInput;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+
+use function Laravel\Prompts\select;
+use function Laravel\Prompts\text;
 
 class FilamentApexChartsCommand extends Command
 {
     use CanManipulateFiles;
-    use CanValidateInput;
 
     /**
      * Signature
@@ -66,50 +71,149 @@ class FilamentApexChartsCommand extends Command
     public function handle(): int
     {
         //widget
-        $this->widget = (string) Str::of($this->argument('name') ?? $this->askRequired('Name (e.g. `BlogPostsChart`)', 'name'))
+        $widget = (string) str($this->argument('name') ?? text(
+            label: 'What is the chart name?',
+            placeholder: 'BlogPostsChart',
+            required: true,
+        ))
             ->trim('/')
             ->trim('\\')
             ->trim(' ')
             ->replace('/', '\\');
 
-        //chartType
-        $this->chartType = $this->choice(
-            'Chart type',
-            $this->chartOptions,
+        $widgetClass = (string) str($widget)->afterLast('\\');
+
+        $widgetNamespace = str($widget)->contains('\\') ?
+            (string) str($widget)->beforeLast('\\') :
+            '';
+
+        $resource = null;
+        $resourceClass = null;
+
+        $chartType = select(
+            label: 'What type of chart do you want to create?',
+            options: $this->chartOptions,
         );
 
-        $this->widgetPath = $this->choice(
-            'Using ApexCharts inside a Filament Panel?',
-            [
-                'yes' => 'yes',
-                'no' => 'no (custom TALL-stack app)',
-            ],
-            'yes'
-        );
+        if (class_exists(Resource::class)) {
+            $resourceInput = text(
+                label: 'What is the resource you would like to create this in?',
+                placeholder: '[Optional] BlogPostResource',
+            );
 
-        $path = $this->getSourceFilePath();
+            if (filled($resourceInput)) {
+                $resource = (string) str($resourceInput)
+                    ->studly()
+                    ->trim('/')
+                    ->trim('\\')
+                    ->trim(' ')
+                    ->replace('/', '\\');
 
-        $this->makeDirectory(dirname($path));
+                if (! str($resource)->endsWith('Resource')) {
+                    $resource .= 'Resource';
+                }
 
-        $contents = $this->getSourceFile();
-
-        if ($this->files->exists($path)) {
-            $this->error("File : {$path} already exits!");
-            exit();
+                $resourceClass = (string) str($resource)
+                    ->afterLast('\\');
+            }
         }
 
-        $fileCount = count($this->files->files(dirname($path)));
+        $panel = null;
 
-        $this->files->put($path, $contents);
+        if (class_exists(Panel::class)) {
 
-        $infoMessage = $this->widgetPath === 'yes' ?
-            'Check out your new widget on the dashboard page.' :
-            "Render your new widget in any Blade view using the @livewire directive: @livewire(\App\Http\Livewire\\$this->widget::class)";
+            $panels = Filament::getPanels();
+            $namespace = config('livewire.class_namespace');
 
-        $this->info("Successfully created {$this->widget}! {$infoMessage}");
+            /** @var ?Panel $panel */
+            $panel = $panels[select(
+                label: 'Where would you like to create this?',
+                options: array_unique([
+                    ...array_map(
+                        fn (Panel $panel): string => "The [{$panel->getId()}] panel",
+                        $panels,
+                    ),
+                    $namespace => "[{$namespace}] alongside other Livewire components",
+                ])
+            )] ?? null;
+        }
 
-        if ($fileCount === 0) {
-            $this->welcomeMessage();
+        $path = null;
+        $namespace = null;
+        $resourcePath = null;
+        $resourceNamespace = null;
+
+        if (! $panel) {
+            $namespace = config('livewire.class_namespace');
+            $path = app_path((string) str($namespace)->after('App\\')->replace('\\', '/'));
+        } elseif ($resource === null) {
+            $widgetDirectories = $panel->getWidgetDirectories();
+            $widgetNamespaces = $panel->getWidgetNamespaces();
+
+            $namespace = (count($widgetNamespaces) > 1) ?
+                select(
+                    label: 'Which namespace would you like to create this in?',
+                    options: $widgetNamespaces,
+                ) :
+                (Arr::first($widgetNamespaces) ?? 'App\\Filament\\Widgets');
+            $path = (count($widgetDirectories) > 1) ?
+                $widgetDirectories[array_search($namespace, $widgetNamespaces)] :
+                (Arr::first($widgetDirectories) ?? app_path('Filament/Widgets/'));
+        } else {
+            $resourceDirectories = $panel->getResourceDirectories();
+            $resourceNamespaces = $panel->getResourceNamespaces();
+
+            $resourceNamespace = (count($resourceNamespaces) > 1) ?
+                select(
+                    label: 'Which namespace would you like to create this in?',
+                    options: $resourceNamespaces,
+                ) :
+                (Arr::first($resourceNamespaces) ?? 'App\\Filament\\Resources');
+            $resourcePath = (count($resourceDirectories) > 1) ?
+                $resourceDirectories[array_search($resourceNamespace, $resourceNamespaces)] :
+                (Arr::first($resourceDirectories) ?? app_path('Filament/Resources/'));
+        }
+
+        if ($path) {
+            $this->makeDirectory($path);
+            $contents = $this->getSourceFile($namespace, $widget, $chartType);
+            $file = $path.'/'.$widget.'.php';
+            if ($this->files->exists($file)) {
+                $this->error("File : {$file} already exits!");
+                exit();
+            }
+
+            $fileCount = count($this->files->files(dirname($file)));
+
+            $this->files->put($file, $contents);
+
+            $this->info("Successfully created {$widget}!");
+
+            if ($fileCount === 0) {
+                $this->welcomeMessage();
+            }
+        } elseif ($resourcePath) {
+
+            $this->makeDirectory($resourcePath.'/'.$resourceClass.'/Widgets');
+
+            $contents = $this->getSourceFile($resourceNamespace.'\\'.$resourceClass.'\\Widgets', $widget, $chartType);
+
+            $file = $resourcePath.'/'.$resourceClass.'/Widgets/'.$widget.'.php';
+
+            if ($this->files->exists($file)) {
+                $this->error("File : {$file} already exits!");
+                exit();
+            }
+
+            $fileCount = count($this->files->files(dirname($file)));
+
+            $this->files->put($file, $contents);
+
+            $this->info("Successfully created {$resourceClass}! Make sure to register the widget in `{$resourceClass}::getWidgets()`, and then again in `getHeaderWidgets()` or `getFooterWidgets()` of any `{$resourceClass}` page.");
+
+            if ($fileCount === 0) {
+                $this->welcomeMessage();
+            }
         }
 
         return self::SUCCESS;
@@ -120,7 +224,7 @@ class FilamentApexChartsCommand extends Command
      *
      * @return string
      */
-    public function getStubPath()
+    public function getStubPath($chartType)
     {
         $path = Str::of(__DIR__);
 
@@ -129,7 +233,7 @@ class FilamentApexChartsCommand extends Command
             'Windows' => $path->replace('src\Commands', 'stubs\\')
         };
 
-        return $path->append($this->chartType)->append('.stub');
+        return $path->append($chartType)->append('.stub');
     }
 
     /**
@@ -138,14 +242,12 @@ class FilamentApexChartsCommand extends Command
      *
      * @return array
      */
-    public function getStubVariables()
+    public function getStubVariables($namespace, $widget)
     {
-        $namespace = $this->widgetPath === 'yes' ? 'App\\Filament\\Widgets' : 'App\\Http\\Livewire';
-
         return [
             'NAMESPACE' => $namespace,
-            'CLASS_NAME' => $this->widget,
-            'CHART_ID' => Str::of($this->widget)->camel(),
+            'CLASS_NAME' => $widget,
+            'CHART_ID' => Str::of($widget)->camel(),
         ];
     }
 
@@ -154,9 +256,9 @@ class FilamentApexChartsCommand extends Command
      *
      * @return bool|mixed|string
      */
-    public function getSourceFile()
+    public function getSourceFile($namespace, $widget, $chartType)
     {
-        return $this->getStubContents($this->getStubPath(), $this->getStubVariables());
+        return $this->getStubContents($this->getStubPath($chartType), $this->getStubVariables($namespace, $widget));
     }
 
     /**
@@ -174,23 +276,6 @@ class FilamentApexChartsCommand extends Command
         }
 
         return $contents;
-    }
-
-    /**
-     * Get the full path of generate class
-     *
-     * @return string
-     */
-    public function getSourceFilePath()
-    {
-        $path = $this->widgetPath === 'yes' ? 'app/Filament/Widgets/' : 'app/Http/Livewire/';
-
-        $widgetPath = match (PHP_OS_FAMILY) {
-            default => $path,
-            'Windows' => Str::of($path)->replace('/', '\\')
-        };
-
-        return base_path($widgetPath).$this->widget.'.php';
     }
 
     /**
