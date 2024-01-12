@@ -9,7 +9,7 @@ class BasicColumnChart extends ApexChartWidget
     /**
      * Chart Id
      */
-    protected static string $chartId = 'basicColumnChart';
+    protected static ?string $chartId = 'basicColumnChart';
 
     /**
      * Widget Title

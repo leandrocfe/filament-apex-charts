@@ -9,7 +9,7 @@ class BasicBarChart extends ApexChartWidget
     /**
      * Chart Id
      */
-    protected static string $chartId = 'basicBarChart';
+    protected static ?string $chartId = 'basicBarChart';
 
     /**
      * Widget Title

@@ -9,7 +9,7 @@ class BasicRadialBarChart extends ApexChartWidget
     /**
      * Chart Id
      */
-    protected static string $chartId = 'basicRadialBarChart';
+    protected static ?string $chartId = 'basicRadialBarChart';
 
     /**
      * Widget Title

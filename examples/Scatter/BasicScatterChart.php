@@ -9,7 +9,7 @@ class BasicScatterChart extends ApexChartWidget
     /**
      * Chart Id
      */
-    protected static string $chartId = 'basicScatterChart';
+    protected static ?string $chartId = 'basicScatterChart';
 
     /**
      * Widget Title

@@ -9,7 +9,7 @@ class BasicBubbleChart extends ApexChartWidget
     /**
      * Chart Id
      */
-    protected static string $chartId = 'basicBubbleChart';
+    protected static ?string $chartId = 'basicBubbleChart';
 
     /**
      * Widget Title

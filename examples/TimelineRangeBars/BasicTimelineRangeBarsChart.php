@@ -9,7 +9,7 @@ class BasicTimelineRangeBarsChart extends ApexChartWidget
     /**
      * Chart Id
      */
-    protected static string $chartId = 'basicTimelineRangeBarsChart';
+    protected static ?string $chartId = 'basicTimelineRangeBarsChart';
 
     /**
      * Widget Title
