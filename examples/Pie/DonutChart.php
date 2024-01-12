@@ -9,7 +9,7 @@ class DonutChart extends ApexChartWidget
     /**
      * Chart Id
      */
-    protected static string $chartId = 'donutChart';
+    protected static ?string $chartId = 'donutChart';
 
     /**
      * Widget Title

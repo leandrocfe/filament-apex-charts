@@ -9,7 +9,7 @@ class ColumnChartWithAnnotations extends ApexChartWidget
     /**
      * Chart Id
      */
-    protected static string $chartId = 'columnChartWithAnnotations';
+    protected static ?string $chartId = 'columnChartWithAnnotations';
 
     /**
      * Widget Title

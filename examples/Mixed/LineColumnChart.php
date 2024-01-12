@@ -9,7 +9,7 @@ class LineColumnChart extends ApexChartWidget
     /**
      * Chart Id
      */
-    protected static string $chartId = 'lineColumnChart';
+    protected static ?string $chartId = 'lineColumnChart';
 
     /**
      * Widget Title
