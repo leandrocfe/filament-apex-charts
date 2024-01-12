@@ -38,24 +38,9 @@ class FilamentApexChartsCommand extends Command
     protected Filesystem $files;
 
     /**
-     * Widget
-     */
-    private string $widget;
-
-    /**
-     * Chart Type
-     */
-    private string $chartType;
-
-    /**
      * Chart options
      */
     private array $chartOptions;
-
-    /**
-     * Widget Path
-     */
-    private string $widgetPath;
 
     /**
      * Create a new command instance.

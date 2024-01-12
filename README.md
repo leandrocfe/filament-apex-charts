@@ -2,7 +2,7 @@
 
 [Apex Charts](https://apexcharts.com/) integration for [Filament](https://filamentphp.com/)
 
-![dashboard image demo](https://raw.githubusercontent.com/leandrocfe/filament-apex-charts/master/screenshots/v3-dark-2185.png)
+![dashboard image demo](https://raw.githubusercontent.com/leandrocfe/filament-apex-charts/master/screenshots/v3-dark-5088.jpg)
 
 [Filament demo with ApexCharts](https://github.com/leandrocfe/filament-demo/tree/apex-charts-plugin-v3)
 
@@ -11,7 +11,7 @@
 You can install the package via composer:
 
 ```bash
-composer require leandrocfe/filament-apex-charts:"^3.0"
+composer require leandrocfe/filament-apex-charts:"^3.1"
 ```
 
 Register the plugin for the Filament Panels you want to use:
@@ -59,6 +59,7 @@ You may choose:
 -   Scatter
 -   TimelineRangeBars
 -   Treemap
+-   Funnel
 
 You may also create an **empty chart** by selecting the **Empty** option.
 
