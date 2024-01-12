@@ -77,7 +77,7 @@ class BlogPostsChart extends ApexChartWidget
      *
      * @var string
      */
-    protected static string $chartId = 'blogPostsChart';
+    protected static ?string $chartId = 'blogPostsChart';
 
     /**
      * Widget Title

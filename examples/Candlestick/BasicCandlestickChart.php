@@ -9,7 +9,7 @@ class BasicCandlestickChart extends ApexChartWidget
     /**
      * Chart Id
      */
-    protected static string $chartId = 'basicCandlestickChart';
+    protected static ?string $chartId = 'basicCandlestickChart';
 
     /**
      * Widget Title

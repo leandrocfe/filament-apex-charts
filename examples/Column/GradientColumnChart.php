@@ -9,7 +9,7 @@ class GradientColumnChart extends ApexChartWidget
     /**
      * Chart Id
      */
-    protected static string $chartId = 'gradientColumnChart';
+    protected static ?string $chartId = 'gradientColumnChart';
 
     /**
      * Widget Title

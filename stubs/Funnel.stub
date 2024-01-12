@@ -12,7 +12,7 @@ class $CLASS_NAME$ extends ApexChartWidget
      *
      * @var string
      */
-    protected static string $chartId = '$CHART_ID$';
+    protected static ?string $chartId = '$CHART_ID$';
 
     /**
      * Widget Title

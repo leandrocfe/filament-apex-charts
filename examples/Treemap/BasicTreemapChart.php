@@ -9,7 +9,7 @@ class BasicTreemapChart extends ApexChartWidget
     /**
      * Chart Id
      */
-    protected static string $chartId = 'basicTreemapChart';
+    protected static ?string $chartId = 'basicTreemapChart';
 
     /**
      * Widget Title

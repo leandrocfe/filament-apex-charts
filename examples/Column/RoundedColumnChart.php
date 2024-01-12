@@ -9,7 +9,7 @@ class RoundedColumnChart extends ApexChartWidget
     /**
      * Chart Id
      */
-    protected static string $chartId = 'roundedColumnChart';
+    protected static ?string $chartId = 'roundedColumnChart';
 
     /**
      * Widget Title

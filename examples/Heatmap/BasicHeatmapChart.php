@@ -9,7 +9,7 @@ class BasicHeatmapChart extends ApexChartWidget
     /**
      * Chart Id
      */
-    protected static string $chartId = 'basicHeatmapChart';
+    protected static ?string $chartId = 'basicHeatmapChart';
 
     /**
      * Widget Title

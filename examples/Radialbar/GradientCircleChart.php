@@ -9,7 +9,7 @@ class GradientCircleChart extends ApexChartWidget
     /**
      * Chart Id
      */
-    protected static string $chartId = 'gradientCircleChart';
+    protected static ?string $chartId = 'gradientCircleChart';
 
     /**
      * Widget Title
