@@ -27,7 +27,7 @@ class ApexChartWidget extends Widget implements HasForms
     use HasHeader;
     use HasLoadingIndicator;
 
-    protected static string $chartId = 'apexChart';
+    protected static ?string $chartId = null;
 
     protected static string $view = 'filament-apex-charts::widgets.apex-chart-widget';
 
