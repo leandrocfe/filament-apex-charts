@@ -15,7 +15,7 @@ class FilamentApexChartsServiceProvider extends PackageServiceProvider
      * Configures the given package with the name 'filament-apex-charts'
      * as a Package Service Provider.
      *
-     * @param  Package  $package the package to be configured
+     * @param  Package  $package  the package to be configured
      *
      * @throws void
      */
