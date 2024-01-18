@@ -11,7 +11,7 @@ trait CanFilter
 
     public ?string $filter = null;
 
-    public array $filterFormData = [];
+    public ?array $filterFormData = [];
 
     public bool $dropdownOpen = false;
 
