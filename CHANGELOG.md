@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 3.1.2
 
+### Added
+
+-   Laravel 11 support.
+
+## 3.1.2
+
 ### Fixed
 
 -   Filter form data array.
