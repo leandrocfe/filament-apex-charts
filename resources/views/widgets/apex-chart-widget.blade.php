@@ -1,5 +1,4 @@
 @php
-    $plugin = \Leandrocfe\FilamentApexCharts\FilamentApexChartsPlugin::get();
     $heading = $this->getHeading();
     $subheading = $this->getSubheading();
     $filters = $this->getFilters();
