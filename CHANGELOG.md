@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.1.5
+
+### Changed
+
+-   Update Apexcharts 4.3.0
+-   Support for Livewire Standalone Components
+-   Add option to customize filter form width by [chiiya](https://github.com/chiiya)
+-   Make simple filter select reactive by default by [rossbearman](https://github.com/rossbearman)
+
 ## 3.1.4
 
 ### Changed
