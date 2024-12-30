@@ -10,7 +10,7 @@ trait CanFilter
 {
     use InteractsWithForms;
 
-    protected static MaxWidth | string $filterFormWidth = MaxWidth::ExtraSmall;
+    protected static MaxWidth|string $filterFormWidth = MaxWidth::ExtraSmall;
 
     public ?string $filter = null;
 
@@ -117,7 +117,7 @@ trait CanFilter
      *
      * @return MaxWidth | string The value of the $filterFormWidth property, which is either a MaxWidth instance or a string.
      */
-    protected function getFilterFormWidth(): MaxWidth | string
+    protected function getFilterFormWidth(): MaxWidth|string
     {
         return static::$filterFormWidth;
     }
