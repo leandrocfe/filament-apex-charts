@@ -3,11 +3,14 @@
 namespace Leandrocfe\FilamentApexCharts\Concerns;
 
 use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Support\Enums\MaxWidth;
 use Illuminate\Support\Arr;
 
 trait CanFilter
 {
     use InteractsWithForms;
+
+    protected static MaxWidth | string $filterFormWidth = MaxWidth::ExtraSmall;
 
     public ?string $filter = null;
 
@@ -107,5 +110,15 @@ trait CanFilter
     public function getFilterFormAccessible(): bool
     {
         return Arr::accessible($this->filterFormData) && count($this->filterFormData) > 0;
+    }
+
+    /**
+     * Retrieves the value of the static property $filterFormWidth.
+     *
+     * @return MaxWidth | string The value of the $filterFormWidth property, which is either a MaxWidth instance or a string.
+     */
+    protected function getFilterFormWidth(): MaxWidth | string
+    {
+        return static::$filterFormWidth;
     }
 }
