@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.1.5
+
+### Changed
+
+-   Update Apexcharts 4.3.0
+-   Support for Livewire Standalone Components
+
 ## 3.1.4
 
 ### Changed
