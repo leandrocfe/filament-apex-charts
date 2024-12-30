@@ -10,8 +10,6 @@ trait HasHeader
 
     /**
      * Retrieves the heading used in the class.
-     *
-     * @return ?string
      */
     protected function getHeading(): ?string
     {
@@ -20,8 +18,6 @@ trait HasHeader
 
     /**
      * Retrieves the subheading used in the class.
-     *
-     * @return ?string
      */
     protected function getSubheading(): ?string
     {
