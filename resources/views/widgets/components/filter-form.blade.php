@@ -1,4 +1,9 @@
 @props(['indicatorsCount', 'width'])
+
+@php
+    use Filament\Support\Enums\MaxWidth;
+@endphp
+
 <div class="filament-apex-charts-filter-form relative">
     <div class="filament-dropdown-trigger cursor-pointer flex items-center justify-center" aria-expanded="false">
         <button type="button" @click="dropdownOpen = !dropdownOpen"
@@ -33,18 +38,18 @@
         'absolute mt-2 z-10 w-screen divide-y divide-gray-100 rounded-lg bg-white shadow-lg ring-1 ring-gray-950/5 transition dark:divide-gray-700 dark:bg-gray-800 dark:ring-white/20',
     ])
         style="{{ match ($width) {
-            'xs' => 'width: 20rem;',
-            'sm' => 'width: 24rem;',
-            'md' => 'width: 28rem;',
-            'lg' => 'width: 32rem;',
-            'xl' => 'width: 36rem;',
-            '2xl' => 'width: 42rem;',
-            '3xl' => 'width: 48rem;',
-            '4xl' => 'width: 56rem;',
-            '5xl' => 'width: 64rem;',
-            '6xl' => 'width: 72rem;',
-            '7xl' => 'width: 80rem;',
-            default => 'width: 20rem;',
+            MaxWidth::ExtraSmall, 'xs' => 'width: 20rem;',
+            MaxWidth::Small, 'sm' => 'width: 24rem;',
+            MaxWidth::Medium, 'md' => 'width: 28rem;',
+            MaxWidth::Large, 'lg' => 'width: 32rem;',
+            MaxWidth::ExtraLarge, 'xl' => 'width: 36rem;',
+            MaxWidth::TwoExtraLarge, '2xl' => 'width: 42rem;',
+            MaxWidth::ThreeExtraLarge, '3xl' => 'width: 48rem;',
+            MaxWidth::FourExtraLarge, '4xl' => 'width: 56rem;',
+            MaxWidth::FiveExtraLarge, '5xl' => 'width: 64rem;',
+            MaxWidth::SixExtraLarge, '6xl' => 'width: 72rem;',
+            MaxWidth::SevenExtraLarge, '7xl' => 'width: 80rem;',
+            default => $width,
         } }}; right:0">
         <div class="py-4 px-6">
 

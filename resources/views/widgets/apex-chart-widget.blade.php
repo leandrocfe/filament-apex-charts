@@ -5,7 +5,7 @@
     $filters = $this->getFilters();
     $indicatorsCount = $this->getIndicatorsCount();
     $darkMode = $this->getDarkMode();
-    $width = 'xs';
+    $width = $this->getFilterFormWidth();
     $pollingInterval = $this->getPollingInterval();
     $chartId = $this->getChartId();
     $chartOptions = $this->getOptions();
