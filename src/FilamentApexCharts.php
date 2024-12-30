@@ -2,6 +2,4 @@
 
 namespace Leandrocfe\FilamentApexCharts;
 
-class FilamentApexCharts
-{
-}
+class FilamentApexCharts {}

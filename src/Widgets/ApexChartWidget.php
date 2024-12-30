@@ -47,9 +47,7 @@ class ApexChartWidget extends Widget implements HasForms
         }
     }
 
-    public function on(): void
-    {
-    }
+    public function on(): void {}
 
     public function render(): View
     {
