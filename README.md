@@ -148,14 +148,15 @@ protected static ?string $heading = 'Blog Posts Chart';
 
 Optionally, you can use the `getHeading()` method.
 
-## Hiding header content
+## Setting a widget subheading
 
-You can hide header content by **NOT** providing these
+You may set a widget subheading:
 
--   $heading
--   getHeading()
--   getFormSchema()
--   getOptions()
+```php
+protected static ?string $subheading = 'This is a subheading';
+```
+
+Optionally, you can use the `getSubheading()` method.
 
 ## Setting a chart id
 
@@ -195,8 +196,10 @@ You can also use the `getFooter()` method:
 Custom view:
 
 ```php
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
-protected function getFooter(): string|View
+
+protected function getFooter(): null|string|Htmlable|View
 {
     return view('custom-footer', ['text' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.']);
 }
@@ -212,12 +215,24 @@ protected function getFooter(): string|View
 Html string:
 
 ```php
-use Illuminate\Support\HtmlString;
-protected function getFooter(): string|View
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Contracts\View\View;
+protected function getFooter(): null|string|Htmlable|View
 {
     return new HtmlString('<p class="text-danger-500">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>');
 }
 ```
+
+## Hiding header content
+
+You can hide header content by **NOT** providing these
+
+-   $heading
+-   getHeading()
+-   $subheading
+-   getSubheading()
+-   getFormSchema()
+-   getOptions()
 
 ## Filtering chart data
 
@@ -281,6 +296,15 @@ protected function getFormSchema(): array
         ...
     ];
 }
+```
+
+### Changing the filter form width
+
+You can change the filter form width by setting the `$filterFormWidth` property:
+
+```php
+use Filament\Support\Enums\MaxWidth;
+protected static MaxWidth|string $filterFormWidth = MaxWidth::Medium;
 ```
 
 ### Single select

@@ -55,7 +55,7 @@ class FilamentApexChartsCommand extends Command
 
     public function handle(): int
     {
-        //widget
+        // widget
         $widget = (string) str($this->argument('name') ?? text(
             label: 'What is the chart name?',
             placeholder: 'BlogPostsChart',
