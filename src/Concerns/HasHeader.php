@@ -2,6 +2,9 @@
 
 namespace Leandrocfe\FilamentApexCharts\Concerns;
 
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Contracts\View\View;
+
 trait HasHeader
 {
     protected static ?string $heading = null;
@@ -11,7 +14,7 @@ trait HasHeader
     /**
      * Retrieves the heading used in the class.
      */
-    protected function getHeading(): ?string
+    protected function getHeading(): null|string|Htmlable|View
     {
         return static::$heading;
     }
@@ -19,7 +22,7 @@ trait HasHeader
     /**
      * Retrieves the subheading used in the class.
      */
-    protected function getSubheading(): ?string
+    protected function getSubheading(): null|string|Htmlable|View
     {
         return static::$subheading;
     }

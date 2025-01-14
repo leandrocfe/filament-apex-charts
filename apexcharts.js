@@ -34,7 +34,7 @@ export default function apexcharts({
                         this.updateChart({
                             theme: { mode: theme },
                             chart: {
-                                background: 'inherit'
+                                background: this.options.chart.background || 'inherit'
                             }
                         })
                     }
@@ -44,7 +44,7 @@ export default function apexcharts({
         initChart: function () {
 
             this.options.theme = { mode: this.theme }
-            this.options.chart.background = 'inherit'
+            this.options.chart.background = this.options.chart.background || 'inherit'
 
             this.options = merge(this.options, this.extraJsOptions)
 
