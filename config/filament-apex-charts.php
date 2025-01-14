@@ -3,7 +3,7 @@
 // config for Leandrocfe/FilamentApexCharts
 return [
 
-    //command options
+    // command options
     'chart_options' => [
         'Empty',
         'Area',
