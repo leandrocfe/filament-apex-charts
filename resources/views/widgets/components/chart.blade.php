@@ -14,8 +14,8 @@
     style="{{ $contentHeight ? 'height: ' . $contentHeight . 'px;' : '' }}">
     @if ($readyToLoad)
         <div id="chart"></div>
-        <div x-ignore ax-load
-            ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('apexcharts') }}"
+        <div x-ignore x-load
+            x-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('apexcharts') }}"
             x-data="apexcharts({
                 options: @js($chartOptions),
                 chartId: '#{{ $chartId }}',
