@@ -34,7 +34,7 @@
             @if ($filterFormAccessible)
                 <div>
 
-                    <x-filament-apex-charts::filter-form :$indicatorsCount :$width>
+                    <x-filament-apex-charts::filter-form :indicatorsCount=$indicatorsCount :width=$width>
                         {{ $filterForm }}
                     </x-filament-apex-charts::filter-form>
 
