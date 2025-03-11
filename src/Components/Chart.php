@@ -6,6 +6,23 @@ use Illuminate\View\Component;
 
 class Chart extends Component
 {
+
+
+    public function __construct(
+        public $chartId,
+        public $chartOptions = [],
+        public $contentHeight,
+        public $pollingInterval,
+        public $loadingIndicator,
+        public $darkMode ,
+        public $deferLoading,
+        public $readyToLoad,
+        public $extraJsOptions
+    )
+    {
+
+    }
+
     /**
      * Renders a view for the chart component.
      */
