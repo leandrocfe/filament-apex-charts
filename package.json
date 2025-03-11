@@ -14,10 +14,10 @@
   "author": "leandrocfe@gmail.com",
   "license": "MIT",
   "devDependencies": {
-    "esbuild": "^0.19.7"
+    "esbuild": "^0.25.1"
   },
   "dependencies": {
-    "apexcharts": "^4.3.0",
+    "apexcharts": "^4.5.0",
     "lodash.merge": "^4.6.2"
   }
 }

@@ -486,6 +486,14 @@ Optionally, you can publish the views using:
 php artisan vendor:publish --tag="filament-apex-charts-views"
 ```
 
+## Publishing translations
+
+Optionally, you can publish the translations using:
+
+```bash
+php artisan vendor:publish --tag=filament-apex-charts-translations
+```
+
 ## Testing
 
 ```bash

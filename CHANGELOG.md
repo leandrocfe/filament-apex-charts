@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+## 3.2.0
+
+-   Laravel 12 support.
+-   Update Apexcharts 4.5.0.
+-   Fix Filament package dependencies.
+-   Fix chart translations.
 
 ## 3.1.6
 

@@ -5,7 +5,7 @@
 @endphp
 
 <div class="filament-apex-charts-filter-form relative">
-    <div class="filament-dropdown-trigger cursor-pointer flex items-center justify-center" aria-expanded="false">
+    <div class="filament-dropdown-trigger cursor-pointer flex items-center justify-end" aria-expanded="false">
         <button type="button" @click="dropdownOpen = !dropdownOpen"
             class="fi-icon-btn relative flex items-center justify-center rounded-lg outline-none transition duration-75 focus:ring-2 disabled:pointer-events-none disabled:opacity-70 h-9 w-9 text-gray-400 hover:text-gray-500 focus:ring-primary-600 dark:text-gray-500 dark:hover:text-gray-400 dark:focus:ring-primary-500 fi-ac-icon-btn-action"
             title="Filter">
@@ -61,7 +61,7 @@
                 </x-filament::link>
 
                 <x-filament::link wire:click="resetFiltersForm" color="danger" tag="button" size="sm">
-                    {{ __('filament-tables::table.filters.actions.reset.label') }}
+                    {{ __('filament-apex-charts::filters.reset.label') }}
                 </x-filament::link>
             </div>
         </div>

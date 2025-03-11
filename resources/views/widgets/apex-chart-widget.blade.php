@@ -1,5 +1,5 @@
 @php
-    $plugin = filament()->isServing() ? \Leandrocfe\FilamentApexCharts\FilamentApexChartsPlugin::get() : null;
+    $plugin = (function_exists('filament') && filament()->isServing()) ? \Leandrocfe\FilamentApexCharts\FilamentApexChartsPlugin::get() : null;
     $heading = $this->getHeading();
     $subheading = $this->getSubheading();
     $filters = $this->getFilters();
