@@ -35,7 +35,7 @@
     <div x-show="dropdownOpen" x-cloak @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
 
     <div x-show="dropdownOpen" x-cloak @class([
-        'absolute mt-2 z-10 w-screen divide-y divide-gray-100 rounded-lg bg-white shadow-lg ring-1 ring-gray-950/5 transition dark:divide-gray-700 dark:bg-gray-800 dark:ring-white/20',
+        'absolute mt-2 z-20 w-screen divide-y divide-gray-100 rounded-lg bg-white shadow-lg ring-1 ring-gray-950/5 transition dark:divide-gray-700 dark:bg-gray-800 dark:ring-white/20',
     ])
         style="{{ match ($width) {
             MaxWidth::ExtraSmall, 'xs' => 'width: 20rem;',
