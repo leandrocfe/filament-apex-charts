@@ -13,10 +13,8 @@ class Header extends Component
         public $indicatorsCount,
         public $width,
         public $filterFormAccessible
-    )
-    {
+    ) {}
 
-    }
     /**
      * Renders the view for the header component.
      */
