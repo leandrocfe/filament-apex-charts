@@ -21,15 +21,22 @@
     <x-filament::card class="filament-apex-charts-card">
         <div x-data="{ dropdownOpen: false }" @apexhcharts-dropdown.window="dropdownOpen = $event.detail.open">
 
-            <x-filament-apex-charts::header :$heading :$subheading :$filters :$indicatorsCount :$width
-                :$filterFormAccessible>
+            <x-filament-apex-charts::header :heading=$heading :subheading=$subheading :filters=$filters :indicatorsCount=$indicatorsCount :width=$width
+                :filterFormAccessible=$filterFormAccessible >
                 <x-slot:filterForm>
                     {{ $this->form }}
                 </x-slot:filterForm>
             </x-filament-apex-charts::header>
 
-            <x-filament-apex-charts::chart :$chartId :$chartOptions :$contentHeight :$pollingInterval :$loadingIndicator
-                :$darkMode :$deferLoading :$readyToLoad :$extraJsOptions />
+            <x-filament-apex-charts::chart :chartId=$chartId
+                                           :chartOptions=$chartOptions
+                                           :contentHeight=$contentHeight
+                                           :pollingInterval=$pollingInterval
+                                           :loadingIndicator=$loadingIndicator
+                                           :darkMode=$darkMode
+                                           :deferLoading=$deferLoading
+                                           :readyToLoad=$readyToLoad
+                                           :extraJsOptions=$extraJsOptions />
 
             @if ($footer)
                 <div class="relative">
