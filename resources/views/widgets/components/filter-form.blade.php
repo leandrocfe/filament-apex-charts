@@ -1,7 +1,7 @@
 @props(['indicatorsCount', 'width'])
 
 @php
-    use Filament\Support\Enums\MaxWidth;
+    use Filament\Support\Enums\Width;
 @endphp
 
 <div class="filament-apex-charts-filter-form relative">
@@ -38,17 +38,17 @@
         'absolute mt-2 z-20 w-screen divide-y divide-gray-100 rounded-lg bg-white shadow-lg ring-1 ring-gray-950/5 transition dark:divide-gray-700 dark:bg-gray-800 dark:ring-white/20',
     ])
         style="{{ match ($width) {
-            MaxWidth::ExtraSmall, 'xs' => 'width: 20rem;',
-            MaxWidth::Small, 'sm' => 'width: 24rem;',
-            MaxWidth::Medium, 'md' => 'width: 28rem;',
-            MaxWidth::Large, 'lg' => 'width: 32rem;',
-            MaxWidth::ExtraLarge, 'xl' => 'width: 36rem;',
-            MaxWidth::TwoExtraLarge, '2xl' => 'width: 42rem;',
-            MaxWidth::ThreeExtraLarge, '3xl' => 'width: 48rem;',
-            MaxWidth::FourExtraLarge, '4xl' => 'width: 56rem;',
-            MaxWidth::FiveExtraLarge, '5xl' => 'width: 64rem;',
-            MaxWidth::SixExtraLarge, '6xl' => 'width: 72rem;',
-            MaxWidth::SevenExtraLarge, '7xl' => 'width: 80rem;',
+            Width::ExtraSmall, 'xs' => 'width: 20rem;',
+            Width::Small, 'sm' => 'width: 24rem;',
+            Width::Medium, 'md' => 'width: 28rem;',
+            Width::Large, 'lg' => 'width: 32rem;',
+            Width::ExtraLarge, 'xl' => 'width: 36rem;',
+            Width::TwoExtraLarge, '2xl' => 'width: 42rem;',
+            Width::ThreeExtraLarge, '3xl' => 'width: 48rem;',
+            Width::FourExtraLarge, '4xl' => 'width: 56rem;',
+            Width::FiveExtraLarge, '5xl' => 'width: 64rem;',
+            Width::SixExtraLarge, '6xl' => 'width: 72rem;',
+            Width::SevenExtraLarge, '7xl' => 'width: 80rem;',
             default => $width,
         } }}; right:0">
         <div class="py-4 px-6">
