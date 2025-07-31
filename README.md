@@ -11,7 +11,7 @@
 You can install the package via composer:
 
 ```bash
-composer require leandrocfe/filament-apex-charts:"^3.1"
+composer require leandrocfe/filament-apex-charts:"^4.0"
 ```
 
 Register the plugin for the Filament Panels you want to use:
@@ -28,6 +28,7 @@ public function panel(Panel $panel): Panel
 ```
 
 **Filament V2** - if you are using Filament v2.x, you can use [this section](https://github.com/leandrocfe/filament-apex-charts/tree/2.0.2)
+**Filament V3** - if you are using Filament v2.x, you can use [this section](https://github.com/leandrocfe/filament-apex-charts/tree/3.2.1)
 
 ## Usage
 
@@ -166,6 +167,21 @@ You may set a chart id:
 protected static string $chartId = 'blogPostsChart';
 ```
 
+## Making a widget collapsible
+You may set a widget to be collapsible:
+
+```php
+protected static bool $isCollapsible = true;
+```
+You can also use the `isCollapsible()` method:
+
+```php
+protected function isCollapsible(): bool
+{
+    return true;
+}
+```
+
 ## Setting a widget height
 
 You may set a widget height:
@@ -231,80 +247,68 @@ You can hide header content by **NOT** providing these
 -   getHeading()
 -   $subheading
 -   getSubheading()
--   getFormSchema()
 -   getOptions()
 
 ## Filtering chart data
 
 You can set up chart filters to change the data shown on chart. Commonly, this is used to change the time period that chart data is rendered for.
 
-### Filter forms
+### Filter schema
 
-You may use components from the [Form Builder](https://filamentphp.com/docs/2.x/forms/fields) to create custom filter forms:
+You may use components from the [Schemas](https://filamentphp.com/docs/4.x/schemas/overview#available-components) to create custom filters.
+You need to implement `HasActions` interface and use `HasFiltersSchema` and `InteractsWithActions` traits:
 
 ```php
+use Filament\Actions\Concerns\InteractsWithActions;  
+use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Schema;
+use Filament\Widgets\ChartWidget\Concerns\HasFiltersSchema;  
+use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget; 
 
-protected function getFormSchema(): array
+class BlogPostsChart extends ApexChartWidget implements HasActions  
 {
-    return [
-
-        TextInput::make('title')
-            ->default('My Chart'),
-
-        DatePicker::make('date_start')
-            ->default('2023-01-01'),
-
-        DatePicker::make('date_end')
-            ->default('2023-12-31')
-
-    ];
+    use HasFiltersSchema;
+    use InteractsWithActions;
+    
+    public function filtersSchema(Schema $schema): Schema
+    {
+        return $schema->components([
+            TextInput::make('title')
+                ->default('Blog Posts Chart'),
+                
+            DatePicker::make('date_start')  
+                ->default('2025-07-01'),
+    
+            DatePicker::make('date_end')
+                ->default('2025-07-31'),
+        ]);
+    }
+    
+    /**
+    * Use this method to update the chart options when the filter form is submitted.
+    */
+    public function updatedInteractsWithSchemas(string $statePath): void
+    {
+        $this->updateOptions();
+    }
 }
 ```
 
-The data from the custom filter form is available in the $this->filterFormData array. You can use the active filter form values within your `getOptions()` method:
+The data from the custom filter is available in the `$this->filters` array. You can use the active filter values within your `getOptions()` method:
 
 ```php
 protected function getOptions(): array
 {
-    $title = $this->filterFormData['title'];
-    $dateStart = $this->filterFormData['date_start'];
-    $dateEnd = $this->filterFormData['date_end'];
+    $title = $this->filters['title'];
+    $dateStart = $this->filters['date_start'];
+    $dateEnd = $this->filters['date_end'];
 
     return [
         //chart options
     ];
 }
-```
-
-Also, if you want your chart data to update when the value of a filter changes, you have to combine `reactive()` with `afterStateUpdated()` :
-
-```php
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\TextInput;
-
-protected function getFormSchema(): array
-{
-    return [
-        TextInput::make('title')
-            ->default('My Chart')
-            ->live()
-            ->afterStateUpdated(function () {
-                $this->updateChartOptions();
-            }),
-        ...
-    ];
-}
-```
-
-### Changing the filter form width
-
-You can change the filter form width by setting the `$filterFormWidth` property:
-
-```php
-use Filament\Support\Enums\Width;
-protected static Width|string $filterFormWidth = Width::Medium;
 ```
 
 ### Single select

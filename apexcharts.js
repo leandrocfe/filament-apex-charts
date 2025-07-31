@@ -40,6 +40,10 @@ export default function apexcharts({
                     }
                 })
             })
+
+            document.querySelectorAll('.fi-wi-chart-filter > .fi-dropdown-panel').forEach(el => {
+                el.style.zIndex = '20';
+            });
         },
         initChart: function () {
 

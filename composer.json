@@ -18,8 +18,8 @@
     ],
     "require": {
         "php": "^8.2",
-        "filament/widgets": "^v4.0.0-beta10",
-        "filament/forms": "^v4.0.0-beta10",
+        "filament/widgets": "^v4.0.0-beta15",
+        "filament/schemas": "^v4.0.0-beta15",
         "illuminate/contracts": "^11.0|^12.0",
         "livewire/livewire": "^3.0",
         "spatie/laravel-package-tools": "^1.13.0"

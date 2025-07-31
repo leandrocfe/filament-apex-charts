@@ -11,6 +11,8 @@ trait HasHeader
 
     protected static ?string $subheading = null;
 
+    protected static bool $isCollapsible = false;
+
     /**
      * Retrieves the heading used in the class.
      */
@@ -25,5 +27,13 @@ trait HasHeader
     protected function getSubheading(): null|string|Htmlable|View
     {
         return static::$subheading;
+    }
+
+    /**
+     * Retrieves the collapsible state of the header.
+     */
+    protected function isCollapsible(): bool
+    {
+        return static::$isCollapsible;
     }
 }
