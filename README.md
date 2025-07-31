@@ -28,6 +28,7 @@ public function panel(Panel $panel): Panel
 ```
 
 **Filament V2** - if you are using Filament v2.x, you can use [this section](https://github.com/leandrocfe/filament-apex-charts/tree/2.0.2)
+
 **Filament V3** - if you are using Filament v2.x, you can use [this section](https://github.com/leandrocfe/filament-apex-charts/tree/3.2.1)
 
 ## Usage
