@@ -2,31 +2,18 @@
 
 namespace Leandrocfe\FilamentApexCharts\Concerns;
 
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Support\Enums\MaxWidth;
-use Illuminate\Support\Arr;
+use Filament\Schemas\Concerns\InteractsWithSchemas;
+use Filament\Support\Enums\Width;
 
 trait CanFilter
 {
-    use InteractsWithForms;
+    use InteractsWithSchemas;
 
-    protected static MaxWidth|string $filterFormWidth = MaxWidth::ExtraSmall;
+    protected static Width|string $filterFormWidth = Width::ExtraSmall;
 
     public ?string $filter = null;
 
-    public ?array $filterFormData = [];
-
     public bool $dropdownOpen = false;
-
-    /**
-     * Retrieve the path for the form state.
-     *
-     * @return string The path for the form state.
-     */
-    protected function getFormStatePath(): string
-    {
-        return 'filterFormData';
-    }
 
     /**
      * Retrieves the simple filter options.
@@ -45,16 +32,6 @@ trait CanFilter
     {
         $this->dispatch('updateOptions', options: $this->getOptions())
             ->self();
-    }
-
-    /**
-     * Retrieves the form schema.
-     *
-     * @return array The form schema.
-     */
-    protected function getFormSchema(): array
-    {
-        return [];
     }
 
     /**
@@ -85,39 +62,11 @@ trait CanFilter
     }
 
     /**
-     * Retrieves the count of indicators.
-     *
-     * @return int The count of indicators.
-     */
-    public function getIndicatorsCount(): int
-    {
-        if ($this->getFilterFormAccessible()) {
-            return count(
-                Arr::where($this->filterFormData, function ($value) {
-                    return $value !== null;
-                })
-            );
-        }
-
-        return 0;
-    }
-
-    /**
-     * Retrieves the accessibility of the filter form data.
-     *
-     * @return bool The accessibility of the filter form data.
-     */
-    public function getFilterFormAccessible(): bool
-    {
-        return Arr::accessible($this->filterFormData) && count($this->filterFormData) > 0;
-    }
-
-    /**
      * Retrieves the value of the static property $filterFormWidth.
      *
-     * @return MaxWidth | string The value of the $filterFormWidth property, which is either a MaxWidth instance or a string.
+     * @return Width | string The value of the $filterFormWidth property, which is either a MaxWidth instance or a string.
      */
-    protected function getFilterFormWidth(): MaxWidth|string
+    protected function getFilterFormWidth(): Width|string
     {
         return static::$filterFormWidth;
     }
