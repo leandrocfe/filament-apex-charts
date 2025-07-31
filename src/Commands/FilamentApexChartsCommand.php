@@ -50,7 +50,7 @@ class FilamentApexChartsCommand extends Command
         parent::__construct();
 
         $this->files = $files;
-        $this->chartOptions = config('filament-apex-charts.chart_options');
+        $this->chartOptions = config('filament-apex-charts.chart_options') ?? [];
     }
 
     public function handle(): int
