@@ -303,8 +303,8 @@ protected function getFormSchema(): array
 You can change the filter form width by setting the `$filterFormWidth` property:
 
 ```php
-use Filament\Support\Enums\MaxWidth;
-protected static MaxWidth|string $filterFormWidth = MaxWidth::Medium;
+use Filament\Support\Enums\Width;
+protected static Width|string $filterFormWidth = Width::Medium;
 ```
 
 ### Single select
