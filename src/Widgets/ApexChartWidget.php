@@ -2,7 +2,7 @@
 
 namespace Leandrocfe\FilamentApexCharts\Widgets;
 
-use Filament\Forms\Contracts\HasForms;
+use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Support\RawJs;
 use Filament\Widgets\Concerns\CanPoll;
 use Filament\Widgets\Widget;
@@ -16,7 +16,7 @@ use Leandrocfe\FilamentApexCharts\Concerns\HasFooter;
 use Leandrocfe\FilamentApexCharts\Concerns\HasHeader;
 use Leandrocfe\FilamentApexCharts\Concerns\HasLoadingIndicator;
 
-class ApexChartWidget extends Widget implements HasForms
+class ApexChartWidget extends Widget implements HasSchemas
 {
     use CanDeferLoading;
     use CanFilter;
@@ -38,7 +38,9 @@ class ApexChartWidget extends Widget implements HasForms
      */
     public function mount(): void
     {
-        $this->form->fill();
+        if (method_exists($this, 'getFiltersSchema')) {
+            $this->getFiltersSchema()->fill();
+        }
 
         $this->options = $this->getOptions();
 
