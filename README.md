@@ -257,21 +257,18 @@ You can set up chart filters to change the data shown on chart. Commonly, this i
 ### Filter schema
 
 You may use components from the [Schemas](https://filamentphp.com/docs/4.x/schemas/overview#available-components) to create custom filters.
-You need to implement `HasActions` interface and use `HasFiltersSchema` and `InteractsWithActions` traits:
+You need to use `HasFiltersSchema` trait and implement the `filtersSchema()` method to define the filter form schema:
 
 ```php
-use Filament\Actions\Concerns\InteractsWithActions;  
-use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use Filament\Widgets\ChartWidget\Concerns\HasFiltersSchema;  
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget; 
 
-class BlogPostsChart extends ApexChartWidget implements HasActions  
+class BlogPostsChart extends ApexChartWidget 
 {
     use HasFiltersSchema;
-    use InteractsWithActions;
     
     public function filtersSchema(Schema $schema): Schema
     {
