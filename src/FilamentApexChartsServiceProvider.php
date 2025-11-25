@@ -28,7 +28,6 @@ class FilamentApexChartsServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('filament-apex-charts')
-            ->hasConfigFile()
             ->hasViews()
             ->hasTranslations()
             ->hasCommand(FilamentApexChartsCommand::class);

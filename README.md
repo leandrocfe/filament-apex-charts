@@ -98,7 +98,7 @@ class BlogPostsChart extends ApexChartWidget
     {
         return [
             'chart' => [
-                'type' => 'bar',
+                'type' => ApexChartTypeEnum::Bar,
                 'height' => 300,
             ],
             'series' => [
@@ -169,11 +169,13 @@ protected static string $chartId = 'blogPostsChart';
 ```
 
 ## Making a widget collapsible
+
 You may set a widget to be collapsible:
 
 ```php
 protected static bool $isCollapsible = true;
 ```
+
 You can also use the `isCollapsible()` method:
 
 ```php
@@ -263,27 +265,27 @@ You need to use `HasFiltersSchema` trait and implement the `filtersSchema()` met
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
-use Filament\Widgets\ChartWidget\Concerns\HasFiltersSchema;  
-use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget; 
+use Filament\Widgets\ChartWidget\Concerns\HasFiltersSchema;
+use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 
-class BlogPostsChart extends ApexChartWidget 
+class BlogPostsChart extends ApexChartWidget
 {
     use HasFiltersSchema;
-    
+
     public function filtersSchema(Schema $schema): Schema
     {
         return $schema->components([
             TextInput::make('title')
                 ->default('Blog Posts Chart'),
-                
-            DatePicker::make('date_start')  
+
+            DatePicker::make('date_start')
                 ->default('2025-07-01'),
-    
+
             DatePicker::make('date_end')
                 ->default('2025-07-31'),
         ]);
     }
-    
+
     /**
     * Use this method to update the chart options when the filter form is submitted.
     */
@@ -428,7 +430,7 @@ protected function getOptions(): array
             'mode' => 'light' //dark
         ],
         'chart' => [
-            'type' => 'bar',
+            'type' => ApexChartTypeEnum::Bar,
             ...
         ],
         ...
