@@ -45,11 +45,11 @@ it('can set widget content options', function () {
 });
 
 it('can set filter form', function () {
-    expect(property_exists($this->className, 'filterFormData'))->toBeTrue();
-    expect(method_exists($this->className, 'getFormStatePath'))->toBeTrue();
-    expect(method_exists($this->className, 'getFormSchema'))->toBeTrue();
     expect(method_exists($this->className, 'submitFiltersForm'))->toBeTrue();
     expect(method_exists($this->className, 'resetFiltersForm'))->toBeTrue();
-    expect(method_exists($this->className, 'getIndicatorsCount'))->toBeTrue();
-    expect(method_exists($this->className, 'getFilterFormAccessible'))->toBeTrue();
+    expect(method_exists($this->className, 'getFilters'))->toBeTrue();
+    expect(method_exists($this->className, 'getFilterFormWidth'))->toBeTrue();
+
+    expect(property_exists($this->className, 'filter'))->toBeTrue();
+    expect(property_exists($this->className, 'dropdownOpen'))->toBeTrue();
 });
