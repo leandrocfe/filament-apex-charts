@@ -42,7 +42,7 @@ class ApexChartWidget extends Widget implements HasSchemas
             $this->getFiltersSchema()->fill();
         }
 
-        $this->options = $this->getOptions();
+        $this->options = $this->processOptions($this->getOptions());
 
         if (! $this->getDeferLoading()) {
             $this->readyToLoad = true;
@@ -81,9 +81,11 @@ class ApexChartWidget extends Widget implements HasSchemas
      */
     public function updateOptions(): void
     {
-        if ($this->options !== $this->getOptions()) {
+        $processedOptions = $this->processOptions($this->getOptions());
 
-            $this->options = $this->getOptions();
+        if ($this->options !== $processedOptions) {
+
+            $this->options = $processedOptions;
 
             if (! $this->dropdownOpen) {
                 $this
@@ -99,5 +101,23 @@ class ApexChartWidget extends Widget implements HasSchemas
     protected function extraJsOptions(): ?RawJs
     {
         return null;
+    }
+
+    /**
+     * Process options array and convert backed enums to their values.
+     */
+    protected function processOptions(array $options): array
+    {
+        return array_map(function ($value) {
+            if ($value instanceof \BackedEnum) {
+                return $value->value;
+            }
+
+            if (is_array($value)) {
+                return $this->processOptions($value);
+            }
+
+            return $value;
+        }, $options);
     }
 }

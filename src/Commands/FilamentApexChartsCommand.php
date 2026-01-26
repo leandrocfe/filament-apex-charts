@@ -10,6 +10,7 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Leandrocfe\FilamentApexCharts\Enums\ApexChartTypeEnum;
 
 use function Laravel\Prompts\select;
 use function Laravel\Prompts\text;
@@ -38,11 +39,6 @@ class FilamentApexChartsCommand extends Command
     protected Filesystem $files;
 
     /**
-     * Chart options
-     */
-    private array $chartOptions;
-
-    /**
      * Create a new command instance.
      */
     public function __construct(Filesystem $files)
@@ -50,7 +46,6 @@ class FilamentApexChartsCommand extends Command
         parent::__construct();
 
         $this->files = $files;
-        $this->chartOptions = config('filament-apex-charts.chart_options');
     }
 
     public function handle(): int
@@ -77,7 +72,7 @@ class FilamentApexChartsCommand extends Command
 
         $chartType = select(
             label: 'What type of chart do you want to create?',
-            options: $this->chartOptions,
+            options: collect(ApexChartTypeEnum::cases())->map->name->all(),
         );
 
         if (class_exists(Resource::class)) {
