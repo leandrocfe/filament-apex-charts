@@ -11,7 +11,7 @@
 You can install the package via composer:
 
 ```bash
-composer require leandrocfe/filament-apex-charts:"^4.0"
+composer require leandrocfe/filament-apex-charts:"^5.0"
 ```
 
 Register the plugin for the Filament Panels you want to use:
@@ -258,7 +258,7 @@ You can set up chart filters to change the data shown on chart. Commonly, this i
 
 ### Filter schema
 
-You may use components from the [Schemas](https://filamentphp.com/docs/4.x/schemas/overview#available-components) to create custom filters.
+You may use components from the [Schemas](https://filamentphp.com/docs/5.x/schemas/overview#available-components) to create custom filters.
 You need to use `HasFiltersSchema` trait and implement the `filtersSchema()` method to define the filter form schema:
 
 ```php
