@@ -31,6 +31,8 @@ public function panel(Panel $panel): Panel
 
 **Filament V3** - if you are using Filament v3.x, you can use [this section](https://github.com/leandrocfe/filament-apex-charts/tree/3.2.1)
 
+**Filament V4** - if you are using Filament v4.x, you can use [this section](https://github.com/leandrocfe/filament-apex-charts/tree/4.0.0)
+
 ## Usage
 
 Start by creating a widget with the command:
