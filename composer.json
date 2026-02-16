@@ -25,7 +25,7 @@
         "spatie/laravel-package-tools": "^1.13.0"
     },
     "require-dev": {
-        "filament/filament": "^4.0|5.0",
+        "filament/filament": "^4.0|^5.0",
         "larastan/larastan": "^3.0.1",
         "laravel/pint": "^1.0",
         "nunomaduro/collision": "^8.0",
