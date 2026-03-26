@@ -10,3 +10,4 @@ testbench.yaml
 vendor
 node_modules
 .vscode/settings.json
+/firebase-debug.log
