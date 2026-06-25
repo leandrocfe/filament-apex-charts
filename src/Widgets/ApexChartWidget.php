@@ -29,8 +29,6 @@ class ApexChartWidget extends Widget implements HasSchemas
 
     protected static ?string $chartId = null;
 
-    protected string $view = 'filament-apex-charts::widgets.apex-chart-widget';
-
     public ?array $options = null;
 
     /**
@@ -53,7 +51,7 @@ class ApexChartWidget extends Widget implements HasSchemas
 
     public function render(): View
     {
-        return view($this->view, []);
+        return view('filament-apex-charts::widgets.apex-chart-widget', []);
     }
 
     /**

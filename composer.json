@@ -18,8 +18,8 @@
     ],
     "require": {
         "php": "^8.2",
-        "filament/widgets": "^v4.0.0|^v5.0.0",
         "filament/schemas": "^v4.0.0|^v5.0.0",
+        "filament/widgets": "^v4.0.0|^v5.0.0",
         "illuminate/contracts": "^11.0|^12.0|^13.0",
         "livewire/livewire": "^3.0|^4.0",
         "spatie/laravel-package-tools": "^1.13.0"
@@ -29,7 +29,7 @@
         "larastan/larastan": "^3.0.1",
         "laravel/pint": "^1.0",
         "nunomaduro/collision": "^8.0",
-        "orchestra/testbench": "^9.0",
+        "orchestra/testbench": "^9.0|^10.0|^11.0",
         "pestphp/pest": "^3.0",
         "pestphp/pest-plugin-laravel": "^3.0",
         "phpstan/extension-installer": "^1.1",

@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.1.1
+- Extend Testbench support to versions 10 and 11.
+- Update Apexcharts to 5.15.2.
+- Update esbuild to 0.28.1.
+- Simplify the widget render view resolution.
+- Refresh the PHPUnit configuration.
+
 ## 5.1.0
 - Fix for Laravel 13 support.
 - Update Apexcharts 5.10.4.
