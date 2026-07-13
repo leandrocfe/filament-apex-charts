@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 5.1.2
+
+### Security
+
+- Pin GitHub Actions to immutable commit SHAs.
+- Add Dependabot updates for Composer with a seven-day cooldown.
+- Add a security policy with private vulnerability reporting instructions.
+
 ## 5.1.1
 - Extend Testbench support to versions 10 and 11.
 - Update Apexcharts to 5.15.2.
