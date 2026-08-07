@@ -61,6 +61,7 @@ You may choose:
 -   Radialbar
 -   RangeArea
 -   Scatter
+-   Sunburst
 -   TimelineRangeBars
 -   Treemap
 -   Funnel

@@ -38,6 +38,10 @@ You may copy the file and paste it into **app\Filament\Widgets** folder. Once yo
     -   [Range Area Chart](RangeArea/BasicRangeAreaChart.php)
 -   Scatter
     -   [Basic Scatter Chart](Scatter/BasicScatterChart.php)
+-   Sunburst
+    -   [Basic Sunburst Chart](Sunburst/BasicSunburstChart.php)
+    -   [Sunburst from a Drilldown config](Sunburst/SunburstFromDrilldownChart.php)
+    -   [Semi-Circle Sunburst Chart](Sunburst/SemiCircleSunburstChart.php)
 -   Timeline Range-bars
     -   [Timeline Bar Chart](TimelineRangeBars/BasicTimelineRangeBarsChart.php)
 -   Treemap
