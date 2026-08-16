@@ -14,7 +14,7 @@
   "author": "leandrocfe@gmail.com",
   "license": "MIT",
   "devDependencies": {
-    "esbuild": "^0.28.1"
+    "esbuild": "^0.28.2"
   },
   "dependencies": {
     "apexcharts": "^6.7.0",
