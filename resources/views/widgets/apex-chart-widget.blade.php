@@ -8,7 +8,7 @@
     $width = $this->getFilterFormWidth();
     $pollingInterval = $this->getPollingInterval();
     $chartId = $this->getChartId();
-    $chartOptions = $this->getOptions();
+    $chartOptions = $this->options;
     $loadingIndicator = $this->getLoadingIndicator();
     $contentHeight = $this->getContentHeight();
     $deferLoading = $this->getDeferLoading();

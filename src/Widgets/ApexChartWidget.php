@@ -49,6 +49,24 @@ class ApexChartWidget extends Widget implements HasSchemas
 
     public function on(): void {}
 
+    /**
+     * Refresh the options before every render.
+     *
+     * `mount()` only runs once, so without this the chart keeps drawing the data
+     * it was mounted with: a widget whose options depend on component state that
+     * changes later — a `#[Reactive]` property fed by a Filament page filter, a
+     * Livewire property, the clock — updates its heading and leaves the chart
+     * behind, with nothing to signal it. Filament's own `ChartWidget` refreshes
+     * the same way, in the same hook.
+     *
+     * `updateOptions()` compares before dispatching, so a render that changes
+     * nothing still emits no browser event.
+     */
+    public function rendering(): void
+    {
+        $this->updateOptions();
+    }
+
     public function render(): View
     {
         return view('filament-apex-charts::widgets.apex-chart-widget', []);
