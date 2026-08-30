@@ -20,6 +20,7 @@ enum ApexChartTypeEnum: string
     case Radialbar = 'radialBar';
     case RangeArea = 'rangeArea';
     case Scatter = 'scatter';
+    case Sunburst = 'sunburst';
     case TimelineRangeBars = 'rangeBar';
     case Treemap = 'treemap';
     case Funnel = 'funnel';

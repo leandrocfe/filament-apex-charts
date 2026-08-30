@@ -1,0 +1,75 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
+
+class $CLASS_NAME$ extends ApexChartWidget
+{
+    /**
+     * Chart Id
+     *
+     * @var string
+     */
+    protected static ?string $chartId = '$CHART_ID$';
+
+    /**
+     * Widget Title
+     *
+     * @var string|null
+     */
+    protected static ?string $heading = '$CLASS_NAME$';
+
+    /**
+     * Chart options (series, labels, types, size, animations...)
+     * https://apexcharts.com/docs/options
+     *
+     * @return array
+     */
+    protected function getOptions(): array
+    {
+        return [
+            'chart' => [
+                'type' => 'sunburst',
+                'height' => 300,
+            ],
+            'series' => [
+                [
+                    'data' => [
+                        [
+                            'x' => 'Code',
+                            'y' => 40,
+                            'children' => [
+                                ['x' => 'Backend', 'y' => 25],
+                                ['x' => 'Frontend', 'y' => 15],
+                            ],
+                        ],
+                        [
+                            'x' => 'Test',
+                            'y' => 20,
+                            'children' => [
+                                ['x' => 'Unit', 'y' => 12],
+                                ['x' => 'Feature', 'y' => 8],
+                            ],
+                        ],
+                        ['x' => 'Deployment', 'y' => 10],
+                    ],
+                ],
+            ],
+            'colors' => ['#6366f1', '#0ea5e9', '#f59e0b'],
+            'plotOptions' => [
+                'sunburst' => [
+                    'innerSize' => '25%',
+                    'borderRadius' => 5,
+                ],
+            ],
+            'stroke' => [
+                'width' => 1,
+                'colors' => ['#fff'],
+            ],
+            'legend' => [
+                'position' => 'bottom',
+            ],
+        ];
+    }
+}
