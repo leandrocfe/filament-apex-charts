@@ -17,7 +17,7 @@
     "esbuild": "^0.28.2"
   },
   "dependencies": {
-    "apexcharts": "^6.9.0",
+    "apexcharts": "^6.10.0",
     "lodash.merge": "^4.6.2",
     "npm-check-updates": "^23.0.2"
   }
