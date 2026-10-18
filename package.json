@@ -19,6 +19,6 @@
   "dependencies": {
     "apexcharts": "^7.8.0",
     "lodash.merge": "^4.6.2",
-    "npm-check-updates": "^23.0.2"
+    "npm-check-updates": "^23.1.1"
   }
 }
